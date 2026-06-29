@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --magenta: #C8006A;
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white transition-colors duration-300;
+  }
+
+  ::selection {
+    background-color: #C8006A;
+    color: white;
+  }
+}
+
+@layer utilities {
+  .text-magenta { color: #C8006A; }
+  .bg-magenta { background-color: #C8006A; }
+  .border-magenta { border-color: #C8006A; }
+}

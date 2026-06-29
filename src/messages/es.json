@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "comunidad": "La comunidad",
+    "conocimiento": "Conocimiento",
+    "blog": "Blog",
+    "eventos": "Eventos",
+    "contacto": "Contacto"
+  },
+  "hero": {
+    "tag": "Comunidad Latinoamericana",
+    "title1": "El testing",
+    "title2": "es para",
+    "title3": "todas",
+    "description": "Un espacio amoroso, seguro y desde cero para que puedas iniciar, avanzar y prosperar en el camino del testing de software.",
+    "cta_primary": "Unirme a la comunidad",
+    "cta_secondary": "Ver el material",
+    "stat_members": "Miembros",
+    "stat_countries": "Países",
+    "stat_free": "Gratuito"
+  },
+  "features": {
+    "tag": "¿Qué encontrás aquí?",
+    "title": "Todo lo que necesitás para crecer",
+    "card1_title": "Material de conocimiento",
+    "card1_desc": "Guías, PDFs y recursos para todos los niveles, desde cero hasta avanzado.",
+    "card2_title": "Blog de mujeres",
+    "card2_desc": "Historias, experiencias y perspectivas escritas por mujeres en testing.",
+    "card3_title": "Eventos en Latam",
+    "card3_desc": "Meetups, charlas y workshops en distintos países de latinoamérica."
+  },
+  "comunidad": {
+    "title": "La comunidad",
+    "description": "Somos más de 2.000 mujeres unidas por el amor al testing y el deseo de crecer juntas."
+  },
+  "conocimiento": {
+    "title": "Material de conocimiento",
+    "description": "Recursos gratuitos para aprender testing desde cero.",
+    "view": "Ver documento",
+    "download": "Descargar"
+  },
+  "blog": {
+    "title": "Blog de mujeres en testing",
+    "description": "Historias reales, aprendizajes y perspectivas de mujeres en la industria.",
+    "read_more": "Leer más"
+  },
+  "eventos": {
+    "title": "Eventos",
+    "description": "Encontranos en distintos países de Latinoamérica.",
+    "register": "Registrarme",
+    "past": "Eventos pasados",
+    "upcoming": "Próximos eventos"
+  },
+  "contacto": {
+    "title": "Contacto",
+    "description": "¿Querés colaborar, proponer un evento o simplemente saludarnos?",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "country": "País"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "made_with": "Hecho con amor para Latam"
+  }
+}

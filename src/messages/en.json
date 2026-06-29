@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "comunidad": "The community",
+    "conocimiento": "Knowledge",
+    "blog": "Blog",
+    "eventos": "Events",
+    "contacto": "Contact"
+  },
+  "hero": {
+    "tag": "Latin American Community",
+    "title1": "Testing",
+    "title2": "is for",
+    "title3": "everyone",
+    "description": "A loving, safe space from scratch so you can start, grow, and thrive on the software testing path.",
+    "cta_primary": "Join the community",
+    "cta_secondary": "View resources",
+    "stat_members": "Members",
+    "stat_countries": "Countries",
+    "stat_free": "Free"
+  },
+  "features": {
+    "tag": "What will you find here?",
+    "title": "Everything you need to grow",
+    "card1_title": "Knowledge resources",
+    "card1_desc": "Guides, PDFs and resources for all levels, from beginner to advanced.",
+    "card2_title": "Women's blog",
+    "card2_desc": "Stories, experiences and perspectives written by women in testing.",
+    "card3_title": "Events in Latam",
+    "card3_desc": "Meetups, talks and workshops across Latin America."
+  },
+  "comunidad": {
+    "title": "The community",
+    "description": "We are over 2,000 women united by our love of testing and the desire to grow together."
+  },
+  "conocimiento": {
+    "title": "Knowledge resources",
+    "description": "Free resources to learn testing from scratch.",
+    "view": "View document",
+    "download": "Download"
+  },
+  "blog": {
+    "title": "Women in testing blog",
+    "description": "Real stories, learnings and perspectives from women in the industry.",
+    "read_more": "Read more"
+  },
+  "eventos": {
+    "title": "Events",
+    "description": "Find us across Latin America.",
+    "register": "Register",
+    "past": "Past events",
+    "upcoming": "Upcoming events"
+  },
+  "contacto": {
+    "title": "Contact",
+    "description": "Want to collaborate, propose an event or just say hello?",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "country": "Country"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "made_with": "Made with love for Latam"
+  }
+}
