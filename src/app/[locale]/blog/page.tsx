@@ -84,7 +84,7 @@ export default function Blog({ params: { locale } }: { params: { locale: string 
       </div>
 
       <div className="mt-16 p-8 rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 text-center">
-        <h3 className="font-medium mb-2">¿Querés escribir en el blog?</h3>
+        <h3 className="font-medium mb-2">¿Quieres escribir en el blog?</h3>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Compartí tu historia, aprendizajes o perspectiva con toda la comunidad.</p>
         <Link
           href={`/${locale}/contacto`}

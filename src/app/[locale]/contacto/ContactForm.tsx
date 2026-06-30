@@ -17,7 +17,7 @@ export default function ContactForm({ locale }: { locale: string }) {
   return (
     <div className="animate-fade-in max-w-6xl mx-auto px-6 py-20">
       <div className="max-w-2xl mb-12">
-        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">Escribinos</p>
+        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">Escríbenos</p>
         <h1 className="text-4xl font-medium mb-4">{t('title')}</h1>
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{t('description')}</p>
       </div>
@@ -99,7 +99,7 @@ export default function ContactForm({ locale }: { locale: string }) {
         <div className="flex flex-col gap-6">
           <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
             <h3 className="font-medium mb-2 text-sm">Comunidad activa en LinkedIn</h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">La conversación principal de la comunidad sucede en LinkedIn. Seguinos para no perderte nada.</p>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">La conversación principal de la comunidad sucede en LinkedIn. Síguenos para no perderte nada.</p>
             <a
               href="https://www.linkedin.com/company/mujeres-testing-latam/"
               target="_blank"
@@ -110,8 +110,8 @@ export default function ContactForm({ locale }: { locale: string }) {
             </a>
           </div>
           <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-            <h3 className="font-medium mb-2 text-sm">¿Querés proponer algo?</h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Podés escribirnos para proponer eventos, colaboraciones, artículos para el blog o cualquier iniciativa que sume a la comunidad.</p>
+            <h3 className="font-medium mb-2 text-sm">¿Quieres proponer algo?</h3>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">Puedes escribirnos para proponer eventos, colaboraciones, artículos para el blog o cualquier iniciativa que sume a la comunidad.</p>
           </div>
         </div>
       </div>

@@ -32,8 +32,8 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
       </div>
 
       <div className="rounded-2xl bg-zinc-950 dark:bg-zinc-900 border border-zinc-800 p-10 text-center">
-        <h2 className="text-2xl font-medium text-white mb-3">Sumate a la comunidad</h2>
-        <p className="text-zinc-400 text-sm mb-6">Conectate con nosotras en LinkedIn y sé parte del movimiento.</p>
+        <h2 className="text-2xl font-medium text-white mb-3">Súmate a la comunidad</h2>
+        <p className="text-zinc-400 text-sm mb-6">Conéctate con nosotras en LinkedIn y sé parte del movimiento.</p>
         <a
           href="https://www.linkedin.com/company/mujeres-testing-latam/"
           target="_blank"

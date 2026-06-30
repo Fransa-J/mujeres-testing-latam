@@ -82,8 +82,8 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
       </div>
 
       <div className="p-8 rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 text-center">
-        <h3 className="font-medium mb-2">¿Querés organizar un evento en tu ciudad?</h3>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Escribinos y te ayudamos a organizarlo bajo el paraguas de MTL.</p>
+        <h3 className="font-medium mb-2">¿Quieres organizar un evento en tu ciudad?</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Escríbenos y te ayudamos a organizarlo bajo el paraguas de MTL.</p>
         <a
           href={`/${locale}/contacto`}
           className="inline-block px-5 py-2.5 bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity"
