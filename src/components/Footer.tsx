@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { track } from '@vercel/analytics'
 import { Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
@@ -25,6 +26,7 @@ export default function Footer() {
           <div className="flex items-center gap-4 mt-1">
             <a
               href="mailto:mujerestesting@gmail.com"
+              onClick={() => track('email_click')}
               className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
             >
               <Mail size={13} /> mujerestesting@gmail.com
@@ -34,6 +36,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
+              onClick={() => track('linkedin_click', { location: 'footer' })}
               className="text-zinc-400 hover:text-[#C8006A] transition-colors"
             >
               <Linkedin size={16} />

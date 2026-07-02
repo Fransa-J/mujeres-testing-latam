@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { track } from '@vercel/analytics'
 import { FileText, Download, ArrowRight } from 'lucide-react'
 import { articulos, categories, type Locale } from '@/content/articulos'
 
@@ -73,6 +74,7 @@ export default function ConocimientoList({ locale }: { locale: Locale }) {
               <a
                 href={a.pdf}
                 download
+                onClick={() => track('pdf_download', { slug: a.slug })}
                 className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#C8006A] transition-colors"
               >
                 <Download size={13} /> {ui.download[locale]}

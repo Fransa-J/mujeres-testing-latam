@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { Send, CheckCircle } from 'lucide-react'
 
 export default function ContactForm({ locale }: { locale: string }) {
@@ -20,6 +21,7 @@ export default function ContactForm({ locale }: { locale: string }) {
       `País: ${form.country || '-'}\n\n` +
       `${form.message}`
     )
+    track('contact_submit')
     window.location.href = `mailto:mujerestesting@gmail.com?subject=${subject}&body=${body}`
     setSent(true)
   }

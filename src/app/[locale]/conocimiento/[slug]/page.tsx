@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Download, FileText } from 'lucide-react'
 import ContentBlocks from '@/components/ContentBlocks'
+import TrackedLink from '@/components/TrackedLink'
 import { articulos, getArticulo, categories, type Locale } from '@/content/articulos'
 
 export function generateStaticParams() {
@@ -71,13 +72,15 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
               <p className="text-xs text-zinc-500 dark:text-zinc-400">{ui.pdfNote[l]}</p>
             </div>
           </div>
-          <a
+          <TrackedLink
+            event="pdf_download"
+            eventData={{ slug: a.slug }}
             href={a.pdf}
             download
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
           >
             <Download size={15} /> {ui.download[l]}
-          </a>
+          </TrackedLink>
         </div>
         <object
           data={a.pdf}
