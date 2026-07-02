@@ -1,4 +1,4 @@
-import { Linkedin, Instagram } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 
 export const metadata = {
   title: 'Muy pronto · Mujeres Testing Latam',
@@ -49,15 +49,6 @@ export default function ComingSoon() {
             className="w-10 h-10 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#C8006A] hover:border-[#C8006A]/40 transition-colors"
           >
             <Linkedin size={18} />
-          </a>
-          <a
-            href="https://www.instagram.com/mujerestestinglatam/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="w-10 h-10 rounded-lg border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#C8006A] hover:border-[#C8006A]/40 transition-colors"
-          >
-            <Instagram size={18} />
           </a>
         </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Linkedin, Instagram, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
   const t = useTranslations('footer')
@@ -37,15 +37,6 @@ export default function Footer() {
               className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#C8006A] hover:border-[#C8006A]/40 transition-colors"
             >
               <Linkedin size={17} />
-            </a>
-            <a
-              href="https://www.instagram.com/mujerestestinglatam/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-[#C8006A] hover:border-[#C8006A]/40 transition-colors"
-            >
-              <Instagram size={17} />
             </a>
           </div>
         </div>
