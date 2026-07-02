@@ -1,0 +1,22 @@
+# Dependabot mantiene las dependencias al día y vigila vulnerabilidades.
+# Abre pull requests con las actualizaciones; nada se aplica sin revisión.
+version: 2
+updates:
+  # Librerías del proyecto (npm)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # Agrupa actualizaciones menores/parche en un solo PR para reducir ruido.
+      dependencias-menores:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Actualizaciones de GitHub Actions (si más adelante usamos workflows)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
