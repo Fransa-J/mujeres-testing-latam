@@ -14,6 +14,16 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # No proponer saltos MAYORES de Next.js: next-intl 3 aun no soporta
+      # Next 16, asi que esas actualizaciones rompen la instalacion. La
+      # migracion a Next 15/16 se hara manualmente y junto con next-intl.
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "next-intl"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint-config-next"
+        update-types: ["version-update:semver-major"]
 
   # Actualizaciones de GitHub Actions (si más adelante usamos workflows)
   - package-ecosystem: "github-actions"
