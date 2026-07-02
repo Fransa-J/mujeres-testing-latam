@@ -11,6 +11,16 @@ export default function ContactForm({ locale }: { locale: string }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    // El mensaje se dirige a la casilla de la comunidad. Se abre el cliente de
+    // correo del visitante con el asunto y el cuerpo ya completados.
+    const subject = encodeURIComponent(`Contacto web · ${form.name || 'Mujeres Testing Latam'}`)
+    const body = encodeURIComponent(
+      `Nombre: ${form.name}\n` +
+      `Correo: ${form.email}\n` +
+      `País: ${form.country || '-'}\n\n` +
+      `${form.message}`
+    )
+    window.location.href = `mailto:mujerestesting@gmail.com?subject=${subject}&body=${body}`
     setSent(true)
   }
 
