@@ -3,6 +3,16 @@ import { Linkedin } from 'lucide-react'
 export const metadata = {
   title: 'Muy pronto · Mujeres Testing Latam',
   description: 'Estamos construyendo algo especial. Muy pronto en línea.',
+  icons: {
+    icon: '/images/mtl-logo.png',
+    apple: '/images/mtl-logo.png',
+  },
+  openGraph: {
+    title: 'Muy pronto · Mujeres Testing Latam',
+    description: 'Estamos construyendo algo especial. Muy pronto en línea.',
+    images: ['/images/mtl-logo.png'],
+    type: 'website',
+  },
 }
 
 export default function ComingSoon() {

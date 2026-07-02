@@ -10,6 +10,36 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-geist-sans' })
 
 const locales = ['es', 'en']
 
+export const metadata = {
+  metadataBase: new URL('https://mujerestesting.com'),
+  title: {
+    default: 'Mujeres Testing Latam',
+    template: '%s · Mujeres Testing Latam',
+  },
+  description:
+    'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+  icons: {
+    icon: '/images/mtl-logo.png',
+    apple: '/images/mtl-logo.png',
+  },
+  openGraph: {
+    title: 'Mujeres Testing Latam',
+    description:
+      'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+    url: 'https://mujerestesting.com',
+    siteName: 'Mujeres Testing Latam',
+    images: ['/images/mtl-logo.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mujeres Testing Latam',
+    description:
+      'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+    images: ['/images/mtl-logo.png'],
+  },
+}
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }

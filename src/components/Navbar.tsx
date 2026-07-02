@@ -27,8 +27,10 @@ export default function Navbar({ locale }: { locale: string }) {
 
   useEffect(() => { setMounted(true) }, [])
 
-  const otherLocale = locale === 'es' ? 'en' : 'es'
-  const switchPath = pathname.replace(`/${locale}`, `/${otherLocale}`)
+  // Ruta sin prefijo de idioma (siempre empieza con /es o /en)
+  const pathWithoutLocale = pathname.replace(/^\/(es|en)/, '')
+  const esPath = `/es${pathWithoutLocale}` || '/es'
+  const enPath = `/en${pathWithoutLocale}` || '/en'
 
   const isActive = (href: string) => {
     const full = `/${locale}${href === '/' ? '' : href}`
@@ -67,7 +69,7 @@ export default function Navbar({ locale }: { locale: string }) {
         <div className="flex items-center gap-2">
           <div className="flex items-center rounded-md border border-zinc-200 dark:border-zinc-700 overflow-hidden text-xs">
             <Link
-              href={`/${locale}${pathname.replace(`/${locale}`, '')}`}
+              href={esPath}
               className={`px-3 py-1.5 transition-colors ${
                 locale === 'es'
                   ? 'bg-[#C8006A] text-white'
@@ -77,7 +79,7 @@ export default function Navbar({ locale }: { locale: string }) {
               ES
             </Link>
             <Link
-              href={switchPath}
+              href={enPath}
               className={`px-3 py-1.5 transition-colors ${
                 locale === 'en'
                   ? 'bg-[#C8006A] text-white'
