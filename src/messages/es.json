@@ -17,10 +17,11 @@
     "cta_secondary": "Ver el material",
     "stat_members": "Miembros",
     "stat_countries": "Países",
-    "stat_free": "Gratuito"
+    "stat_free": "Gratuito",
+    "stat_reach": "Alcance regional"
   },
   "features": {
-    "tag": "¿Qué encontrás aquí?",
+    "tag": "¿Qué encuentras aquí?",
     "title": "Todo lo que necesitás para crecer",
     "card1_title": "Material de conocimiento",
     "card1_desc": "Guías, PDFs y recursos para todos los niveles, desde cero hasta avanzado.",

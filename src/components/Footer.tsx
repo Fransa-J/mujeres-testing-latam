@@ -9,16 +9,18 @@ export default function Footer() {
   return (
     <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-24">
       <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Bloque central: logo + eslogan + contacto */}
-        <div className="flex flex-col items-center text-center gap-2">
-          <img
-            src="/images/mtl-logo.png"
-            alt="Mujeres Testing Latam"
-            className="h-12 w-auto"
-          />
-          <p className="text-xs italic text-[#C8006A]">
-            Creciendo juntas en el camino del Testing
-          </p>
+        {/* Bloque central: logo + eslogan al lado + contacto */}
+        <div className="flex flex-col items-center text-center gap-3">
+          <div className="flex items-center gap-3">
+            <img
+              src="/images/mtl-logo.png"
+              alt="Mujeres Testing Latam"
+              className="h-16 w-auto"
+            />
+            <p className="text-sm italic text-[#C8006A] text-left max-w-[12rem]">
+              Creciendo juntas en el camino del Testing
+            </p>
+          </div>
 
           <div className="flex items-center gap-4 mt-1">
             <a
