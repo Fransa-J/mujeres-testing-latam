@@ -14,9 +14,7 @@ export default function ComingSoon() {
       <div className="relative z-10 flex flex-col items-center gap-8 max-w-lg">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-[#C8006A] flex items-center justify-center font-semibold text-lg">
-            MTL
-          </div>
+          <img src="/images/mtl-logo.png" alt="Mujeres Testing Latam" className="h-12 w-auto" />
           <span className="text-lg font-medium tracking-tight">Mujeres Testing Latam</span>
         </div>
 

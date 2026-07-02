@@ -40,9 +40,11 @@ export default function Navbar({ locale }: { locale: string }) {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
 
         <Link href={`/${locale}`} className="flex items-center gap-3 shrink-0">
-          <div className="w-8 h-8 rounded-full bg-[#C8006A] flex items-center justify-center text-white text-xs font-medium">
-            MTL
-          </div>
+          <img
+            src="/images/mtl-logo.png"
+            alt="Mujeres Testing Latam"
+            className="h-9 w-auto"
+          />
           <span className="font-medium text-sm hidden sm:block">Mujeres Testing Latam</span>
         </Link>
 
