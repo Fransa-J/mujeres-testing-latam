@@ -43,12 +43,16 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
           <div className="flex gap-8 mt-12 pt-8 border-t border-zinc-100 dark:border-zinc-800">
             <div>
-              <p className="text-2xl font-medium">100<span className="text-[#C8006A]">%</span></p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{t('hero.stat_free')}</p>
+              <p className="text-2xl font-medium">2K<span className="text-[#C8006A]">+</span></p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{t('hero.stat_followers')}</p>
             </div>
             <div>
-              <p className="text-2xl font-medium">Latam</p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{t('hero.stat_reach')}</p>
+              <p className="text-2xl font-medium">20<span className="text-[#C8006A]">+</span></p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{t('hero.stat_countries')}</p>
+            </div>
+            <div>
+              <p className="text-2xl font-medium">100<span className="text-[#C8006A]">%</span></p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{t('hero.stat_free')}</p>
             </div>
           </div>
         </div>

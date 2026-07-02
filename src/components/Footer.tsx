@@ -17,7 +17,7 @@ export default function Footer() {
               alt="Mujeres Testing Latam"
               className="h-16 w-auto"
             />
-            <p className="text-sm italic text-[#C8006A] text-left max-w-[12rem]">
+            <p className="text-base italic text-[#C8006A] text-left whitespace-nowrap">
               Creciendo juntas en el camino del Testing
             </p>
           </div>
