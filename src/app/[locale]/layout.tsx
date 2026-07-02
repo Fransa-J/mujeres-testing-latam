@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from 'next-themes'
 import { notFound } from 'next/navigation'
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -64,6 +65,7 @@ export default async function LocaleLayout({
             <main>{children}</main>
             <Footer />
           </NextIntlClientProvider>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
