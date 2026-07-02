@@ -62,9 +62,11 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             <div className="absolute inset-0 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800" />
             <div className="absolute inset-8 rounded-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full bg-[#C8006A]/10 border border-[#C8006A]/30 flex items-center justify-center">
-                <span className="text-4xl font-medium text-[#C8006A]">MTL</span>
-              </div>
+              <img
+                src="/images/mtl-logo.png"
+                alt="Mujeres Testing Latam"
+                className="w-32 h-32 object-contain"
+              />
             </div>
           </div>
         </div>
