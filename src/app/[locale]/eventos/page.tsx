@@ -1,46 +1,23 @@
 import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
-import { MapPin, Calendar, Clock, Users, ArrowRight } from 'lucide-react'
-
-const upcomingEvents = [
-  {
-    id: 1,
-    title: 'Meetup MTL — Buenos Aires',
-    date: 'Agosto 2, 2025',
-    time: '18:00 ART',
-    location: 'Buenos Aires, Argentina',
-    flag: '🇦🇷',
-    modality: 'Presencial',
-    capacity: 40,
-    description: 'Charlas relámpago sobre testing manual y cierre de networking.',
-  },
-  {
-    id: 2,
-    title: 'Webinar: Automatización desde cero',
-    date: 'Agosto 15, 2025',
-    time: '19:00 CLT',
-    location: 'Online — toda Latam',
-    flag: '🌎',
-    modality: 'Online',
-    capacity: 200,
-    description: 'Introducción práctica a Cypress para testers que nunca automatizaron.',
-  },
-  {
-    id: 3,
-    title: 'Meetup MTL — Ciudad de México',
-    date: 'Septiembre 10, 2025',
-    time: '17:00 CST',
-    location: 'Ciudad de México, México',
-    flag: '🇲🇽',
-    modality: 'Presencial',
-    capacity: 35,
-    description: 'Panel de mujeres líderes en QA y sesión de preguntas abiertas.',
-  },
-]
+import { CalendarClock } from 'lucide-react'
 
 export default function Eventos({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const t = useTranslations('eventos')
+
+  const isEn = locale === 'en'
+  const emptyTitle = isEn ? 'No events yet' : 'Aún no hay eventos'
+  const emptyDesc = isEn
+    ? 'We don’t have any events scheduled right now, but we’ll have them very soon. Stay tuned!'
+    : 'Por ahora no tenemos eventos agendados, pero muy pronto los tendremos. ¡Mantente atenta!'
+  const ctaTitle = isEn
+    ? 'Would you like to organize an event in your city?'
+    : '¿Quieres organizar un evento en tu ciudad?'
+  const ctaDesc = isEn
+    ? 'Write to us and we’ll help you organize it under the MTL umbrella.'
+    : 'Escríbenos y te ayudamos a organizarlo bajo el paraguas de MTL.'
+  const ctaBtn = isEn ? 'Propose an event' : 'Proponer evento'
 
   return (
     <div className="animate-fade-in max-w-6xl mx-auto px-6 py-20">
@@ -50,45 +27,23 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{t('description')}</p>
       </div>
 
-      <h2 className="text-lg font-medium mb-6">{t('upcoming')}</h2>
-      <div className="grid gap-4 mb-16">
-        {upcomingEvents.map((ev) => (
-          <div key={ev.id} className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-            <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
-                    {ev.modality}
-                  </span>
-                  <span className="text-lg">{ev.flag}</span>
-                </div>
-                <h3 className="font-medium text-base mb-2">{ev.title}</h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4 leading-relaxed">{ev.description}</p>
-                <div className="flex flex-wrap gap-4 text-xs text-zinc-400">
-                  <span className="flex items-center gap-1.5"><Calendar size={12} /> {ev.date}</span>
-                  <span className="flex items-center gap-1.5"><Clock size={12} /> {ev.time}</span>
-                  <span className="flex items-center gap-1.5"><MapPin size={12} /> {ev.location}</span>
-                  <span className="flex items-center gap-1.5"><Users size={12} /> {ev.capacity} lugares</span>
-                </div>
-              </div>
-              <div className="shrink-0">
-                <button className="px-5 py-2.5 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors flex items-center gap-2">
-                  {t('register')} <ArrowRight size={13} />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Estado vacío: aún no hay eventos */}
+      <div className="flex flex-col items-center text-center gap-4 p-12 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 mb-12">
+        <span className="w-14 h-14 rounded-full bg-[#C8006A]/10 flex items-center justify-center">
+          <CalendarClock size={26} className="text-[#C8006A]" />
+        </span>
+        <h2 className="text-xl font-medium">{emptyTitle}</h2>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-md leading-relaxed">{emptyDesc}</p>
       </div>
 
       <div className="p-8 rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 text-center">
-        <h3 className="font-medium mb-2">¿Quieres organizar un evento en tu ciudad?</h3>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Escríbenos y te ayudamos a organizarlo bajo el paraguas de MTL.</p>
+        <h3 className="font-medium mb-2">{ctaTitle}</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">{ctaDesc}</p>
         <a
           href={`/${locale}/contacto`}
           className="inline-block px-5 py-2.5 bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity"
         >
-          Proponer evento
+          {ctaBtn}
         </a>
       </div>
     </div>

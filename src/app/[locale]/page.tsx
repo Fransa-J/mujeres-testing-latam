@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
-import { BookOpen, PenLine, CalendarDays, ArrowRight } from 'lucide-react'
+import { BookOpen, CalendarDays, ArrowRight } from 'lucide-react'
 
 export default function Home({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
@@ -83,7 +83,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           <h2 className="text-3xl font-medium">{t('features.title')}</h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div className="p-6 rounded-xl border border-[#C8006A]/20 bg-[#C8006A]/5 dark:bg-[#C8006A]/10">
             <div className="w-10 h-10 rounded-lg bg-[#C8006A]/10 border border-[#C8006A]/20 flex items-center justify-center mb-5">
               <BookOpen size={18} className="text-[#C8006A]" />
@@ -92,17 +92,6 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{t('features.card1_desc')}</p>
             <Link href={`/${locale}/conocimiento`} className="mt-4 flex items-center gap-1 text-xs text-[#C8006A] hover:gap-2 transition-all">
               Explorar <ArrowRight size={12} />
-            </Link>
-          </div>
-
-          <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-            <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center mb-5">
-              <PenLine size={18} className="text-[#C8006A]" />
-            </div>
-            <h3 className="font-medium mb-2">{t('features.card2_title')}</h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{t('features.card2_desc')}</p>
-            <Link href={`/${locale}/blog`} className="mt-4 flex items-center gap-1 text-xs text-[#C8006A] hover:gap-2 transition-all">
-              Leer <ArrowRight size={12} />
             </Link>
           </div>
 

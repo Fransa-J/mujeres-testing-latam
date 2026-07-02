@@ -7,13 +7,13 @@ import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
-const navKeys = ['inicio', 'comunidad', 'conocimiento', 'blog', 'eventos', 'contacto'] as const
+// 'blog' se oculta del menú temporalmente hasta que haya artículos publicados.
+const navKeys = ['inicio', 'comunidad', 'conocimiento', 'eventos', 'contacto'] as const
 
 const navHrefs: Record<typeof navKeys[number], string> = {
   inicio: '/',
   comunidad: '/comunidad',
   conocimiento: '/conocimiento',
-  blog: '/blog',
   eventos: '/eventos',
   contacto: '/contacto',
 }
