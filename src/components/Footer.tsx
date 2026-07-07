@@ -12,13 +12,13 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-8">
         {/* Bloque central: logo + eslogan al lado + contacto */}
         <div className="flex flex-col items-center text-center gap-3">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center gap-3">
             <img
               src="/images/mtl-logo.png"
               alt="Mujeres Testing Latam"
               className="h-16 w-auto"
             />
-            <p className="text-base italic text-[#C8006A] text-left whitespace-nowrap">
+            <p className="text-base italic text-[#C8006A] text-center sm:text-left sm:whitespace-nowrap">
               Creciendo juntas en el camino del Testing
             </p>
           </div>

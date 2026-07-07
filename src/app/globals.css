@@ -16,19 +16,23 @@
     color: white;
   }
 
-  /* Los párrafos de texto se justifican para un aspecto más ordenado.
-     Se separan las palabras con guiones cuando es necesario para evitar
-     huecos grandes. Los párrafos dentro de bloques centrados (footer,
-     llamados a la acción, "coming soon") mantienen su alineación. */
-  p {
-    text-align: justify;
-    hyphens: auto;
-  }
+  /* Los párrafos de texto se justifican para un aspecto más ordenado, pero
+     SOLO en pantallas medianas o más grandes (>= 640px). En móvil se dejan
+     alineados a la izquierda, porque en columnas angostas la justificación
+     deja huecos grandes entre palabras y se ve peor.
+     Los párrafos dentro de bloques centrados (footer, llamados a la acción,
+     "coming soon") mantienen su alineación centrada. */
+  @media (min-width: 640px) {
+    p {
+      text-align: justify;
+      hyphens: auto;
+    }
 
-  .text-center p,
-  p.text-center {
-    text-align: inherit;
-    hyphens: manual;
+    .text-center p,
+    p.text-center {
+      text-align: inherit;
+      hyphens: manual;
+    }
   }
 }
 
