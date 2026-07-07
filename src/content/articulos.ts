@@ -12,7 +12,7 @@ export interface L {
 
 export type Block =
   | { type: 'paragraph'; text: L }
-  | { type: 'heading'; text: L }
+  | { type: 'heading'; emoji?: string; text: L }
   | { type: 'list'; items: L[] }
   | { type: 'callout'; variant?: 'info' | 'warning' | 'tip'; title?: L; items: L[] }
   | { type: 'cards'; items: { title: L; body: L }[] }
@@ -39,7 +39,12 @@ export interface Articulo {
   description: L
   date: L
   source?: L
-  pdf: string
+  /** Enlace a la publicación original en LinkedIn. */
+  linkedin: string
+  /** Emoji representativo del artículo (encabezado y descargas). */
+  emoji: string
+  /** Slugs de artículos relacionados. */
+  related?: string[]
   blocks: Block[]
 }
 
@@ -55,7 +60,8 @@ export const articulos: Articulo[] = [
     },
     date: { es: '2025', en: '2025' },
     source: { es: 'Basado en el Syllabus ISTQB v4.0.1', en: 'Based on the ISTQB Syllabus v4.0.1' },
-    pdf: '/pdfs/que-es-testing.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7355995515294998528',
+    emoji: '🧪',
     blocks: [
       {
         type: 'paragraph',
@@ -64,7 +70,7 @@ export const articulos: Articulo[] = [
           en: 'In software development, testing is a set of activities that seek to verify and validate that an application meets its requirements and works correctly, helping to prevent defects and minimize risks.',
         },
       },
-      { type: 'heading', text: { es: 'Objetivos', en: 'Objectives' } },
+      { type: 'heading', emoji: '🎯', text: { es: 'Objetivos', en: 'Objectives' } },
       {
         type: 'list',
         items: [
@@ -78,7 +84,7 @@ export const articulos: Articulo[] = [
           { es: 'Validar que el objeto de prueba esté completo y funcione como lo esperan los interesados.', en: 'Validate that the test object is complete and works as stakeholders expect.' },
         ],
       },
-      { type: 'heading', text: { es: 'Conceptos clave', en: 'Key concepts' } },
+      { type: 'heading', emoji: '🧩', text: { es: 'Conceptos clave', en: 'Key concepts' } },
       {
         type: 'cards',
         items: [
@@ -90,7 +96,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Caso de prueba', en: 'Test case' }, body: { es: 'Conjunto de condiciones diseñadas para verificar el sistema.', en: 'A set of conditions designed to verify the system.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Técnicas de prueba', en: 'Test techniques' } },
+      { type: 'heading', emoji: '🧪', text: { es: 'Técnicas de prueba', en: 'Test techniques' } },
       {
         type: 'cards',
         items: [
@@ -101,7 +107,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'No funcionales', en: 'Non-functional' }, body: { es: 'Evalúan cómo funciona el sistema: rendimiento, seguridad, usabilidad. Ej: medir el tiempo de respuesta con 1.000 usuarios concurrentes.', en: 'Evaluate how the system behaves: performance, security, usability. E.g.: measuring response time with 1,000 concurrent users.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Tipos de prueba', en: 'Test types' } },
+      { type: 'heading', emoji: '🗂️', text: { es: 'Tipos de prueba', en: 'Test types' } },
       {
         type: 'cards',
         items: [
@@ -113,7 +119,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Pruebas de estrés', en: 'Stress testing' }, body: { es: 'Analizan el comportamiento del sistema más allá de sus límites normales, hasta el punto de falla.', en: 'Analyze system behavior beyond its normal limits, up to the point of failure.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Niveles de prueba (según el SDLC)', en: 'Test levels (by SDLC)' } },
+      { type: 'heading', emoji: '📊', text: { es: 'Niveles de prueba (según el SDLC)', en: 'Test levels (by SDLC)' } },
       {
         type: 'cards',
         items: [
@@ -123,7 +129,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Aceptación', en: 'Acceptance' }, body: { es: 'Confirman que el sistema cumpla los criterios del negocio y las necesidades del usuario.', en: 'Confirm the system meets business criteria and user needs.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Los 7 principios del testing', en: 'The 7 testing principles' } },
+      { type: 'heading', emoji: '📜', text: { es: 'Los 7 principios del testing', en: 'The 7 testing principles' } },
       {
         type: 'list',
         items: [
@@ -139,105 +145,6 @@ export const articulos: Articulo[] = [
     ],
   },
 
-  // 2 ─────────────────────────────────────────────────────────────────────
-  {
-    slug: 'iniciar-en-testing',
-    category: 'fundamentos',
-    title: { es: 'Iniciar en el mundo del Testing', en: 'Getting Started in Testing' },
-    description: {
-      es: 'Una guía para comenzar tu camino: qué es el testing, quién puede ser tester, habilidades clave, fundamentos, sitios para practicar y una ruta de 90 días.',
-      en: 'A guide to start your journey: what testing is, who can be a tester, key skills, fundamentals, places to practice and a 90-day roadmap.',
-    },
-    date: { es: 'Diciembre 2025', en: 'December 2025' },
-    pdf: '/pdfs/iniciar-en-testing.pdf',
-    blocks: [
-      {
-        type: 'paragraph',
-        text: {
-          es: 'El testing no es solo encontrar errores: es una disciplina que permite validar que un producto funcione, prevenir riesgos antes de llegar al usuario, mejorar la experiencia final y dar información clave al equipo para decidir. Testing = calidad + valor + aprendizaje continuo.',
-          en: 'Testing is not just finding bugs: it is a discipline that validates a product works, prevents risks before reaching the user, improves the final experience and gives the team key information to decide. Testing = quality + value + continuous learning.',
-        },
-      },
-      { type: 'heading', text: { es: '¿Quién puede ser tester?', en: 'Who can be a tester?' } },
-      {
-        type: 'paragraph',
-        text: {
-          es: 'Cualquier persona con intención y curiosidad. Muchas testers vienen de soporte técnico, desarrollo, UX/diseño, producto, atención al cliente, administración, educación o incluso áreas no relacionadas con la tecnología. El testing tiene las puertas abiertas.',
-          en: 'Anyone with intention and curiosity. Many testers come from technical support, development, UX/design, product, customer service, administration, education or even non-tech fields. Testing has its doors open.',
-        },
-      },
-      { type: 'heading', text: { es: 'Habilidades clave', en: 'Key skills' } },
-      {
-        type: 'list',
-        items: [
-          { es: 'Pensamiento crítico: cuestionar, analizar, explorar.', en: 'Critical thinking: question, analyze, explore.' },
-          { es: 'Curiosidad natural: ganas de entender cómo funcionan las cosas.', en: 'Natural curiosity: a desire to understand how things work.' },
-          { es: 'Comunicación clara: explicar riesgos y hallazgos.', en: 'Clear communication: explaining risks and findings.' },
-          { es: 'Empatía por el usuario: pensar desde su experiencia.', en: 'Empathy for the user: thinking from their experience.' },
-          { es: 'Aprendizaje continuo: la tecnología cambia rápido.', en: 'Continuous learning: technology changes fast.' },
-        ],
-      },
-      { type: 'heading', text: { es: 'Fundamentos que aprender primero', en: 'Fundamentals to learn first' } },
-      {
-        type: 'list',
-        items: [
-          { es: 'Conceptos básicos de testing.', en: 'Basic testing concepts.' },
-          { es: 'Tipos de pruebas: funcional, regresión, exploratoria, smoke, UAT, no funcional.', en: 'Test types: functional, regression, exploratory, smoke, UAT, non-functional.' },
-          { es: 'Ciclo de vida del software (SDLC): Ágil, Scrum, Kanban, Waterfall.', en: 'Software development life cycle (SDLC): Agile, Scrum, Kanban, Waterfall.' },
-          { es: 'Cómo diseñar casos de prueba.', en: 'How to design test cases.' },
-          { es: 'Cómo reportar bugs con claridad.', en: 'How to report bugs clearly.' },
-          { es: 'Práctica en aplicaciones reales. Recurso recomendado: certificación ISTQB CTFL.', en: 'Practice on real applications. Recommended resource: ISTQB CTFL certification.' },
-        ],
-      },
-      { type: 'heading', text: { es: 'Sitios para practicar testing manual', en: 'Sites to practice manual testing' } },
-      {
-        type: 'table',
-        headers: [{ es: 'Nombre', en: 'Name' }, { es: 'URL', en: 'URL' }],
-        rows: [
-          [{ es: 'SauceDemo', en: 'SauceDemo' }, { es: 'saucedemo.com', en: 'saucedemo.com' }],
-          [{ es: 'DemoQA', en: 'DemoQA' }, { es: 'demoqa.com', en: 'demoqa.com' }],
-          [{ es: 'Ministry of Testing', en: 'Ministry of Testing' }, { es: 'ministryoftesting.com', en: 'ministryoftesting.com' }],
-          [{ es: 'OrangeHRM Demo', en: 'OrangeHRM Demo' }, { es: 'opensource-demo.orangehrmlive.com', en: 'opensource-demo.orangehrmlive.com' }],
-        ],
-      },
-      { type: 'heading', text: { es: 'Sitios para practicar automatización', en: 'Sites to practice automation' } },
-      {
-        type: 'table',
-        headers: [{ es: 'Nombre', en: 'Name' }, { es: 'URL', en: 'URL' }],
-        rows: [
-          [{ es: 'UI Testing Playground', en: 'UI Testing Playground' }, { es: 'uitestingplayground.com', en: 'uitestingplayground.com' }],
-          [{ es: 'LambdaTest Selenium Playground', en: 'LambdaTest Selenium Playground' }, { es: 'lambdatest.com/selenium-playground', en: 'lambdatest.com/selenium-playground' }],
-          [{ es: 'The Internet (Herokuapp)', en: 'The Internet (Herokuapp)' }, { es: 'the-internet.herokuapp.com', en: 'the-internet.herokuapp.com' }],
-        ],
-      },
-      {
-        type: 'callout',
-        variant: 'tip',
-        title: { es: 'Ejercicio sugerido', en: 'Suggested exercise' },
-        items: [
-          { es: 'Prueba una web simple y reporta un bug con el formato: título, pasos, resultado esperado, resultado actual y severidad.', en: 'Test a simple website and report a bug using the format: title, steps, expected result, actual result and severity.' },
-        ],
-      },
-      { type: 'heading', text: { es: 'Ruta recomendada para tus primeros 90 días', en: 'Recommended roadmap for your first 90 days' } },
-      {
-        type: 'cards',
-        items: [
-          { title: { es: 'Mes 1 — Fundamentos', en: 'Month 1 — Fundamentals' }, body: { es: 'Tipos de pruebas, casos de prueba, reporte de bugs, práctica manual, SDLC + Ágil.', en: 'Test types, test cases, bug reporting, manual practice, SDLC + Agile.' } },
-          { title: { es: 'Mes 2 — Profundización', en: 'Month 2 — Deepening' }, body: { es: 'Testing exploratorio, API testing básico y herramientas: Jira, TestRail, Postman, GitHub.', en: 'Exploratory testing, basic API testing and tools: Jira, TestRail, Postman, GitHub.' } },
-          { title: { es: 'Mes 3 — Especialización', en: 'Month 3 — Specialization' }, body: { es: 'Elige tu camino: Manual, Automation, Analyst o Lead Jr.', en: 'Choose your path: Manual, Automation, Analyst or Junior Lead.' } },
-        ],
-      },
-      {
-        type: 'callout',
-        variant: 'info',
-        title: { es: 'Comunidad y sororidad', en: 'Community and sisterhood' },
-        items: [
-          { es: 'Aprender es más fácil cuando estás acompañada. Busca tu comunidad: mentorías, retos de práctica y espacios como Mujeres Testing Latam. Iniciar en testing no exige perfección, exige intención, curiosidad y constancia.', en: 'Learning is easier with company. Find your community: mentorships, practice challenges and spaces like Mujeres Testing Latam. Starting in testing does not require perfection, it requires intention, curiosity and consistency.' },
-        ],
-      },
-    ],
-  },
-
   // 3 ─────────────────────────────────────────────────────────────────────
   {
     slug: 'pruebas-de-api',
@@ -248,7 +155,8 @@ export const articulos: Articulo[] = [
       en: 'Quick REST API guide: what an API is, types (REST, SOAP, GraphQL, gRPC), relevant tests, HTTP codes, methods, endpoints and metadata.',
     },
     date: { es: 'Septiembre 2025', en: 'September 2025' },
-    pdf: '/pdfs/pruebas-de-api.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7371357953423204352',
+    emoji: '🔌',
     blocks: [
       {
         type: 'paragraph',
@@ -266,7 +174,7 @@ export const articulos: Articulo[] = [
           { es: 'Estandarizar la comunicación entre software.', en: 'Standardize communication between software.' },
         ],
       },
-      { type: 'heading', text: { es: 'Tipos de API', en: 'API types' } },
+      { type: 'heading', emoji: '🔌', text: { es: 'Tipos de API', en: 'API types' } },
       {
         type: 'table',
         headers: [
@@ -307,7 +215,7 @@ export const articulos: Articulo[] = [
           ],
         ],
       },
-      { type: 'heading', text: { es: 'Pruebas más relevantes', en: 'Most relevant tests' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Pruebas más relevantes', en: 'Most relevant tests' } },
       {
         type: 'list',
         items: [
@@ -321,7 +229,7 @@ export const articulos: Articulo[] = [
           { es: 'Validar compatibilidad y versionado: que los cambios no rompan clientes antiguos.', en: 'Validate compatibility and versioning: changes should not break old clients.' },
         ],
       },
-      { type: 'heading', text: { es: 'Códigos de estado HTTP', en: 'HTTP status codes' } },
+      { type: 'heading', emoji: '📡', text: { es: 'Códigos de estado HTTP', en: 'HTTP status codes' } },
       {
         type: 'table',
         headers: [{ es: 'Código', en: 'Code' }, { es: 'Significado', en: 'Meaning' }, { es: 'Descripción', en: 'Description' }],
@@ -336,7 +244,7 @@ export const articulos: Articulo[] = [
           [{ es: '503', en: '503' }, { es: 'Service Unavailable', en: 'Service Unavailable' }, { es: 'Servicio no disponible (mantenimiento o sobrecarga).', en: 'Service unavailable (maintenance or overload).' }],
         ],
       },
-      { type: 'heading', text: { es: 'URL base y endpoints', en: 'Base URL and endpoints' } },
+      { type: 'heading', emoji: '🔌', text: { es: 'URL base y endpoints', en: 'Base URL and endpoints' } },
       {
         type: 'paragraph',
         text: {
@@ -345,7 +253,7 @@ export const articulos: Articulo[] = [
         },
       },
       { type: 'code', text: 'https://api.example.com/v1            ← URL base (protocolo + dominio + versión)\nhttps://api.example.com/v1/users      ← endpoint: lista de usuarios\nhttps://api.example.com/v1/users/123  ← endpoint: usuario 123' },
-      { type: 'heading', text: { es: 'Métodos HTTP', en: 'HTTP methods' } },
+      { type: 'heading', emoji: '📡', text: { es: 'Métodos HTTP', en: 'HTTP methods' } },
       {
         type: 'cards',
         items: [
@@ -356,7 +264,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'DELETE — Eliminar', en: 'DELETE — Delete' }, body: { es: 'Elimina un recurso del servidor. Idempotente, sin cuerpo y destructivo.', en: 'Removes a resource from the server. Idempotent, bodyless and destructive.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Metadata (headers)', en: 'Metadata (headers)' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Metadata (headers)', en: 'Metadata (headers)' } },
       {
         type: 'table',
         headers: [{ es: 'Header', en: 'Header' }, { es: 'Función', en: 'Function' }],
@@ -390,7 +298,8 @@ export const articulos: Articulo[] = [
     },
     date: { es: 'Agosto 2025', en: 'August 2025' },
     source: { es: 'Basado en ISTQB CTAL-TAE v2.0', en: 'Based on ISTQB CTAL-TAE v2.0' },
-    pdf: '/pdfs/automatizacion-de-pruebas.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7361875369035005952',
+    emoji: '⚙️',
     blocks: [
       {
         type: 'paragraph',
@@ -406,7 +315,7 @@ export const articulos: Articulo[] = [
           { es: 'La automatización NO reemplaza las pruebas manuales: las complementa, especialmente en regresión, humo y pruebas repetitivas.', en: 'Automation does NOT replace manual testing: it complements it, especially in regression, smoke and repetitive tests.' },
         ],
       },
-      { type: 'heading', text: { es: 'Conceptos clave', en: 'Key concepts' } },
+      { type: 'heading', emoji: '🧩', text: { es: 'Conceptos clave', en: 'Key concepts' } },
       {
         type: 'cards',
         items: [
@@ -418,7 +327,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Paralelismo', en: 'Parallelism' }, body: { es: 'Ejecución simultánea de pruebas para reducir tiempos y optimizar la retroalimentación.', en: 'Simultaneous test execution to reduce time and optimize feedback.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Ventajas', en: 'Advantages' } },
+      { type: 'heading', emoji: '✅', text: { es: 'Ventajas', en: 'Advantages' } },
       {
         type: 'list',
         items: [
@@ -429,7 +338,7 @@ export const articulos: Articulo[] = [
           { es: 'Proporcionar retroalimentación más rápida y mejorar la fiabilidad del sistema.', en: 'Provide faster feedback and improve system reliability.' },
         ],
       },
-      { type: 'heading', text: { es: 'Desventajas', en: 'Disadvantages' } },
+      { type: 'heading', emoji: '⚠️', text: { es: 'Desventajas', en: 'Disadvantages' } },
       {
         type: 'list',
         items: [
@@ -440,7 +349,7 @@ export const articulos: Articulo[] = [
           { es: 'Rigidez de las pruebas, menor adaptabilidad a los cambios del SUT.', en: 'Test rigidity, less adaptability to SUT changes.' },
         ],
       },
-      { type: 'heading', text: { es: 'Pasos para implementar', en: 'Steps to implement' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Pasos para implementar', en: 'Steps to implement' } },
       {
         type: 'list',
         items: [
@@ -453,7 +362,7 @@ export const articulos: Articulo[] = [
           { es: 'Mantenimiento y optimización continua.', en: 'Continuous maintenance and optimization.' },
         ],
       },
-      { type: 'heading', text: { es: '¿Qué automatizar y qué no?', en: 'What to automate and what not?' } },
+      { type: 'heading', emoji: '⚙️', text: { es: '¿Qué automatizar y qué no?', en: 'What to automate and what not?' } },
       {
         type: 'table',
         headers: [{ es: 'Sí automatizar', en: 'Do automate' }, { es: 'No automatizar', en: 'Don’t automate' }],
@@ -465,7 +374,7 @@ export const articulos: Articulo[] = [
           [{ es: 'Pruebas de humo y sanidad; reglas de negocio estables.', en: 'Smoke and sanity tests; stable business rules.' }, { es: 'Funcionalidades en desarrollo activo.', en: 'Features under active development.' }],
         ],
       },
-      { type: 'heading', text: { es: 'Buenas prácticas', en: 'Best practices' } },
+      { type: 'heading', emoji: '🌟', text: { es: 'Buenas prácticas', en: 'Best practices' } },
       {
         type: 'list',
         items: [
@@ -477,7 +386,7 @@ export const articulos: Articulo[] = [
           { es: 'Reportes claros y accionables, con métricas clave, y colaboración con Dev, DevOps y QA manual.', en: 'Clear, actionable reports with key metrics, and collaboration with Dev, DevOps and manual QA.' },
         ],
       },
-      { type: 'heading', text: { es: 'Patrones de diseño', en: 'Design patterns' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Patrones de diseño', en: 'Design patterns' } },
       {
         type: 'cards',
         items: [
@@ -487,7 +396,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Modelo de flujo', en: 'Flow model' }, body: { es: 'Expansión del POM: una capa que almacena flujos de negocio reutilizables (ej. Login + Transferencia).', en: 'An extension of POM: a layer storing reusable business flows (e.g. Login + Transfer).' } },
         ],
       },
-      { type: 'heading', text: { es: 'Métricas y KPIs', en: 'Metrics and KPIs' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Métricas y KPIs', en: 'Metrics and KPIs' } },
       {
         type: 'list',
         items: [
@@ -498,7 +407,7 @@ export const articulos: Articulo[] = [
           { es: 'Retorno de la inversión (ROI): beneficios frente a costos totales.', en: 'Return on investment (ROI): benefits versus total costs.' },
         ],
       },
-      { type: 'heading', text: { es: 'Herramientas y frameworks', en: 'Tools and frameworks' } },
+      { type: 'heading', emoji: '🛠️', text: { es: 'Herramientas y frameworks', en: 'Tools and frameworks' } },
       {
         type: 'table',
         headers: [{ es: 'Categoría', en: 'Category' }, { es: 'Lenguajes habituales', en: 'Common languages' }],
@@ -530,7 +439,8 @@ export const articulos: Articulo[] = [
       en: 'What a locator is, why they matter, best practices, signs of a bad locator and the types ordered by priority, with a focus on accessibility.',
     },
     date: { es: 'Noviembre 2025', en: 'November 2025' },
-    pdf: '/pdfs/localizadores.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7402370207161229312',
+    emoji: '🎯',
     blocks: [
       {
         type: 'paragraph',
@@ -539,7 +449,7 @@ export const articulos: Articulo[] = [
           en: 'In an automated test you must tell the tool how to locate elements in order to interact with them. For example, to test the “Log in” button you need to provide its identifier (locator) to click it.',
         },
       },
-      { type: 'heading', text: { es: '¿Qué es un localizador?', en: 'What is a locator?' } },
+      { type: 'heading', emoji: '🎯', text: { es: '¿Qué es un localizador?', en: 'What is a locator?' } },
       {
         type: 'paragraph',
         text: {
@@ -547,7 +457,7 @@ export const articulos: Articulo[] = [
           en: 'It is how an automation tool identifies an HTML element within the DOM to interact with it. People recognize a button or field visually, but the tool needs to rely on attributes and code structure. The DOM (Document Object Model) is the tree-shaped structure representing all elements of a web page.',
         },
       },
-      { type: 'heading', text: { es: 'Un buen localizador permite', en: 'A good locator allows you to' } },
+      { type: 'heading', emoji: '🎯', text: { es: 'Un buen localizador permite', en: 'A good locator allows you to' } },
       {
         type: 'list',
         items: [
@@ -558,7 +468,7 @@ export const articulos: Articulo[] = [
           { es: 'Asegurar que apunte a un solo elemento (unicidad), de lo contrario la prueba fallará.', en: 'Ensure it points to a single element (uniqueness), otherwise the test fails.' },
         ],
       },
-      { type: 'heading', text: { es: 'Buenas prácticas', en: 'Best practices' } },
+      { type: 'heading', emoji: '🌟', text: { es: 'Buenas prácticas', en: 'Best practices' } },
       {
         type: 'list',
         items: [
@@ -568,7 +478,7 @@ export const articulos: Articulo[] = [
           { es: 'Solicita atributos específicos como data-testid: forma estable e independiente del estilo.', en: 'Request specific attributes like data-testid: a stable, style-independent way to locate elements.' },
         ],
       },
-      { type: 'heading', text: { es: 'Señales de que tu localizador NO es bueno', en: 'Signs your locator is NOT good' } },
+      { type: 'heading', emoji: '🎯', text: { es: 'Señales de que tu localizador NO es bueno', en: 'Signs your locator is NOT good' } },
       {
         type: 'table',
         headers: [{ es: 'Mala práctica', en: 'Bad practice' }, { es: 'Recomendación', en: 'Recommendation' }],
@@ -588,7 +498,7 @@ export const articulos: Articulo[] = [
           { es: 'En lugar de la posición del elemento, identifícalo por su contenido o un atributo estable. Si el dev añade un nuevo ítem, todos los siguientes se desplazan y la prueba falla.', en: 'Instead of the element’s position, identify it by its content or a stable attribute. If a dev adds a new item, all following ones shift and the test fails.' },
         ],
       },
-      { type: 'heading', text: { es: 'Tipos de localizadores (ordenados por prioridad)', en: 'Locator types (ordered by priority)' } },
+      { type: 'heading', emoji: '🎯', text: { es: 'Tipos de localizadores (ordenados por prioridad)', en: 'Locator types (ordered by priority)' } },
       {
         type: 'cards',
         items: [
@@ -599,7 +509,7 @@ export const articulos: Articulo[] = [
           { title: { es: '5. XPath', en: '5. XPath' }, body: { es: 'Lenguaje de consulta muy flexible y potente, pero el menos legible, el más lento y el de mayor riesgo de fragilidad. Considéralo el “último recurso”.', en: 'A very flexible, powerful query language, but the least readable, slowest and most fragile. Consider it a “last resort”.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Beneficios de getByRole', en: 'Benefits of getByRole' } },
+      { type: 'heading', emoji: '✅', text: { es: 'Beneficios de getByRole', en: 'Benefits of getByRole' } },
       {
         type: 'list',
         items: [
@@ -622,7 +532,9 @@ export const articulos: Articulo[] = [
       en: 'Benefits, cautions and best practices to bring AI into your testing work without losing your critical thinking.',
     },
     date: { es: 'Octubre 2025', en: 'October 2025' },
-    pdf: '/pdfs/ia-en-testing.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7381405994871840768',
+    emoji: '🤖',
+    related: ['que-es-un-prompt'],
     blocks: [
       {
         type: 'paragraph',
@@ -631,7 +543,7 @@ export const articulos: Articulo[] = [
           en: 'Artificial Intelligence can speed up and improve testing work, but it requires judgment. Here are its benefits, the cautions to keep in mind and the best practices to leverage it while keeping your critical thinking.',
         },
       },
-      { type: 'heading', text: { es: 'Beneficios', en: 'Benefits' } },
+      { type: 'heading', emoji: '✅', text: { es: 'Beneficios', en: 'Benefits' } },
       {
         type: 'list',
         items: [
@@ -642,7 +554,7 @@ export const articulos: Articulo[] = [
           { es: 'Asistencia en documentación: genera reportes de defectos más claros y resúmenes de resultados.', en: 'Documentation support: generates clearer defect reports and result summaries.' },
         ],
       },
-      { type: 'heading', text: { es: 'Precauciones', en: 'Cautions' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Precauciones', en: 'Cautions' } },
       {
         type: 'cards',
         items: [
@@ -652,7 +564,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Baja calidad de código en pruebas', en: 'Low-quality test code' }, body: { es: 'Los scripts generados pueden tener selectores frágiles, falta de esperas, código duplicado o sin POM.', en: 'Generated scripts may have fragile selectors, missing waits, duplicated code or no POM.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Buenas prácticas', en: 'Best practices' } },
+      { type: 'heading', emoji: '🌟', text: { es: 'Buenas prácticas', en: 'Best practices' } },
       {
         type: 'list',
         items: [
@@ -673,6 +585,76 @@ export const articulos: Articulo[] = [
     ],
   },
 
+  // ── ¿Qué es un prompt? ──────────────────────────────────────────────────
+  {
+    slug: 'que-es-un-prompt',
+    category: 'ia',
+    title: { es: '¿Qué es un prompt?', en: 'What is a prompt?' },
+    description: {
+      es: 'Qué es un prompt, sus partes, buenas prácticas y cómo escribir mejores instrucciones para la IA aplicadas al testing.',
+      en: 'What a prompt is, its parts, best practices and how to write better AI instructions applied to testing.',
+    },
+    date: { es: '2025', en: '2025' },
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7389666362417319936',
+    emoji: '✍️',
+    related: ['ia-en-testing'],
+    blocks: [
+      {
+        type: 'paragraph',
+        text: {
+          es: 'Un prompt es la instrucción o mensaje que le das a una inteligencia artificial para obtener una respuesta. Es tu forma de "conversar" con el modelo: mientras más clara y precisa sea la instrucción, mejor será el resultado. En testing, un buen prompt te ayuda a generar casos de prueba, datos, ideas de escenarios y documentación en segundos.',
+          en: 'A prompt is the instruction or message you give an AI to get a response. It is your way of "talking" to the model: the clearer and more precise the instruction, the better the result. In testing, a good prompt helps you generate test cases, data, scenario ideas and documentation in seconds.',
+        },
+      },
+      { type: 'heading', emoji: '🧩', text: { es: 'Las partes de un buen prompt', en: 'The parts of a good prompt' } },
+      {
+        type: 'cards',
+        items: [
+          { title: { es: '🎭 Rol', en: '🎭 Role' }, body: { es: 'Dile a la IA qué papel debe adoptar. Ej: "Actúa como analista de QA con experiencia en pruebas de API".', en: 'Tell the AI what role to take on. E.g.: "Act as a QA analyst experienced in API testing".' } },
+          { title: { es: '🧭 Contexto', en: '🧭 Context' }, body: { es: 'Entrega la información de fondo necesaria: el producto, la tecnología, el objetivo. Sin contexto, la IA adivina.', en: 'Provide the necessary background: the product, the technology, the goal. Without context, the AI guesses.' } },
+          { title: { es: '🎯 Tarea', en: '🎯 Task' }, body: { es: 'Sé específica sobre lo que quieres. Ej: "Genera 5 casos de prueba negativos para el login".', en: 'Be specific about what you want. E.g.: "Generate 5 negative test cases for the login".' } },
+          { title: { es: '📐 Formato', en: '📐 Format' }, body: { es: 'Indica cómo quieres la respuesta: una tabla, una lista, código, pasos numerados, etc.', en: 'State how you want the answer: a table, a list, code, numbered steps, etc.' } },
+          { title: { es: '📌 Ejemplos', en: '📌 Examples' }, body: { es: 'Mostrar un ejemplo del resultado esperado guía a la IA y mejora mucho la precisión.', en: 'Showing an example of the expected result guides the AI and greatly improves accuracy.' } },
+          { title: { es: '🚧 Restricciones', en: '🚧 Constraints' }, body: { es: 'Define límites: idioma, extensión, qué evitar. Ej: "Responde en español, máximo 10 líneas".', en: 'Define limits: language, length, what to avoid. E.g.: "Answer in English, 10 lines maximum".' } },
+        ],
+      },
+      { type: 'heading', emoji: '🌟', text: { es: 'Buenas prácticas', en: 'Best practices' } },
+      {
+        type: 'list',
+        items: [
+          { es: 'Sé clara y específica: evita instrucciones ambiguas o demasiado abiertas.', en: 'Be clear and specific: avoid ambiguous or overly open instructions.' },
+          { es: 'Divide tareas complejas en pasos más pequeños.', en: 'Break complex tasks into smaller steps.' },
+          { es: 'Itera: si la respuesta no te sirve, ajusta el prompt y vuelve a intentar.', en: 'Iterate: if the answer is not useful, adjust the prompt and try again.' },
+          { es: 'Pide el formato que necesitas (tabla, JSON, pasos) para reutilizar el resultado.', en: 'Ask for the format you need (table, JSON, steps) to reuse the result.' },
+          { es: 'Revisa siempre la salida: la IA puede equivocarse o inventar (alucinar).', en: 'Always review the output: the AI can be wrong or make things up (hallucinate).' },
+        ],
+      },
+      { type: 'heading', emoji: '💻', text: { es: 'Ejemplo aplicado al testing', en: 'Example applied to testing' } },
+      {
+        type: 'code',
+        text: 'Actúa como QA Engineer con experiencia en pruebas funcionales.\nContexto: formulario de registro con campos nombre, email y contraseña.\nTarea: genera 8 casos de prueba (positivos y negativos).\nFormato: tabla con columnas | ID | Título | Pasos | Resultado esperado |\nRestricción: responde en español.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: { es: 'Errores comunes', en: 'Common mistakes' },
+        items: [
+          { es: 'Dar instrucciones vagas ("hazme pruebas") y esperar buenos resultados.', en: 'Giving vague instructions ("make me tests") and expecting good results.' },
+          { es: 'No dar contexto del producto ni de la tecnología.', en: 'Not giving context about the product or the technology.' },
+          { es: 'Aceptar la primera respuesta sin revisarla ni iterar.', en: 'Accepting the first answer without reviewing or iterating.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: { es: 'Recuerda', en: 'Remember' },
+        items: [
+          { es: 'El prompt es una habilidad que se entrena: mientras más practicas, mejores resultados obtienes.', en: 'Prompting is a skill you train: the more you practice, the better your results.' },
+        ],
+      },
+    ],
+  },
+
   // 7 ─────────────────────────────────────────────────────────────────────
   {
     slug: 'testing-mcp',
@@ -683,7 +665,8 @@ export const articulos: Articulo[] = [
       en: 'How to test a Model Context Protocol: considerations, user profiles, data verification, security (prompt injection) and using AI to your advantage.',
     },
     date: { es: 'Mayo 2026', en: 'May 2026' },
-    pdf: '/pdfs/testing-mcp.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7465367459118678016',
+    emoji: '🔗',
     blocks: [
       {
         type: 'paragraph',
@@ -692,7 +675,7 @@ export const articulos: Articulo[] = [
           en: 'MCP (Model Context Protocol) is an open, bidirectional standard that connects an AI assistant (Claude, ChatGPT, Perplexity) with any data source or tool, replacing fragmented integrations with a single universal protocol. Any application can expose its MCP so users access its data and features through natural language. If your company built its own MCP and you must test it, this guide is for you.',
         },
       },
-      { type: 'heading', text: { es: 'Consideraciones', en: 'Considerations' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Consideraciones', en: 'Considerations' } },
       {
         type: 'list',
         items: [
@@ -703,7 +686,7 @@ export const articulos: Articulo[] = [
           { es: 'Algunos errores pueden ser del propio chatbot (fuera del alcance de la app): documéntalos, pero no los presentes como errores de la app.', en: 'Some errors may belong to the chatbot itself (outside the app’s scope): document them, but do not present them as app bugs.' },
         ],
       },
-      { type: 'heading', text: { es: '¿Qué usuarios usar para las pruebas?', en: 'Which users to test with?' } },
+      { type: 'heading', emoji: '🔹', text: { es: '¿Qué usuarios usar para las pruebas?', en: 'Which users to test with?' } },
       {
         type: 'cards',
         items: [
@@ -713,7 +696,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Nuevo / sin datos', en: 'New / no data' }, body: { es: 'Para verificar cómo maneja el chatbot la ausencia de información.', en: 'To verify how the chatbot handles the absence of information.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Verificación de los datos', en: 'Data verification' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Verificación de los datos', en: 'Data verification' } },
       {
         type: 'list',
         items: [
@@ -725,7 +708,7 @@ export const articulos: Articulo[] = [
           { es: 'Formato: fechas, monedas y números deben mostrarse según la región del usuario. Un dato correcto mal formateado también es un bug.', en: 'Format: dates, currencies and numbers must match the user’s region. A correct value badly formatted is also a bug.' },
         ],
       },
-      { type: 'heading', text: { es: 'Seguridad y permisos', en: 'Security and permissions' } },
+      { type: 'heading', emoji: '🔒', text: { es: 'Seguridad y permisos', en: 'Security and permissions' } },
       {
         type: 'list',
         items: [
@@ -735,7 +718,7 @@ export const articulos: Articulo[] = [
           { es: 'Sesión expirada: si el token vence mientras el chatbot está en uso, el MCP debe rechazar la consulta, no devolver datos en caché.', en: 'Expired session: if the token expires while the chatbot is in use, the MCP must reject the query, not return cached data.' },
         ],
       },
-      { type: 'heading', text: { es: 'Usa la IA a tu favor', en: 'Use AI to your advantage' } },
+      { type: 'heading', emoji: '🤖', text: { es: 'Usa la IA a tu favor', en: 'Use AI to your advantage' } },
       {
         type: 'paragraph',
         text: {
@@ -758,7 +741,8 @@ export const articulos: Articulo[] = [
     },
     date: { es: 'Octubre 2025', en: 'October 2025' },
     source: { es: 'Resumen informativo basado en la Ley N°21.719 (Biblioteca del Congreso Nacional de Chile). No reemplaza el texto oficial ni constituye asesoría legal.', en: 'Informative summary based on Law No. 21,719 (Library of the National Congress of Chile). It does not replace the official text nor constitutes legal advice.' },
-    pdf: '/pdfs/ley-proteccion-datos-chile.pdf',
+    linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7383488893867749376',
+    emoji: '⚖️',
     blocks: [
       {
         type: 'callout',
@@ -769,7 +753,7 @@ export const articulos: Articulo[] = [
           { es: 'Objetivo: garantizar que cada persona tenga control sobre sus datos y que las organizaciones los usen con transparencia, seguridad y responsabilidad.', en: 'Goal: ensure every person controls their data and that organizations use it with transparency, security and responsibility.' },
         ],
       },
-      { type: 'heading', text: { es: 'Tipos de datos protegidos', en: 'Protected data types' } },
+      { type: 'heading', emoji: '🗂️', text: { es: 'Tipos de datos protegidos', en: 'Protected data types' } },
       {
         type: 'cards',
         items: [
@@ -780,7 +764,7 @@ export const articulos: Articulo[] = [
           { title: { es: 'Datos biométricos', en: 'Biometric data' }, body: { es: 'Características físicas o conductuales únicas (huellas, rostro, voz, ADN). Uso restringido a fines legítimos con seguridad reforzada.', en: 'Unique physical or behavioral traits (fingerprints, face, voice, DNA). Restricted to legitimate purposes with reinforced security.' } },
         ],
       },
-      { type: 'heading', text: { es: 'Principios fundamentales', en: 'Fundamental principles' } },
+      { type: 'heading', emoji: '📜', text: { es: 'Principios fundamentales', en: 'Fundamental principles' } },
       {
         type: 'list',
         items: [
@@ -793,7 +777,7 @@ export const articulos: Articulo[] = [
           { es: 'Transparencia y confidencialidad: el titular debe saber cómo y quién usa sus datos; quienes accedan guardan secreto.', en: 'Transparency and confidentiality: the owner must know how and who uses their data; those with access keep it secret.' },
         ],
       },
-      { type: 'heading', text: { es: 'Derechos de las personas', en: 'People’s rights' } },
+      { type: 'heading', emoji: '⚖️', text: { es: 'Derechos de las personas', en: 'People’s rights' } },
       {
         type: 'list',
         items: [
@@ -806,7 +790,7 @@ export const articulos: Articulo[] = [
           { es: 'Bloqueo: suspender temporalmente el tratamiento mientras se revisa una solicitud.', en: 'Blocking: temporarily suspend processing while a request is reviewed.' },
         ],
       },
-      { type: 'heading', text: { es: 'Deberes de las empresas', en: 'Companies’ duties' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Deberes de las empresas', en: 'Companies’ duties' } },
       {
         type: 'list',
         items: [
@@ -826,7 +810,7 @@ export const articulos: Articulo[] = [
           en: 'International scope: the law also applies to foreign companies that process data of people residing in Chile, even without a domicile in the country. They must keep an operational contact channel (Article 14) and comply with the same principles and obligations.',
         },
       },
-      { type: 'heading', text: { es: 'Multas y sanciones', en: 'Fines and sanctions' } },
+      { type: 'heading', emoji: '⚖️', text: { es: 'Multas y sanciones', en: 'Fines and sanctions' } },
       {
         type: 'cards',
         items: [
@@ -842,7 +826,7 @@ export const articulos: Articulo[] = [
           en: 'Every sanction is recorded in a public National Registry of Sanctions. In case of repeat offenses, fines may triple and, for large companies, reach up to 4% of annual revenue.',
         },
       },
-      { type: 'heading', text: { es: 'Cómo prepararte desde ahora', en: 'How to prepare from now' } },
+      { type: 'heading', emoji: '🔹', text: { es: 'Cómo prepararte desde ahora', en: 'How to prepare from now' } },
       {
         type: 'list',
         items: [

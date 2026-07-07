@@ -1,9 +1,9 @@
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Download, FileText } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import ContentBlocks from '@/components/ContentBlocks'
-import TrackedLink from '@/components/TrackedLink'
+import ArticleActions from '@/components/ArticleActions'
 import { articulos, getArticulo, categories, type Locale } from '@/content/articulos'
 
 export function generateStaticParams() {
@@ -12,12 +12,12 @@ export function generateStaticParams() {
 
 const ui = {
   back: { es: 'Volver a Conocimiento', en: 'Back to Knowledge' },
-  download: { es: 'Descargar PDF', en: 'Download PDF' },
-  pdfTitle: { es: 'Documento original', en: 'Original document' },
-  pdfNote: {
-    es: 'Puedes ver el PDF completo aquí o descargarlo para guardarlo.',
-    en: 'You can view the full PDF here or download it to keep.',
+  actionsTitle: { es: 'Guarda o comparte este contenido', en: 'Save or share this content' },
+  actionsNote: {
+    es: 'Descárgalo en PDF o Markdown, o lee la publicación original en LinkedIn.',
+    en: 'Download it as PDF or Markdown, or read the original post on LinkedIn.',
   },
+  related: { es: 'Contenido relacionado', en: 'Related content' },
   author: { es: 'Por Fransa J. Aravena', en: 'By Fransa J. Aravena' },
 }
 
@@ -35,12 +35,13 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
   if (!a) notFound()
 
   const catLabel = categories.find((c) => c.key === a.category)?.label[l] ?? a.category
+  const related = (a.related ?? []).map((s) => getArticulo(s)).filter(Boolean) as typeof articulos
 
   return (
     <article className="animate-fade-in max-w-3xl mx-auto px-6 py-16">
       <Link
         href={`/${locale}/conocimiento`}
-        className="inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors mb-10"
+        className="no-print inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors mb-10"
       >
         <ArrowLeft size={15} /> {ui.back[l]}
       </Link>
@@ -52,7 +53,10 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
           <span className="text-zinc-400">·</span>
           <span className="text-zinc-400">{ui.author[l]}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-medium leading-tight mb-4">{a.title[l]}</h1>
+        <h1 className="flex items-start gap-3 text-3xl sm:text-4xl font-medium leading-tight mb-4">
+          <span aria-hidden className="text-3xl sm:text-4xl leading-none">{a.emoji}</span>
+          <span>{a.title[l]}</span>
+        </h1>
         <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">{a.description[l]}</p>
         {a.source && (
           <p className="text-xs text-zinc-400 mt-4 italic">{a.source[l]}</p>
@@ -61,35 +65,34 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
 
       <ContentBlocks blocks={a.blocks} locale={l} />
 
-      <section className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
-        <div className="flex items-center justify-between flex-wrap gap-4 mb-5">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#C8006A]/10 border border-[#C8006A]/20 flex items-center justify-center shrink-0">
-              <FileText size={18} className="text-[#C8006A]" />
-            </div>
-            <div>
-              <p className="font-medium text-sm">{ui.pdfTitle[l]}</p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">{ui.pdfNote[l]}</p>
-            </div>
-          </div>
-          <TrackedLink
-            event="pdf_download"
-            eventData={{ slug: a.slug }}
-            href={a.pdf}
-            download
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
-          >
-            <Download size={15} /> {ui.download[l]}
-          </TrackedLink>
-        </div>
-        <object
-          data={a.pdf}
-          type="application/pdf"
-          className="w-full h-[600px] rounded-xl border border-zinc-200 dark:border-zinc-800"
-        >
-          <iframe src={a.pdf} className="w-full h-[600px] rounded-xl" title={a.title[l]} />
-        </object>
+      {/* Acciones: LinkedIn + descargas */}
+      <section className="no-print mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+        <p className="font-medium mb-1">{ui.actionsTitle[l]}</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-5">{ui.actionsNote[l]}</p>
+        <ArticleActions articulo={a} locale={l} />
       </section>
+
+      {/* Contenido relacionado */}
+      {related.length > 0 && (
+        <section className="no-print mt-12">
+          <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-4">{ui.related[l]}</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {related.map((r) => (
+              <Link
+                key={r.slug}
+                href={`/${locale}/conocimiento/${r.slug}`}
+                className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 hover:border-[#C8006A]/40 transition-colors"
+              >
+                <span aria-hidden className="text-2xl">{r.emoji}</span>
+                <span className="flex-1 text-sm font-medium group-hover:text-[#C8006A] transition-colors">
+                  {r.title[l]}
+                </span>
+                <ArrowRight size={15} className="text-zinc-400 group-hover:text-[#C8006A] transition-colors" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   )
 }

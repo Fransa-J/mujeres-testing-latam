@@ -41,3 +41,39 @@
   .bg-magenta { background-color: #C8006A; }
   .border-magenta { border-color: #C8006A; }
 }
+
+/* Impresión / Guardar como PDF: se oculta la navegación, el pie de página y
+   los elementos marcados con .no-print, y se fuerza el fondo blanco con texto
+   oscuro para un documento limpio y consistente (mismo estilo en todos los
+   artículos). Se conservan los colores/emojis del contenido. */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #18181b !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  article {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Evita cortar tarjetas, tablas y callouts entre páginas. */
+  table,
+  pre,
+  .grid > * {
+    break-inside: avoid;
+  }
+}

@@ -3,13 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { track } from '@vercel/analytics'
-import { FileText, Download, ArrowRight } from 'lucide-react'
+import { Linkedin, ArrowRight } from 'lucide-react'
 import { articulos, categories, type Locale } from '@/content/articulos'
 
 const ui = {
   all: { es: 'Todos', en: 'All' },
   read: { es: 'Leer artículo', en: 'Read article' },
-  download: { es: 'PDF', en: 'PDF' },
+  linkedin: { es: 'LinkedIn', en: 'LinkedIn' },
 }
 
 export default function ConocimientoList({ locale }: { locale: Locale }) {
@@ -53,8 +53,8 @@ export default function ConocimientoList({ locale }: { locale: Locale }) {
             className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex flex-col gap-4 transition-colors hover:border-[#C8006A]/40"
           >
             <div className="flex items-start justify-between">
-              <div className="w-10 h-10 rounded-lg bg-[#C8006A]/10 border border-[#C8006A]/20 flex items-center justify-center shrink-0">
-                <FileText size={18} className="text-[#C8006A]" />
+              <div className="w-10 h-10 rounded-lg bg-[#C8006A]/10 border border-[#C8006A]/20 flex items-center justify-center shrink-0 text-xl">
+                <span aria-hidden>{a.emoji}</span>
               </div>
               <span className="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
                 {catLabel(a.category)}
@@ -72,12 +72,13 @@ export default function ConocimientoList({ locale }: { locale: Locale }) {
                 {ui.read[locale]} <ArrowRight size={13} />
               </Link>
               <a
-                href={a.pdf}
-                download
-                onClick={() => track('pdf_download', { slug: a.slug })}
+                href={a.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('linkedin_post_click', { slug: a.slug })}
                 className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#C8006A] transition-colors"
               >
-                <Download size={13} /> {ui.download[locale]}
+                <Linkedin size={13} /> {ui.linkedin[locale]}
               </a>
             </div>
           </div>

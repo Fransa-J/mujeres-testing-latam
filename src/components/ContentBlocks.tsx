@@ -14,8 +14,11 @@ export default function ContentBlocks({ blocks, locale }: { blocks: Block[]; loc
         switch (block.type) {
           case 'heading':
             return (
-              <h2 key={i} className="text-xl font-medium mt-10 pt-2 scroll-mt-24">
-                {block.text[locale]}
+              <h2 key={i} className="flex items-center gap-2.5 text-xl font-medium mt-10 pt-2 scroll-mt-24">
+                {block.emoji && (
+                  <span aria-hidden className="text-2xl leading-none">{block.emoji}</span>
+                )}
+                <span>{block.text[locale]}</span>
               </h2>
             )
 
