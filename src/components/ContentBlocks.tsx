@@ -112,7 +112,7 @@ export default function ContentBlocks({ blocks, locale }: { blocks: Block[]; loc
                 key={i}
                 className="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300"
               >
-                <code>{block.text}</code>
+                <code>{typeof block.text === 'string' ? block.text : block.text[locale]}</code>
               </pre>
             )
 

@@ -23,8 +23,10 @@ function blockToMarkdown(block: Block, locale: Locale): string {
       const rows = block.rows.map((r) => `| ${r.map((c) => c[locale]).join(' | ')} |`)
       return [head, sep, ...rows].join('\n')
     }
-    case 'code':
-      return '```\n' + block.text + '\n```'
+    case 'code': {
+      const code = typeof block.text === 'string' ? block.text : block.text[locale]
+      return '```\n' + code + '\n```'
+    }
     default:
       return ''
   }

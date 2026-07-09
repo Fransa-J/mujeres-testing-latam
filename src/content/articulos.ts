@@ -17,7 +17,7 @@ export type Block =
   | { type: 'callout'; variant?: 'info' | 'warning' | 'tip'; title?: L; items: L[] }
   | { type: 'cards'; items: { title: L; body: L }[] }
   | { type: 'table'; headers: L[]; rows: L[][] }
-  | { type: 'code'; text: string }
+  | { type: 'code'; text: string | L }
 
 export interface CategoryDef {
   key: string
@@ -252,7 +252,13 @@ export const articulos: Articulo[] = [
           en: 'The base URL is the API’s entry point; endpoints are built from it by adding resource-specific paths. Defining it once provides consistency, eases configuration (Postman, Playwright) and enables versioning without breaking compatibility.',
         },
       },
-      { type: 'code', text: 'https://api.example.com/v1            ← URL base (protocolo + dominio + versión)\nhttps://api.example.com/v1/users      ← endpoint: lista de usuarios\nhttps://api.example.com/v1/users/123  ← endpoint: usuario 123' },
+      {
+        type: 'code',
+        text: {
+          es: 'https://api.example.com/v1            ← URL base (protocolo + dominio + versión)\nhttps://api.example.com/v1/users      ← endpoint: lista de usuarios\nhttps://api.example.com/v1/users/123  ← endpoint: usuario 123',
+          en: 'https://api.example.com/v1            ← base URL (protocol + domain + version)\nhttps://api.example.com/v1/users      ← endpoint: list of users\nhttps://api.example.com/v1/users/123  ← endpoint: user 123',
+        },
+      },
       { type: 'heading', emoji: '📡', text: { es: 'Métodos HTTP', en: 'HTTP methods' } },
       {
         type: 'cards',
@@ -513,12 +519,18 @@ export const articulos: Articulo[] = [
       {
         type: 'list',
         items: [
-          { es: 'Imita la interacción del usuario: localiza elementos como los ve la persona (un botón “Iniciar sesión”, no un div con data-testid).', en: 'Mimics user interaction: locates elements as a person sees them (an “Iniciar sesión” button, not a div with data-testid).' },
+          { es: 'Imita la interacción del usuario: localiza elementos como los ve la persona (un botón “Iniciar sesión”, no un div con data-testid).', en: 'Mimics user interaction: locates elements as a person sees them (a “Sign In” button, not a div with data-testid).' },
           { es: 'Robustez inherente: identifica elementos por su función real (button, textbox, checkbox, link, heading, list, table).', en: 'Inherent robustness: identifies elements by their real function (button, textbox, checkbox, link, heading, list, table).' },
           { es: 'Usa estándares ARIA: además de validar la funcionalidad, confirma que la accesibilidad se mantenga.', en: 'Uses ARIA standards: besides validating functionality, it confirms accessibility is preserved.' },
         ],
       },
-      { type: 'code', text: "page.getByRole('button', { name: 'Iniciar Sesión' })" },
+      {
+        type: 'code',
+        text: {
+          es: "page.getByRole('button', { name: 'Iniciar Sesión' })",
+          en: "page.getByRole('button', { name: 'Sign In' })",
+        },
+      },
     ],
   },
 
@@ -632,7 +644,10 @@ export const articulos: Articulo[] = [
       { type: 'heading', emoji: '💻', text: { es: 'Ejemplo aplicado al testing', en: 'Example applied to testing' } },
       {
         type: 'code',
-        text: 'Actúa como QA Engineer con experiencia en pruebas funcionales.\nContexto: formulario de registro con campos nombre, email y contraseña.\nTarea: genera 8 casos de prueba (positivos y negativos).\nFormato: tabla con columnas | ID | Título | Pasos | Resultado esperado |\nRestricción: responde en español.',
+        text: {
+          es: 'Actúa como QA Engineer con experiencia en pruebas funcionales.\nContexto: formulario de registro con campos nombre, email y contraseña.\nTarea: genera 8 casos de prueba (positivos y negativos).\nFormato: tabla con columnas | ID | Título | Pasos | Resultado esperado |\nRestricción: responde en español.',
+          en: 'Act as a QA Engineer experienced in functional testing.\nContext: a registration form with name, email and password fields.\nTask: generate 8 test cases (positive and negative).\nFormat: a table with columns | ID | Title | Steps | Expected result |\nConstraint: answer in English.',
+        },
       },
       {
         type: 'callout',
@@ -726,7 +741,13 @@ export const articulos: Articulo[] = [
           en: 'Question the quality of your tests: talk to an AI assistant to evaluate them and ask it to suggest more cases. For example:',
         },
       },
-      { type: 'code', text: 'Estoy probando el MCP que conecta [la app] con chatbots [Claude, ChatGPT, Perplexity].\nEstas son las pruebas que definí: test1, test2, test3, testN.\n¿Qué otras pruebas me recomiendas realizar?\n¿Qué podría fallar en términos de seguridad o consistencia de datos?' },
+      {
+        type: 'code',
+        text: {
+          es: 'Estoy probando el MCP que conecta [la app] con chatbots [Claude, ChatGPT, Perplexity].\nEstas son las pruebas que definí: test1, test2, test3, testN.\n¿Qué otras pruebas me recomiendas realizar?\n¿Qué podría fallar en términos de seguridad o consistencia de datos?',
+          en: "I'm testing the MCP that connects [the app] with chatbots [Claude, ChatGPT, Perplexity].\nThese are the tests I defined: test1, test2, test3, testN.\nWhat other tests do you recommend running?\nWhat could fail in terms of security or data consistency?",
+        },
+      },
     ],
   },
 
