@@ -68,7 +68,7 @@ export const eventos: Evento[] = [
   },
   {
     id: 'testearla',
-    nombre: 'Testearla',
+    nombre: 'Testear.la',
     fecha: '2026-09-09',
     fechaFin: '2026-09-10',
     modalidad: 'presencial',
