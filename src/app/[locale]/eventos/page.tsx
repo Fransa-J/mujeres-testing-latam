@@ -136,25 +136,25 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                     </a>
                   </h3>
 
-                  {/* Fecha destacada */}
-                  <p className="flex items-center gap-1.5 text-sm font-semibold text-[#C8006A] mb-3">
-                    <Calendar size={15} /> {f.full}
-                    {ev.hora && <span className="font-normal text-zinc-400">· {ev.hora}</span>}
-                  </p>
-
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-zinc-400">
+                  {/* Fecha (en caja destacada) + lugar al lado */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-1.5">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#C8006A]/10 text-[#C8006A] text-xs font-semibold">
+                      <Calendar size={13} /> {f.full}
+                      {ev.hora && <span className="font-normal opacity-70">· {ev.hora}</span>}
+                    </span>
                     {(ev.ciudad || ev.pais) && (
-                      <span className="flex items-center gap-1.5">
+                      <span className="inline-flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
                         <MapPin size={12} /> {ev.bandera ? ev.bandera + ' ' : ''}
                         {[ev.ciudad, ev.pais].filter(Boolean).join(', ')}
                       </span>
                     )}
-                    {ev.organizador && (
-                      <span className="flex items-center gap-1.5">
-                        <Users size={12} /> {ui.organizes[l]}: {ev.organizador}
-                      </span>
-                    )}
                   </div>
+
+                  {ev.organizador && (
+                    <p className="flex items-center gap-1.5 text-xs text-zinc-400">
+                      <Users size={12} /> {ui.organizes[l]}: {ev.organizador}
+                    </p>
+                  )}
                 </div>
 
                 {/* Acción */}
