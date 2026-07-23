@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server'
-import { Calendar, Clock, MapPin, Globe, Users, ArrowUpRight, Ticket } from 'lucide-react'
+import { Calendar, MapPin, Globe, Users, ArrowUpRight, Ticket } from 'lucide-react'
 import { eventosOrdenados, type Modalidad } from '@/content/eventos'
 
 type Locale = 'es' | 'en'
@@ -84,29 +84,25 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
               className="group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 transition-colors hover:border-[#C8006A]/40"
             >
               <div className="flex flex-col sm:flex-row gap-6">
-                {/* Chip de fecha */}
-                <div className="flex sm:flex-col items-center justify-center gap-2 sm:gap-0 sm:w-20 shrink-0 rounded-xl bg-[#C8006A]/10 border border-[#C8006A]/20 px-4 py-3 sm:py-4 text-[#C8006A]">
-                  <span className="text-2xl font-semibold leading-none">{f.day}</span>
-                  <span className="text-xs font-medium uppercase tracking-wide">{f.month}</span>
+                {/* Logo del evento (izquierda), tamaño uniforme */}
+                <div
+                  className={`w-full sm:w-44 h-24 shrink-0 rounded-xl border flex items-center justify-center p-4 ${
+                    ev.logoDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200'
+                  }`}
+                >
+                  {ev.logo ? (
+                    <img
+                      src={ev.logo}
+                      alt={ev.nombre}
+                      className="max-h-14 max-w-full w-auto object-contain"
+                    />
+                  ) : (
+                    <span className="text-sm font-medium text-zinc-400 text-center">{ev.nombre}</span>
+                  )}
                 </div>
 
                 {/* Contenido */}
                 <div className="flex-1 min-w-0">
-                  {ev.logo && (
-                    <div
-                      className={`inline-flex items-center justify-center rounded-lg px-3 py-2 mb-3 border ${
-                        ev.logoDark
-                          ? 'bg-zinc-900 border-zinc-800'
-                          : 'bg-white border-zinc-200'
-                      }`}
-                    >
-                      <img
-                        src={ev.logo}
-                        alt={ev.nombre}
-                        className="h-7 w-auto max-w-[160px] object-contain"
-                      />
-                    </div>
-                  )}
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span
                       className={`inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium ${modalidadStyle[ev.modalidad]}`}
@@ -129,19 +125,24 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                     ))}
                   </div>
 
-                  <h3 className="font-medium text-lg mb-3 group-hover:text-[#C8006A] transition-colors">
-                    {ev.nombre}
+                  <h3 className="font-medium text-lg mb-2">
+                    <a
+                      href={ev.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#C8006A] transition-colors"
+                    >
+                      {ev.nombre}
+                    </a>
                   </h3>
 
+                  {/* Fecha destacada */}
+                  <p className="flex items-center gap-1.5 text-sm font-semibold text-[#C8006A] mb-3">
+                    <Calendar size={15} /> {f.full}
+                    {ev.hora && <span className="font-normal text-zinc-400">· {ev.hora}</span>}
+                  </p>
+
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-zinc-400">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={12} /> {f.full}
-                    </span>
-                    {ev.hora && (
-                      <span className="flex items-center gap-1.5">
-                        <Clock size={12} /> {ev.hora}
-                      </span>
-                    )}
                     {(ev.ciudad || ev.pais) && (
                       <span className="flex items-center gap-1.5">
                         <MapPin size={12} /> {ev.bandera ? ev.bandera + ' ' : ''}
