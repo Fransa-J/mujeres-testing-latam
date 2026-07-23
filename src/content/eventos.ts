@@ -1,6 +1,7 @@
 // Agenda de eventos de testing en Latinoamérica.
 // Contenido curado a mano: cada evento es un enlace + metadatos para filtrar
 // y decidir; el botón lleva a la inscripción en la fuente original.
+// Los logos se alojan localmente en /public/images/eventos.
 
 export type Locale = 'es' | 'en'
 
@@ -30,6 +31,10 @@ export interface Evento {
   precio?: 'gratis' | 'pago'
   /** Etiquetas de clasificación, ej. ['Automation', 'IA']. */
   tags?: string[]
+  /** Ruta del logo del evento en /public. Opcional. */
+  logo?: string
+  /** true si el logo es claro y necesita fondo oscuro para verse. */
+  logoDark?: boolean
 }
 
 // ── Eventos reales de testing en Latinoamérica ──────────────────────────────
@@ -39,64 +44,89 @@ export const eventos: Evento[] = [
     nombre: 'Hands on Testing',
     fecha: '2026-08-12',
     fechaFin: '2026-08-15',
-    modalidad: 'presencial',
+    modalidad: 'hibrido',
     pais: 'México',
     bandera: '🇲🇽',
+    ciudad: 'Guadalajara',
+    organizador: 'QA Minds',
     url: 'https://handsontesting.com/',
     tags: ['Conferencia'],
+    logo: '/images/eventos/hands-on-testing.png',
   },
   {
     id: 'testing-bolivia',
-    nombre: 'Testing Bolivia',
+    nombre: 'Testing Day Bolivia',
     fecha: '2026-08-21',
     modalidad: 'presencial',
     pais: 'Bolivia',
     bandera: '🇧🇴',
+    ciudad: 'Cochabamba',
+    organizador: 'Testing Bolivia',
     url: 'https://testingbolivia.com/',
+    precio: 'gratis',
     tags: ['Conferencia'],
+    logo: '/images/eventos/testing-bolivia.png',
+    logoDark: true,
   },
   {
     id: 'testing-chile',
     nombre: 'Testing Day Chile',
     fecha: '2026-08-27',
     fechaFin: '2026-08-28',
-    modalidad: 'presencial',
+    modalidad: 'hibrido',
     pais: 'Chile',
     bandera: '🇨🇱',
+    ciudad: 'Santiago',
+    organizador: 'Testing en Chile',
     url: 'https://www.testingenchile.cl/testing-day-chile/',
+    precio: 'pago',
     tags: ['Conferencia'],
+    logo: '/images/eventos/testing-chile.png',
   },
   {
     id: 'testearla',
     nombre: 'Testear.la',
     fecha: '2026-09-09',
     fechaFin: '2026-09-10',
-    modalidad: 'presencial',
+    modalidad: 'hibrido',
     pais: 'Argentina',
     bandera: '🇦🇷',
+    ciudad: 'Buenos Aires',
+    organizador: 'Crowdar',
     url: 'https://www.testear.la/',
     tags: ['Conferencia'],
+    logo: '/images/eventos/testearla.png',
   },
   {
     id: 'testing-day-peru',
     nombre: 'Testing Day Perú',
     fecha: '2026-09-18',
     fechaFin: '2026-09-19',
-    modalidad: 'presencial',
+    modalidad: 'hibrido',
     pais: 'Perú',
     bandera: '🇵🇪',
+    ciudad: 'Lima',
+    organizador: 'Testing Perú',
     url: 'https://testingperu.com/',
+    precio: 'gratis',
     tags: ['Conferencia'],
+    logo: '/images/eventos/testing-day-peru.svg',
+    logoDark: true,
   },
   {
     id: 'quality-sense',
     nombre: 'Quality Sense Conf',
     fecha: '2026-10-13',
-    modalidad: 'online',
+    modalidad: 'hibrido',
     pais: 'Uruguay',
     bandera: '🇺🇾',
+    ciudad: 'Montevideo',
+    organizador: 'Abstracta',
     url: 'https://qualitysenseconf.com/',
+    precio: 'gratis',
     tags: ['Conferencia'],
+    logo: '/images/eventos/quality-sense.png',
+    logoDark: true,
   },
   {
     id: 'testing-venezuela',
@@ -106,8 +136,11 @@ export const eventos: Evento[] = [
     modalidad: 'presencial',
     pais: 'Venezuela',
     bandera: '🇻🇪',
+    organizador: 'Testing Capítulo Venezuela',
     url: 'https://testingcapitulovenezuela.club/',
     tags: ['Conferencia'],
+    logo: '/images/eventos/testing-venezuela.png',
+    logoDark: true,
   },
 ]
 

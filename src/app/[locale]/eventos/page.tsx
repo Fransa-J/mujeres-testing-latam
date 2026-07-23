@@ -32,6 +32,12 @@ const modalidadLabel: Record<Modalidad, keyof typeof ui> = {
   hibrido: 'hibrido',
 }
 
+const modalidadStyle: Record<Modalidad, string> = {
+  online: 'bg-[#C8006A]/10 text-[#C8006A]',
+  presencial: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+  hibrido: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+}
+
 function formatFecha(iso: string, fin: string | undefined, locale: Locale) {
   const loc = locale === 'es' ? 'es-ES' : 'en-US'
   const d = new Date(iso + 'T00:00:00')
@@ -71,7 +77,7 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
       <div className="flex flex-col gap-4 mb-16">
         {eventos.map((ev) => {
           const f = formatFecha(ev.fecha, ev.fechaFin, l)
-          const isOnline = ev.modalidad === 'online'
+          const MIcon = ev.modalidad === 'presencial' ? MapPin : Globe
           return (
             <div
               key={ev.id}
@@ -86,15 +92,26 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
 
                 {/* Contenido */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span
-                      className={`inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium ${
-                        isOnline
-                          ? 'bg-[#C8006A]/10 text-[#C8006A]'
-                          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                  {ev.logo && (
+                    <div
+                      className={`inline-flex items-center justify-center rounded-lg px-3 py-2 mb-3 border ${
+                        ev.logoDark
+                          ? 'bg-zinc-900 border-zinc-800'
+                          : 'bg-white border-zinc-200'
                       }`}
                     >
-                      {isOnline ? <Globe size={12} /> : <MapPin size={12} />}
+                      <img
+                        src={ev.logo}
+                        alt={ev.nombre}
+                        className="h-7 w-auto max-w-[160px] object-contain"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span
+                      className={`inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium ${modalidadStyle[ev.modalidad]}`}
+                    >
+                      <MIcon size={12} />
                       {ui[modalidadLabel[ev.modalidad]][l]}
                     </span>
                     {ev.precio && (
