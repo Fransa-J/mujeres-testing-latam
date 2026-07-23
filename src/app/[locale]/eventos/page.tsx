@@ -112,14 +112,9 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                     ))}
                   </div>
 
-                  <h3 className="font-medium text-lg mb-1 group-hover:text-[#C8006A] transition-colors">
+                  <h3 className="font-medium text-lg mb-3 group-hover:text-[#C8006A] transition-colors">
                     {ev.nombre}
                   </h3>
-                  {ev.descripcion && (
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-3">
-                      {ev.descripcion[l]}
-                    </p>
-                  )}
 
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-zinc-400">
                     <span className="flex items-center gap-1.5">

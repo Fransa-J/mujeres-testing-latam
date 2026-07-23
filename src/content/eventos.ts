@@ -16,11 +16,11 @@ export interface Evento {
   /** Hora y zona horaria, ej. '18:00 (GMT-3)'. Opcional. */
   hora?: string
   modalidad: Modalidad
-  /** País del evento (para presencial/híbrido). */
+  /** País del evento. */
   pais?: string
   /** Emoji de bandera del país. */
   bandera?: string
-  /** Ciudad del evento (para presencial/híbrido). */
+  /** Ciudad del evento. */
   ciudad?: string
   /** Quién organiza el evento. Opcional. */
   organizador?: string
@@ -30,8 +30,6 @@ export interface Evento {
   precio?: 'gratis' | 'pago'
   /** Etiquetas de clasificación, ej. ['Automation', 'IA']. */
   tags?: string[]
-  /** Descripción breve, bilingüe. */
-  descripcion?: { es: string; en: string }
 }
 
 // ── Eventos reales de testing en Latinoamérica ──────────────────────────────
@@ -46,10 +44,6 @@ export const eventos: Evento[] = [
     bandera: '🇲🇽',
     url: 'https://handsontesting.com/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Conferencia de testing y calidad de software en México.',
-      en: 'Software testing and quality conference in Mexico.',
-    },
   },
   {
     id: 'testing-bolivia',
@@ -60,10 +54,6 @@ export const eventos: Evento[] = [
     bandera: '🇧🇴',
     url: 'https://testingbolivia.com/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Encuentro de la comunidad de testing en Bolivia.',
-      en: 'Gathering of the testing community in Bolivia.',
-    },
   },
   {
     id: 'testing-chile',
@@ -75,10 +65,6 @@ export const eventos: Evento[] = [
     bandera: '🇨🇱',
     url: 'https://www.testingenchile.cl/testing-day-chile/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Jornada de la comunidad de testing en Chile.',
-      en: 'Testing community day in Chile.',
-    },
   },
   {
     id: 'testearla',
@@ -90,10 +76,6 @@ export const eventos: Evento[] = [
     bandera: '🇦🇷',
     url: 'https://www.testear.la/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Conferencia de testing en Argentina.',
-      en: 'Testing conference in Argentina.',
-    },
   },
   {
     id: 'testing-day-peru',
@@ -105,22 +87,16 @@ export const eventos: Evento[] = [
     bandera: '🇵🇪',
     url: 'https://testingperu.com/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Jornada de testing de la comunidad peruana.',
-      en: 'Testing day by the Peruvian community.',
-    },
   },
   {
     id: 'quality-sense',
     nombre: 'Quality Sense Conf',
     fecha: '2026-10-13',
     modalidad: 'online',
+    pais: 'Uruguay',
+    bandera: '🇺🇾',
     url: 'https://qualitysenseconf.com/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Conferencia online sobre calidad de software y testing.',
-      en: 'Online conference on software quality and testing.',
-    },
   },
   {
     id: 'testing-venezuela',
@@ -132,10 +108,6 @@ export const eventos: Evento[] = [
     bandera: '🇻🇪',
     url: 'https://testingcapitulovenezuela.club/',
     tags: ['Conferencia'],
-    descripcion: {
-      es: 'Semana de charlas de la comunidad de testing en Venezuela.',
-      en: 'A week of talks by the testing community in Venezuela.',
-    },
   },
 ]
 
