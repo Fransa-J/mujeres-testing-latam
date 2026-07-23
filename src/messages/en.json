@@ -5,6 +5,8 @@
     "conocimiento": "Knowledge",
     "blog": "Blog",
     "eventos": "Events",
+    "eventos_latam": "LATAM Events",
+    "eventos_mtl": "MTL Events",
     "contacto": "Contact"
   },
   "hero": {

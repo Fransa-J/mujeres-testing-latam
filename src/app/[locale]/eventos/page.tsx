@@ -11,10 +11,6 @@ const ui = {
     es: 'Una agenda curada de charlas, meetups, talleres y conferencias de testing en la región. Encuentra tu próximo evento y súmate.',
     en: 'A curated agenda of testing talks, meetups, workshops and conferences across the region. Find your next event and join in.',
   },
-  sample: {
-    es: 'Vista previa con eventos de ejemplo. Pronto se reemplazan por eventos reales.',
-    en: 'Preview with sample events. Real events coming soon.',
-  },
   register: { es: 'Inscribirme', en: 'Register' },
   free: { es: 'Gratis', en: 'Free' },
   paid: { es: 'De pago', en: 'Paid' },
@@ -36,17 +32,26 @@ const modalidadLabel: Record<Modalidad, keyof typeof ui> = {
   hibrido: 'hibrido',
 }
 
-function formatFecha(iso: string, locale: Locale) {
+function formatFecha(iso: string, fin: string | undefined, locale: Locale) {
+  const loc = locale === 'es' ? 'es-ES' : 'en-US'
   const d = new Date(iso + 'T00:00:00')
-  const full = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(d)
-  const day = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', { day: '2-digit' }).format(d)
-  const month = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', { month: 'short' })
-    .format(d)
-    .replace('.', '')
+  const day = new Intl.DateTimeFormat(loc, { day: '2-digit' }).format(d)
+  const month = new Intl.DateTimeFormat(loc, { month: 'short' }).format(d).replace('.', '')
+
+  // Texto de fecha completo, con soporte para rangos de varios días.
+  let full = new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long', year: 'numeric' }).format(d)
+  if (fin) {
+    const e = new Date(fin + 'T00:00:00')
+    const sameMonth = d.getMonth() === e.getMonth() && d.getFullYear() === e.getFullYear()
+    if (sameMonth) {
+      const startDay = new Intl.DateTimeFormat(loc, { day: 'numeric' }).format(d)
+      full = `${startDay}–${new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long', year: 'numeric' }).format(e)}`
+    } else {
+      const start = new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long' }).format(d)
+      const end = new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long', year: 'numeric' }).format(e)
+      full = `${start} – ${end}`
+    }
+  }
   return { full, day, month }
 }
 
@@ -63,14 +68,9 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{ui.description[l]}</p>
       </div>
 
-      {/* Aviso de maqueta (quitar cuando haya eventos reales) */}
-      <div className="inline-flex items-center gap-2 mb-10 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/5 text-xs text-amber-600 dark:text-amber-400">
-        <span className="h-1.5 w-1.5 rounded-full bg-amber-500" /> {ui.sample[l]}
-      </div>
-
       <div className="flex flex-col gap-4 mb-16">
         {eventos.map((ev) => {
-          const f = formatFecha(ev.fecha, l)
+          const f = formatFecha(ev.fecha, ev.fechaFin, l)
           const isOnline = ev.modalidad === 'online'
           return (
             <div
@@ -136,9 +136,11 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                         {[ev.ciudad, ev.pais].filter(Boolean).join(', ')}
                       </span>
                     )}
-                    <span className="flex items-center gap-1.5">
-                      <Users size={12} /> {ui.organizes[l]}: {ev.organizador}
-                    </span>
+                    {ev.organizador && (
+                      <span className="flex items-center gap-1.5">
+                        <Users size={12} /> {ui.organizes[l]}: {ev.organizador}
+                      </span>
+                    )}
                   </div>
                 </div>
 
