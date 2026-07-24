@@ -152,7 +152,19 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
 
                   {ev.organizador && (
                     <p className="flex items-center gap-1.5 text-xs text-zinc-400">
-                      <Users size={12} /> {ui.organizes[l]}: {ev.organizador}
+                      <Users size={12} /> {ui.organizes[l]}:{' '}
+                      {ev.organizadorUrl ? (
+                        <a
+                          href={ev.organizadorUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-zinc-500 dark:text-zinc-400 underline-offset-2 hover:text-[#C8006A] hover:underline transition-colors"
+                        >
+                          {ev.organizador}
+                        </a>
+                      ) : (
+                        ev.organizador
+                      )}
                     </p>
                   )}
                 </div>

@@ -25,6 +25,8 @@ export interface Evento {
   ciudad?: string
   /** Quién organiza el evento. Opcional. */
   organizador?: string
+  /** Enlace al sitio del organizador. Opcional. */
+  organizadorUrl?: string
   /** Enlace para inscribirse / ver el evento. */
   url: string
   /** 'gratis' | 'pago'. */
@@ -49,6 +51,7 @@ export const eventos: Evento[] = [
     bandera: '🇲🇽',
     ciudad: 'Guadalajara',
     organizador: 'QA Minds',
+    organizadorUrl: 'https://handsontesting.com/',
     url: 'https://handsontesting.com/',
     tags: ['Conferencia'],
     logo: '/images/eventos/hands-on-testing.png',
@@ -62,6 +65,7 @@ export const eventos: Evento[] = [
     bandera: '🇧🇴',
     ciudad: 'Cochabamba',
     organizador: 'Testing Bolivia',
+    organizadorUrl: 'https://testingbolivia.com/',
     url: 'https://testingbolivia.com/',
     precio: 'gratis',
     tags: ['Conferencia'],
@@ -78,6 +82,7 @@ export const eventos: Evento[] = [
     bandera: '🇨🇱',
     ciudad: 'Santiago',
     organizador: 'Testing en Chile',
+    organizadorUrl: 'https://www.testingenchile.cl/',
     url: 'https://www.testingenchile.cl/testing-day-chile/',
     precio: 'pago',
     tags: ['Conferencia'],
@@ -93,6 +98,7 @@ export const eventos: Evento[] = [
     bandera: '🇦🇷',
     ciudad: 'Buenos Aires',
     organizador: 'Crowdar',
+    organizadorUrl: 'https://www.crowdar.com/',
     url: 'https://www.testear.la/',
     tags: ['Conferencia'],
     logo: '/images/eventos/testearla.png',
@@ -122,6 +128,7 @@ export const eventos: Evento[] = [
     bandera: '🇺🇾',
     ciudad: 'Montevideo',
     organizador: 'Abstracta',
+    organizadorUrl: 'https://abstracta.us/es/',
     url: 'https://qualitysenseconf.com/',
     precio: 'gratis',
     tags: ['Conferencia'],
@@ -137,6 +144,7 @@ export const eventos: Evento[] = [
     pais: 'Venezuela',
     bandera: '🇻🇪',
     organizador: 'Testing Capítulo Venezuela',
+    organizadorUrl: 'https://testingcapitulovenezuela.club/',
     url: 'https://testingcapitulovenezuela.club/',
     tags: ['Conferencia'],
     logo: '/images/eventos/testing-venezuela.png',
