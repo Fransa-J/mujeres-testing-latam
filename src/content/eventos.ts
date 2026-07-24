@@ -51,7 +51,7 @@ export const eventos: Evento[] = [
     bandera: '🇲🇽',
     ciudad: 'Guadalajara',
     organizador: 'QA Minds',
-    organizadorUrl: 'https://handsontesting.com/',
+    organizadorUrl: 'https://qaminds.com/',
     url: 'https://handsontesting.com/',
     tags: ['Conferencia'],
     logo: '/images/eventos/hands-on-testing.png',
