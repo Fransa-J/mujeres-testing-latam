@@ -110,9 +110,14 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                       <MIcon size={12} />
                       {ui[modalidadLabel[ev.modalidad]][l]}
                     </span>
-                    {ev.precio && (
+                    {(ev.precioDetalle || ev.precio) && (
                       <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
-                        <Ticket size={12} /> {ev.precio === 'gratis' ? ui.free[l] : ui.paid[l]}
+                        <Ticket size={12} />{' '}
+                        {ev.precioDetalle
+                          ? ev.precioDetalle[l]
+                          : ev.precio === 'gratis'
+                            ? ui.free[l]
+                            : ui.paid[l]}
                       </span>
                     )}
                     {ev.tags?.map((t) => (

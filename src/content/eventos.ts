@@ -31,6 +31,8 @@ export interface Evento {
   url: string
   /** 'gratis' | 'pago'. */
   precio?: 'gratis' | 'pago'
+  /** Detalle de precio cuando es mixto, ej. "Online gratis · Presencial pagado". */
+  precioDetalle?: { es: string; en: string }
   /** Etiquetas de clasificación, ej. ['Automation', 'IA']. */
   tags?: string[]
   /** Ruta del logo del evento en /public. Opcional. */
@@ -53,6 +55,7 @@ export const eventos: Evento[] = [
     organizador: 'QA Minds',
     organizadorUrl: 'https://qaminds.com/',
     url: 'https://handsontesting.com/',
+    precioDetalle: { es: 'Online gratis · Presencial pagado', en: 'Online free · In-person paid' },
     tags: ['Conferencia'],
     logo: '/images/eventos/hands-on-testing.png',
   },
@@ -84,7 +87,7 @@ export const eventos: Evento[] = [
     organizador: 'Testing en Chile',
     organizadorUrl: 'https://www.testingenchile.cl/',
     url: 'https://www.testingenchile.cl/testing-day-chile/',
-    precio: 'pago',
+    precioDetalle: { es: 'Online gratis · Presencial pagado', en: 'Online free · In-person paid' },
     tags: ['Conferencia'],
     logo: '/images/eventos/testing-chile.png',
   },
@@ -100,6 +103,7 @@ export const eventos: Evento[] = [
     organizador: 'Crowdar',
     organizadorUrl: 'https://www.crowdar.com/',
     url: 'https://www.testear.la/',
+    precioDetalle: { es: 'Online gratis · Presencial pagado', en: 'Online free · In-person paid' },
     tags: ['Conferencia'],
     logo: '/images/eventos/testearla.png',
   },
@@ -130,7 +134,7 @@ export const eventos: Evento[] = [
     organizador: 'Abstracta',
     organizadorUrl: 'https://abstracta.us/es/',
     url: 'https://qualitysenseconf.com/',
-    precio: 'gratis',
+    precioDetalle: { es: 'Online gratis · Presencial pagado', en: 'Online free · In-person paid' },
     tags: ['Conferencia'],
     logo: '/images/eventos/quality-sense.png',
     logoDark: true,
