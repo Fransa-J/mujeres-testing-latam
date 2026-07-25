@@ -187,31 +187,16 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         </div>
       </section>
 
-      {/* Objetivos + Ejes */}
-      <section className="grid md:grid-cols-2 gap-10 mb-20">
-        <div>
-          <h2 className="text-2xl font-medium mb-6">{c.objectivesTitle}</h2>
-          <ul className="flex flex-col gap-4">
-            {c.objectives.map((o, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-[#C8006A]/10 text-[#C8006A] text-xs font-medium flex items-center justify-center">
-                  {i + 1}
-                </span>
-                <span className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">{o}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-2xl font-medium mb-6">{c.axesTitle}</h2>
-          <div className="flex flex-col gap-3">
-            {c.axes.map(({ title, desc }) => (
-              <div key={title} className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-                <h3 className="font-medium text-sm mb-1">{title}</h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
+      {/* Ejes de acción */}
+      <section className="mb-20">
+        <h2 className="text-2xl font-medium mb-6">{c.axesTitle}</h2>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {c.axes.map(({ title, desc }) => (
+            <div key={title} className="p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+              <h3 className="font-medium text-sm mb-1">{title}</h3>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
