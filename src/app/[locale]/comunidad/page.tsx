@@ -8,7 +8,6 @@ import {
   HandHeart,
   Target,
   Compass,
-  Eye,
   Crown,
   Star,
   MapPin,
@@ -164,17 +163,12 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         </div>
       </section>
 
-      {/* Misión + Visión */}
-      <section className="grid md:grid-cols-2 gap-6 mb-20">
+      {/* Misión */}
+      <section className="mb-20">
         <div className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
           <Compass size={22} className="text-[#C8006A] mb-4" />
           <h2 className="text-xl font-medium mb-3">{c.missionTitle}</h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{c.mission}</p>
-        </div>
-        <div className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-          <Eye size={22} className="text-[#C8006A] mb-4" />
-          <h2 className="text-xl font-medium mb-3">{c.visionTitle}</h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{c.vision}</p>
+          <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">{c.mission}</p>
         </div>
       </section>
 
