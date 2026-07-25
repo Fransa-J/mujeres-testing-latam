@@ -71,15 +71,17 @@ export default function ConocimientoList({ locale }: { locale: Locale }) {
               >
                 {ui.read[locale]} <ArrowRight size={13} />
               </Link>
-              <a
-                href={a.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track('linkedin_post_click', { slug: a.slug })}
-                className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#C8006A] transition-colors"
-              >
-                <Linkedin size={13} /> {ui.linkedin[locale]}
-              </a>
+              {a.linkedin && (
+                <a
+                  href={a.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track('linkedin_post_click', { slug: a.slug })}
+                  className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#C8006A] transition-colors"
+                >
+                  <Linkedin size={13} /> {ui.linkedin[locale]}
+                </a>
+              )}
             </div>
           </div>
         ))}

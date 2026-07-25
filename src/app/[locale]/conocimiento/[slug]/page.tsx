@@ -14,12 +14,14 @@ const ui = {
   back: { es: 'Volver a Conocimiento', en: 'Back to Knowledge' },
   actionsTitle: { es: 'Guarda o comparte este contenido', en: 'Save or share this content' },
   actionsNote: {
-    es: 'Descárgalo en PDF o Markdown, o lee la publicación original en LinkedIn.',
-    en: 'Download it as PDF or Markdown, or read the original post on LinkedIn.',
+    es: 'Descárgalo en PDF o Markdown para guardarlo o compartirlo.',
+    en: 'Download it as PDF or Markdown to save or share it.',
   },
   related: { es: 'Contenido relacionado', en: 'Related content' },
-  author: { es: 'Por Fransa J. Aravena', en: 'By Fransa J. Aravena' },
+  by: { es: 'Por', en: 'By' },
 }
+
+const DEFAULT_AUTORA = 'Fransa J. Aravena'
 
 export function generateMetadata({ params: { slug, locale } }: { params: { slug: string; locale: string } }) {
   const a = getArticulo(slug)
@@ -51,7 +53,7 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
           <span className="px-2.5 py-1 rounded-full bg-[#C8006A]/10 text-[#C8006A] font-medium">{catLabel}</span>
           <span className="text-zinc-400">{a.date[l]}</span>
           <span className="text-zinc-400">·</span>
-          <span className="text-zinc-400">{ui.author[l]}</span>
+          <span className="text-zinc-400">{ui.by[l]} {a.autora ?? DEFAULT_AUTORA}</span>
         </div>
         <h1 className="flex items-start gap-3 text-3xl sm:text-4xl font-medium leading-tight mb-4">
           <span aria-hidden className="text-3xl sm:text-4xl leading-none">{a.emoji}</span>

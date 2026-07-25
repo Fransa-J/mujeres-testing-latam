@@ -38,15 +38,17 @@ export default function ArticleActions({ articulo, locale }: { articulo: Articul
   return (
     <div className="no-print flex flex-col gap-3">
       <div className="flex flex-wrap gap-3">
-        <a
-          href={articulo.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track('linkedin_post_click', { slug: articulo.slug })}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
-        >
-          <Linkedin size={15} /> {ui.linkedin[locale]}
-        </a>
+        {articulo.linkedin && (
+          <a
+            href={articulo.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track('linkedin_post_click', { slug: articulo.slug })}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
+          >
+            <Linkedin size={15} /> {ui.linkedin[locale]}
+          </a>
+        )}
         <button
           onClick={downloadPdf}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm font-medium hover:border-[#C8006A] hover:text-[#C8006A] transition-colors"

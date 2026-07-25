@@ -29,6 +29,7 @@ export const categories: CategoryDef[] = [
   { key: 'automatizacion', label: { es: 'Automatización', en: 'Automation' } },
   { key: 'api', label: { es: 'API', en: 'API' } },
   { key: 'ia', label: { es: 'IA', en: 'AI' } },
+  { key: 'carrera', label: { es: 'Carrera', en: 'Career' } },
   { key: 'legal', label: { es: 'Legal', en: 'Legal' } },
 ]
 
@@ -39,8 +40,10 @@ export interface Articulo {
   description: L
   date: L
   source?: L
-  /** Enlace a la publicación original en LinkedIn. */
-  linkedin: string
+  /** Autora del contenido. Si se omite, se asume Fransa J. Aravena. */
+  autora?: string
+  /** Enlace a la publicación original en LinkedIn. Opcional. */
+  linkedin?: string
   /** Emoji representativo del artículo (encabezado y descargas). */
   emoji: string
   /** Slugs de artículos relacionados. */
@@ -864,6 +867,242 @@ export const articulos: Articulo[] = [
         variant: 'warning',
         items: [
           { es: 'Este documento es un resumen informativo y no constituye asesoría legal. Para el detalle oficial, consulta la Biblioteca del Congreso Nacional de Chile.', en: 'This document is an informative summary and does not constitute legal advice. For official details, consult the Library of the National Congress of Chile.' },
+        ],
+      },
+    ],
+  },
+
+  // ── Iniciar en el mundo del Testing ─────────────────────────────────────
+  {
+    slug: 'iniciar-en-testing',
+    category: 'fundamentos',
+    title: { es: 'Iniciar en el mundo del Testing', en: 'Getting Started in Testing' },
+    description: {
+      es: 'Guía para comenzar tu camino: qué es el testing, quién puede ser tester, habilidades clave, fundamentos, dónde practicar y una ruta de 90 días.',
+      en: 'A guide to start your journey: what testing is, who can be a tester, key skills, fundamentals, where to practice and a 90-day roadmap.',
+    },
+    date: { es: 'Diciembre 2025', en: 'December 2025' },
+    autora: 'Daniella Rojas',
+    emoji: '📘',
+    related: ['que-es-testing', 'especialidades-en-testing'],
+    blocks: [
+      {
+        type: 'paragraph',
+        text: {
+          es: 'El testing no es solo encontrar errores: es una disciplina que valida que un producto funcione, previene riesgos antes de llegar al usuario, mejora la experiencia final y entrega información clave para tomar decisiones. Iniciar no exige perfección, exige intención, curiosidad y constancia.',
+          en: 'Testing is not just finding bugs: it is a discipline that validates a product works, prevents risks before reaching the user, improves the final experience and provides key information for decision-making. Getting started does not require perfection, it requires intention, curiosity and consistency.',
+        },
+      },
+      { type: 'heading', emoji: '🔍', text: { es: '¿Qué es realmente el Testing?', en: 'What is Testing really?' } },
+      {
+        type: 'list',
+        items: [
+          { es: 'Validar que un producto funcione correctamente.', en: 'Validate that a product works correctly.' },
+          { es: 'Prevenir riesgos antes de que lleguen al usuario.', en: 'Prevent risks before they reach the user.' },
+          { es: 'Mejorar la experiencia final.', en: 'Improve the final experience.' },
+          { es: 'Dar información clave al equipo para tomar decisiones.', en: 'Give the team key information to make decisions.' },
+          { es: 'Testing = calidad + valor + aprendizaje continuo.', en: 'Testing = quality + value + continuous learning.' },
+        ],
+      },
+      { type: 'heading', emoji: '👩‍💻', text: { es: '¿Quién puede ser Tester?', en: 'Who can be a Tester?' } },
+      {
+        type: 'paragraph',
+        text: {
+          es: 'Cualquier persona con intención y curiosidad. Muchas testers vienen de áreas como soporte técnico, desarrollo, UX/diseño, producto, atención al cliente, administración, educación, o incluso áreas no relacionadas con la tecnología. El testing tiene las puertas abiertas.',
+          en: 'Anyone with intention and curiosity. Many testers come from areas like technical support, development, UX/design, product, customer service, administration, education, or even fields unrelated to technology. Testing has open doors.',
+        },
+      },
+      { type: 'heading', emoji: '💡', text: { es: 'Habilidades clave de una potencial tester', en: 'Key skills of a potential tester' } },
+      {
+        type: 'list',
+        items: [
+          { es: 'Pensamiento crítico: cuestionar, analizar, explorar.', en: 'Critical thinking: question, analyze, explore.' },
+          { es: 'Curiosidad natural: ganas de entender cómo funcionan las cosas.', en: 'Natural curiosity: eagerness to understand how things work.' },
+          { es: 'Comunicación clara: explicar riesgos y hallazgos.', en: 'Clear communication: explain risks and findings.' },
+          { es: 'Empatía por el usuario: pensar desde su experiencia.', en: 'Empathy for the user: think from their experience.' },
+          { es: 'Aprendizaje continuo: la tecnología cambia rápido.', en: 'Continuous learning: technology changes fast.' },
+        ],
+      },
+      { type: 'heading', emoji: '📚', text: { es: 'Fundamentos que aprender primero', en: 'Fundamentals to learn first' } },
+      {
+        type: 'list',
+        items: [
+          { es: 'Conceptos básicos de testing.', en: 'Basic testing concepts.' },
+          { es: 'Tipos de pruebas: funcional, regresión, exploratoria, smoke, UAT y no funcional.', en: 'Test types: functional, regression, exploratory, smoke, UAT and non-functional.' },
+          { es: 'Ciclo de vida del software (SDLC): Ágil, Scrum, Kanban, Waterfall.', en: 'Software development life cycle (SDLC): Agile, Scrum, Kanban, Waterfall.' },
+          { es: 'Cómo diseñar casos de prueba.', en: 'How to design test cases.' },
+          { es: 'Cómo reportar bugs con claridad.', en: 'How to report bugs clearly.' },
+          { es: 'Práctica en aplicaciones reales.', en: 'Practice on real applications.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: { es: 'Recurso recomendado', en: 'Recommended resource' },
+        items: [
+          { es: 'Certificación ISTQB Foundation Level (CTFL v4.0): istqb.org', en: 'ISTQB Foundation Level certification (CTFL v4.0): istqb.org' },
+        ],
+      },
+      { type: 'heading', emoji: '🤝', text: { es: 'El testing no es solo del tester', en: 'Testing is not only the tester’s job' } },
+      {
+        type: 'list',
+        items: [
+          { es: 'Desarrollo produce mejor código.', en: 'Development produces better code.' },
+          { es: 'UX diseña con más profundidad.', en: 'UX designs with more depth.' },
+          { es: 'Producto decide con mayor claridad.', en: 'Product decides with more clarity.' },
+          { es: 'El negocio reduce riesgos.', en: 'The business reduces risks.' },
+          { es: 'La calidad es colectiva: el tester facilita la conversación.', en: 'Quality is collective: the tester facilitates the conversation.' },
+        ],
+      },
+      { type: 'heading', emoji: '🧪', text: { es: 'Dónde practicar testing manual', en: 'Where to practice manual testing' } },
+      {
+        type: 'table',
+        headers: [{ es: 'Sitio', en: 'Site' }, { es: 'URL', en: 'URL' }],
+        rows: [
+          [{ es: 'SauceDemo', en: 'SauceDemo' }, { es: 'saucedemo.com', en: 'saucedemo.com' }],
+          [{ es: 'DemoQA', en: 'DemoQA' }, { es: 'demoqa.com', en: 'demoqa.com' }],
+          [{ es: 'Ministry of Testing', en: 'Ministry of Testing' }, { es: 'ministryoftesting.com', en: 'ministryoftesting.com' }],
+          [{ es: 'OrangeHRM Demo', en: 'OrangeHRM Demo' }, { es: 'opensource-demo.orangehrmlive.com', en: 'opensource-demo.orangehrmlive.com' }],
+        ],
+      },
+      { type: 'heading', emoji: '⚙️', text: { es: 'Dónde practicar automatización', en: 'Where to practice automation' } },
+      {
+        type: 'table',
+        headers: [{ es: 'Sitio', en: 'Site' }, { es: 'URL', en: 'URL' }],
+        rows: [
+          [{ es: 'UI Testing Playground', en: 'UI Testing Playground' }, { es: 'uitestingplayground.com', en: 'uitestingplayground.com' }],
+          [{ es: 'LambdaTest Selenium Playground', en: 'LambdaTest Selenium Playground' }, { es: 'lambdatest.com/selenium-playground', en: 'lambdatest.com/selenium-playground' }],
+          [{ es: 'The Internet (Herokuapp)', en: 'The Internet (Herokuapp)' }, { es: 'the-internet.herokuapp.com', en: 'the-internet.herokuapp.com' }],
+        ],
+      },
+      { type: 'heading', emoji: '🐞', text: { es: 'Dónde practicar reporte de bugs', en: 'Where to practice bug reporting' } },
+      {
+        type: 'table',
+        headers: [{ es: 'Sitio', en: 'Site' }, { es: 'URL', en: 'URL' }],
+        rows: [
+          [{ es: 'Mantis Bug Tracker Demo', en: 'Mantis Bug Tracker Demo' }, { es: 'mantisbt.org/demo.php', en: 'mantisbt.org/demo.php' }],
+          [{ es: 'Bugzilla Test', en: 'Bugzilla Test' }, { es: 'landfill.bugzilla.org', en: 'landfill.bugzilla.org' }],
+          [{ es: 'Jira (guías)', en: 'Jira (guides)' }, { es: 'atlassian.com/software/jira/guides', en: 'atlassian.com/software/jira/guides' }],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: { es: 'Ejercicio sugerido', en: 'Suggested exercise' },
+        items: [
+          { es: 'Prueba una web simple y reporta un bug con el formato: título, pasos, resultado esperado, resultado actual y severidad.', en: 'Test a simple website and report a bug using the format: title, steps, expected result, actual result and severity.' },
+        ],
+      },
+      { type: 'heading', emoji: '🗺️', text: { es: 'Ruta recomendada para tus primeros 90 días', en: 'Recommended roadmap for your first 90 days' } },
+      {
+        type: 'cards',
+        items: [
+          { title: { es: '📅 Mes 1 — Fundamentos', en: '📅 Month 1 — Fundamentals' }, body: { es: 'Tipos de pruebas, casos de prueba, reporte de bugs, práctica manual y SDLC + Ágil.', en: 'Test types, test cases, bug reporting, manual practice and SDLC + Agile.' } },
+          { title: { es: '📅 Mes 2 — Profundización', en: '📅 Month 2 — Going deeper' }, body: { es: 'Testing exploratorio, API testing básico y herramientas: Jira, TestRail, Postman, GitHub.', en: 'Exploratory testing, basic API testing and tools: Jira, TestRail, Postman, GitHub.' } },
+          { title: { es: '📅 Mes 3 — Especialización', en: '📅 Month 3 — Specialization' }, body: { es: 'Elige tu camino: Manual, Automation, Analyst o Lead Jr.', en: 'Choose your path: Manual, Automation, Analyst or Junior Lead.' } },
+        ],
+      },
+      { type: 'heading', emoji: '🫂', text: { es: 'Comunidad y sororidad', en: 'Community and sisterhood' } },
+      {
+        type: 'paragraph',
+        text: {
+          es: 'Aprender es más fácil cuando estás acompañada. Busca tu comunidad: Mujeres Testing Latam, comunidades de testing, Ministry of Testing, mentorías y retos de práctica. Las puertas están abiertas.',
+          en: 'Learning is easier when you have company. Find your community: Mujeres Testing Latam, testing communities, Ministry of Testing, mentorships and practice challenges. The doors are open.',
+        },
+      },
+    ],
+  },
+
+  // ── Especialidades dentro del Testing ───────────────────────────────────
+  {
+    slug: 'especialidades-en-testing',
+    category: 'carrera',
+    title: { es: 'Especialidades dentro del Testing', en: 'Specialties within Testing' },
+    description: {
+      es: 'Un recorrido por las distintas especialidades del testing: enfoque, habilidades y valor de cada rol para que elijas tu camino.',
+      en: 'A tour of the different testing specialties: focus, skills and value of each role so you can choose your path.',
+    },
+    date: { es: '2025', en: '2025' },
+    autora: 'Daniella Rojas',
+    emoji: '🧭',
+    related: ['iniciar-en-testing'],
+    blocks: [
+      {
+        type: 'paragraph',
+        text: {
+          es: 'En testing existen muchos nombres: tester manual, QA, QE, QAE… Pero lo que realmente diferencia a las profesionales son sus especialidades: enfoque, habilidades y valor. Más allá del título, importa el valor que aportas.',
+          en: 'In testing there are many titles: manual tester, QA, QE, QAE… But what really sets professionals apart are their specialties: focus, skills and value. Beyond the title, what matters is the value you bring.',
+        },
+      },
+      { type: 'heading', emoji: '🧭', text: { es: 'Las especialidades', en: 'The specialties' } },
+      {
+        type: 'cards',
+        items: [
+          { title: { es: 'Functional / Manual Tester', en: 'Functional / Manual Tester' }, body: { es: 'Valida funcionalidades, flujos y comportamiento del usuario. Ejecuta pruebas exploratorias y de caja negra, piensa como usuario y aporta una mirada práctica e intuitiva.', en: 'Validates features, flows and user behavior. Runs exploratory and black-box tests, thinks like a user and brings a practical, intuitive view.' } },
+          { title: { es: 'Test Analyst / Designer', en: 'Test Analyst / Designer' }, body: { es: 'Define técnicas de prueba según riesgo, cobertura y prioridad. Diseña casos eficientes, asegura trazabilidad entre requisitos, pruebas y resultados, y analiza impacto y criterios de aceptación.', en: 'Defines test techniques by risk, coverage and priority. Designs efficient cases, ensures traceability between requirements, tests and results, and analyzes impact and acceptance criteria.' } },
+          { title: { es: 'Automation Engineer', en: 'Automation Engineer' }, body: { es: 'Diseña y mantiene scripts y frameworks. Automatiza pruebas Web, API, Mobile y Backend, integra en pipelines CI/CD, optimiza regresiones y reduce el esfuerzo manual.', en: 'Designs and maintains scripts and frameworks. Automates Web, API, Mobile and Backend tests, integrates into CI/CD pipelines, optimizes regressions and reduces manual effort.' } },
+          { title: { es: 'API / Backend Tester', en: 'API / Backend Tester' }, body: { es: 'Valida servicios, endpoints y lógica de negocio sin interfaz. Prueba integraciones y contratos con herramientas como Postman, RestAssured, Karate o SoapUI.', en: 'Validates services, endpoints and business logic without a UI. Tests integrations and contracts with tools like Postman, RestAssured, Karate or SoapUI.' } },
+          { title: { es: 'Mobile Tester', en: 'Mobile Tester' }, body: { es: 'Evalúa apps nativas, híbridas y web mobile en distintos dispositivos. Valida usabilidad, rendimiento y compatibilidad con emuladores, simuladores y dispositivos físicos.', en: 'Evaluates native, hybrid and mobile-web apps on different devices. Validates usability, performance and compatibility with emulators, simulators and physical devices.' } },
+          { title: { es: 'Performance & Load Tester', en: 'Performance & Load Tester' }, body: { es: 'Evalúa tiempos de respuesta, estabilidad y capacidad. Diseña escenarios de carga y estrés e identifica cuellos de botella con JMeter, Gatling o k6.', en: 'Evaluates response times, stability and capacity. Designs load and stress scenarios and finds bottlenecks with JMeter, Gatling or k6.' } },
+          { title: { es: 'Security Tester / Ethical Hacker', en: 'Security Tester / Ethical Hacker' }, body: { es: 'Detecta vulnerabilidades y riesgos de exposición de datos. Realiza pruebas de penetración aplicando estándares como OWASP y MITRE.', en: 'Detects vulnerabilities and data-exposure risks. Runs penetration tests applying standards like OWASP and MITRE.' } },
+          { title: { es: 'Accessibility Tester', en: 'Accessibility Tester' }, body: { es: 'Verifica que los productos puedan ser usados por todas las personas. Valida estándares como WCAG, navegación por teclado, lectores de pantalla y contraste.', en: 'Ensures products can be used by everyone. Validates standards like WCAG, keyboard navigation, screen readers and contrast.' } },
+          { title: { es: 'Test / QA / QE Lead', en: 'Test / QA / QE Lead' }, body: { es: 'Lidera la planificación, estrategia y coordinación de las pruebas. Gestiona riesgos, métricas y stakeholders, e impulsa cultura de calidad y mentoring.', en: 'Leads test planning, strategy and coordination. Manages risks, metrics and stakeholders, and drives a quality and mentoring culture.' } },
+          { title: { es: 'Quality Engineer (QE)', en: 'Quality Engineer (QE)' }, body: { es: 'Impulsa la ingeniería de calidad en todo el ciclo. Previene defectos con Shift Left, define métricas y aporta visión end-to-end y automatización estratégica.', en: 'Drives quality engineering across the whole cycle. Prevents defects with Shift Left, defines metrics and brings an end-to-end view and strategic automation.' } },
+          { title: { es: 'AI Test Engineer / AI Quality', en: 'AI Test Engineer / AI Quality' }, body: { es: 'Evalúa modelos de IA, prompts, datasets y la calidad de las respuestas. Detecta sesgos y riesgos éticos y aplica técnicas de evaluación de LLMs.', en: 'Evaluates AI models, prompts, datasets and answer quality. Detects bias and ethical risks and applies LLM evaluation techniques.' } },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: { es: 'Recuerda', en: 'Remember' },
+        items: [
+          { es: 'No te define el nombre del cargo, te define lo que puedes hacer. Puedes elegir una o varias especialidades según dónde quieras llegar: este universo tiene espacio para todos los caminos.', en: 'The job title does not define you, what you can do does. You can choose one or several specialties depending on where you want to go: this universe has room for every path.' },
+        ],
+      },
+    ],
+  },
+
+  // ── Consejos para entrevistas ───────────────────────────────────────────
+  {
+    slug: 'consejos-entrevistas',
+    category: 'carrera',
+    title: { es: 'Consejos para entrevistas', en: 'Interview Tips' },
+    description: {
+      es: 'Claves para prepararte y dar lo mejor en tus entrevistas de QA: desde definir lo que buscas hasta construir tu portafolio y manejar un “no”.',
+      en: 'Keys to prepare and do your best in QA interviews: from defining what you want to building your portfolio and handling a “no”.',
+    },
+    date: { es: '2025', en: '2025' },
+    autora: 'Mujeres Testing Latam',
+    emoji: '💼',
+    related: ['iniciar-en-testing'],
+    blocks: [
+      {
+        type: 'paragraph',
+        text: {
+          es: 'Las entrevistas se disfrutan más cuando llegas preparada y siendo tú misma. No esperes que te descubran: sal a buscar las oportunidades que deseas. Respira, no te apures: eres valiosa.',
+          en: 'Interviews are more enjoyable when you arrive prepared and being yourself. Don’t wait to be discovered: go after the opportunities you want. Breathe, don’t rush: you are valuable.',
+        },
+      },
+      { type: 'heading', emoji: '🌟', text: { es: 'Consejos clave', en: 'Key tips' } },
+      {
+        type: 'cards',
+        items: [
+          { title: { es: '🧭 Defínete', en: '🧭 Define yourself' }, body: { es: '¿Qué rol quiero? ¿En qué empresas me gustaría trabajar? ¿Cuáles son mis principios, valores y estilo de trabajo?', en: 'What role do I want? Which companies would I like to work for? What are my principles, values and work style?' } },
+          { title: { es: '📋 Prepárate', en: '📋 Prepare' }, body: { es: 'Analiza la descripción del rol, estudia la empresa e identifica qué te hace buena candidata, tus fortalezas y tus límites.', en: 'Analyze the role description, study the company and identify what makes you a good candidate, your strengths and your limits.' } },
+          { title: { es: '🗣️ Cuenta tu historia', en: '🗣️ Tell your story' }, body: { es: 'Entrena tu comunicación: te permite conectar y que la otra persona vea tu potencial.', en: 'Train your communication: it helps you connect and lets others see your potential.' } },
+          { title: { es: '👂 Escucha activa', en: '👂 Active listening' }, body: { es: 'Que se sienta una conversación, no un interrogatorio. Pide aclaraciones si es necesario.', en: 'Make it feel like a conversation, not an interrogation. Ask for clarification if needed.' } },
+          { title: { es: '❓ Pregunta', en: '❓ Ask' }, body: { es: 'Demuestra interés: ¿Cómo es su proceso de QA? ¿Qué esperan en los primeros 3 meses? ¿Qué herramientas usan?', en: 'Show interest: What is your QA process like? What do you expect in the first 3 months? What tools do you use?' } },
+          { title: { es: '📁 Portafolio', en: '📁 Portfolio' }, body: { es: 'Inclúyelo en tu CV: casos de prueba, bugs, colecciones de Postman, scripts. Muestra acción, no solo intención.', en: 'Include it in your CV: test cases, bugs, Postman collections, scripts. Show action, not just intention.' } },
+          { title: { es: '🔁 Acepta y sigue', en: '🔁 Accept and move on' }, body: { es: 'Un “no” no define tu valor: es redirección, no rechazo. Pide feedback, mejora y busca la siguiente oportunidad.', en: 'A “no” does not define your worth: it is redirection, not rejection. Ask for feedback, improve and seek the next opportunity.' } },
+          { title: { es: '💛 Sé genuina', en: '💛 Be genuine' }, body: { es: 'La sinceridad y autenticidad evitan falsas expectativas y presiones innecesarias, y te dan más confianza.', en: 'Honesty and authenticity avoid false expectations and unnecessary pressure, and give you more confidence.' } },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: { es: 'Tip para tu primer trabajo', en: 'Tip for your first job' },
+        items: [
+          { es: 'Si es tu primer trabajo, puedes hacer testing de sitios web conocidos y sumar esas prácticas a tu portafolio.', en: 'If it is your first job, you can test well-known websites and add that practice to your portfolio.' },
         ],
       },
     ],
