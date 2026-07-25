@@ -65,6 +65,8 @@ const content = {
     rolesTitle: 'Los roles de la mesa directiva',
     rolesIntro:
       'Todas formamos la comunidad y jugamos un rol crucial en su ecosistema, avanzando organizadas y cohesionadas, sin jerarquías, como un mismo bloque de empoderamiento femenino en Testing.',
+    rolesCtaQuestion: '¿Te gustaría formar parte de uno de estos roles?',
+    rolesCtaBtn: 'Escríbenos',
     roles: [
       { icon: Crown, title: 'Fundadora', desc: 'Responsable de la creación, visión y propósito central de la comunidad. Define la dirección estratégica, impulsa iniciativas clave, vela por los valores fundacionales y coordina el crecimiento sostenible del ecosistema.' },
       { icon: Star, title: 'Co-Fundadora', desc: 'Colabora directamente en la toma de decisiones estratégicas, fortalece la estructura organizacional y lidera iniciativas transversales. Apoya la expansión de la comunidad y promueve la cultura de colaboración, innovación y empoderamiento.' },
@@ -124,6 +126,8 @@ const content = {
     rolesTitle: 'The board roles',
     rolesIntro:
       'We all make up the community and play a crucial role in its ecosystem, moving forward organized and cohesive, without hierarchies, as a single block of female empowerment in Testing.',
+    rolesCtaQuestion: 'Would you like to take on one of these roles?',
+    rolesCtaBtn: 'Write to us',
     roles: [
       { icon: Crown, title: 'Founder', desc: 'Responsible for the creation, vision and core purpose of the community. Defines the strategic direction, drives key initiatives, safeguards the founding values and coordinates the sustainable growth of the ecosystem.' },
       { icon: Star, title: 'Co-Founder', desc: 'Collaborates directly in strategic decision-making, strengthens the organizational structure and leads cross-cutting initiatives. Supports the community’s expansion and promotes a culture of collaboration, innovation and empowerment.' },
@@ -225,6 +229,17 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
               <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Frame CTA: unirse a un rol */}
+        <div className="mt-6 rounded-2xl border border-[#C8006A]/30 bg-gradient-to-br from-[#C8006A]/10 to-transparent p-8 text-center">
+          <p className="text-lg sm:text-xl font-medium mb-5">{c.rolesCtaQuestion}</p>
+          <a
+            href={`/${locale}/contacto`}
+            className="inline-block px-6 py-3 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors"
+          >
+            {c.rolesCtaBtn}
+          </a>
         </div>
       </section>
 
