@@ -150,6 +150,7 @@ export const eventos: Evento[] = [
     organizador: 'Testing Capítulo Venezuela',
     organizadorUrl: 'https://testingcapitulovenezuela.club/',
     url: 'https://testingcapitulovenezuela.club/',
+    precio: 'gratis',
     tags: ['Conferencia'],
     logo: '/images/eventos/testing-venezuela.png',
     logoDark: true,
