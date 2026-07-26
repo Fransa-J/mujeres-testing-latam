@@ -18,10 +18,7 @@ const ui = {
     en: 'Download it as PDF or Markdown to save or share it.',
   },
   related: { es: 'Contenido relacionado', en: 'Related content' },
-  by: { es: 'Por', en: 'By' },
 }
-
-const DEFAULT_AUTORA = 'Fransa J. Aravena'
 
 export function generateMetadata({ params: { slug, locale } }: { params: { slug: string; locale: string } }) {
   const a = getArticulo(slug)
@@ -53,7 +50,7 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
           <span className="px-2.5 py-1 rounded-full bg-[#C8006A]/10 text-[#C8006A] font-medium">{catLabel}</span>
           <span className="text-zinc-400">{a.date[l]}</span>
           <span className="text-zinc-400">·</span>
-          <span className="text-zinc-400">{ui.by[l]} {a.autora ?? DEFAULT_AUTORA}</span>
+          <span className="text-zinc-400">Mujeres Testing Latam</span>
         </div>
         <h1 className="flex items-start gap-3 text-3xl sm:text-4xl font-medium leading-tight mb-4">
           <span aria-hidden className="text-3xl sm:text-4xl leading-none">{a.emoji}</span>

@@ -51,7 +51,7 @@ export function articuloToMarkdown(a: Articulo, locale: Locale): string {
     parts.push(`${t('Publicación original en LinkedIn', 'Original LinkedIn post')}: ${a.linkedin}`)
     parts.push('')
   }
-  parts.push(`${t('Por', 'By')} ${a.autora ?? 'Fransa J. Aravena'} · Mujeres Testing Latam`)
+  parts.push('Mujeres Testing Latam')
   parts.push('')
   return parts.join('\n')
 }
