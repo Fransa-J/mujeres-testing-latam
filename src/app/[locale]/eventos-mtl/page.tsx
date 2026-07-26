@@ -53,6 +53,20 @@ const eventos: MtlEvento[] = [
   },
 ]
 
+export function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const title = { es: 'Eventos de la comunidad', en: 'Community events' }
+  const description = {
+    es: 'Charlas, talleres y encuentros organizados por Mujeres Testing Latam.',
+    en: 'Talks, workshops and meetups organized by Mujeres Testing Latam.',
+  }
+  return {
+    title: title[l],
+    description: description[l],
+    alternates: { canonical: `/${l}/eventos-mtl`, languages: { es: '/es/eventos-mtl', en: '/en/eventos-mtl' } },
+  }
+}
+
 export default function EventosMTL({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const l = locale as Locale

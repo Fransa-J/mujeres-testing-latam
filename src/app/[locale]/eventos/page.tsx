@@ -61,6 +61,23 @@ function formatFecha(iso: string, fin: string | undefined, locale: Locale) {
   return { full, day, month }
 }
 
+export function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const title = {
+    es: 'Eventos de Testing en Latinoamérica',
+    en: 'Testing Events in Latin America',
+  }
+  const description = {
+    es: 'Agenda curada de conferencias, meetups y talleres de testing en Latinoamérica.',
+    en: 'A curated agenda of testing conferences, meetups and workshops in Latin America.',
+  }
+  return {
+    title: title[l],
+    description: description[l],
+    alternates: { canonical: `/${l}/eventos`, languages: { es: '/es/eventos', en: '/en/eventos' } },
+  }
+}
+
 export default function Eventos({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const l = locale as Locale

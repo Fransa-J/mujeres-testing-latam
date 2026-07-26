@@ -15,6 +15,20 @@ const aiNote = {
   },
 }
 
+export function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const title = { es: 'Conocimiento', en: 'Knowledge' }
+  const description = {
+    es: 'Recursos gratuitos para aprender testing desde cero: fundamentos, automatización, API, IA, carrera y más.',
+    en: 'Free resources to learn testing from scratch: fundamentals, automation, API, AI, career and more.',
+  }
+  return {
+    title: title[l],
+    description: description[l],
+    alternates: { canonical: `/${l}/conocimiento`, languages: { es: '/es/conocimiento', en: '/en/conocimiento' } },
+  }
+}
+
 export default function Conocimiento({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const t = useTranslations('conocimiento')

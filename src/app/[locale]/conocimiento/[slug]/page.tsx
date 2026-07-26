@@ -24,7 +24,24 @@ export function generateMetadata({ params: { slug, locale } }: { params: { slug:
   const a = getArticulo(slug)
   if (!a) return {}
   const l = locale as Locale
-  return { title: `${a.title[l]} · Mujeres Testing Latam`, description: a.description[l] }
+  // Solo el título del artículo: el layout añade "· Mujeres Testing Latam".
+  return {
+    title: a.title[l],
+    description: a.description[l],
+    alternates: {
+      canonical: `/${l}/conocimiento/${slug}`,
+      languages: {
+        es: `/es/conocimiento/${slug}`,
+        en: `/en/conocimiento/${slug}`,
+      },
+    },
+    openGraph: {
+      title: a.title[l],
+      description: a.description[l],
+      type: 'article',
+      url: `https://mujerestesting.com/${l}/conocimiento/${slug}`,
+    },
+  }
 }
 
 export default function ArticuloPage({ params: { locale, slug } }: { params: { locale: string; slug: string } }) {
@@ -36,8 +53,27 @@ export default function ArticuloPage({ params: { locale, slug } }: { params: { l
   const catLabel = categories.find((c) => c.key === a.category)?.label[l] ?? a.category
   const related = (a.related ?? []).map((s) => getArticulo(s)).filter(Boolean) as typeof articulos
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.title[l],
+    description: a.description[l],
+    inLanguage: l,
+    author: { '@type': 'Organization', name: 'Mujeres Testing Latam' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Mujeres Testing Latam',
+      logo: { '@type': 'ImageObject', url: 'https://mujerestesting.com/images/mtl-logo.png' },
+    },
+    mainEntityOfPage: `https://mujerestesting.com/${l}/conocimiento/${slug}`,
+  }
+
   return (
     <article className="animate-fade-in max-w-3xl mx-auto px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href={`/${locale}/conocimiento`}
         className="no-print inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors mb-10"

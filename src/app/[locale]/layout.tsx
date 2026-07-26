@@ -46,6 +46,20 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
+// Datos estructurados de la organización (ayuda a Google a entender qué es MTL).
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Mujeres Testing Latam',
+  alternateName: 'MTL',
+  url: 'https://mujerestesting.com',
+  logo: 'https://mujerestesting.com/images/mtl-logo.png',
+  description:
+    'Comunidad latinoamericana para que más mujeres inicien, avancen y prosperen en el testing de software.',
+  email: 'mujerestesting@gmail.com',
+  sameAs: ['https://www.linkedin.com/company/mujeres-testing-latam/'],
+}
+
 export default async function LocaleLayout({
   children,
   params: { locale },
@@ -60,6 +74,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className={inter.variable}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <Navbar locale={locale} />

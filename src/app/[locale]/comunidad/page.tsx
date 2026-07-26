@@ -143,6 +143,20 @@ const content = {
   },
 } satisfies Record<Locale, unknown>
 
+export function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const l = locale === 'en' ? 'en' : 'es'
+  const title = { es: 'La comunidad', en: 'The community' }
+  const description = {
+    es: 'Conoce Mujeres Testing Latam: propósito, misión, valores, ejes de acción y los roles de la comunidad.',
+    en: 'Meet Mujeres Testing Latam: purpose, mission, values, action areas and community roles.',
+  }
+  return {
+    title: title[l],
+    description: description[l],
+    alternates: { canonical: `/${l}/comunidad`, languages: { es: '/es/comunidad', en: '/en/comunidad' } },
+  }
+}
+
 export default function Comunidad({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const c = content[(locale as Locale) in content ? (locale as Locale) : 'es']
