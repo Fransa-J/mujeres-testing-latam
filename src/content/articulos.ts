@@ -46,6 +46,8 @@ export interface Articulo {
   linkedin?: string
   /** Emoji representativo del artículo (encabezado y descargas). */
   emoji: string
+  /** Ruta al PDF original (versión descargable atractiva). Opcional. */
+  pdf?: string
   /** Slugs de artículos relacionados. */
   related?: string[]
   blocks: Block[]
@@ -65,6 +67,7 @@ export const articulos: Articulo[] = [
     source: { es: 'Basado en el Syllabus ISTQB v4.0.1', en: 'Based on the ISTQB Syllabus v4.0.1' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7355995515294998528',
     emoji: '🧪',
+    pdf: '/pdfs/que-es-testing.pdf',
     blocks: [
       {
         type: 'paragraph',
@@ -160,6 +163,7 @@ export const articulos: Articulo[] = [
     date: { es: 'Septiembre 2025', en: 'September 2025' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7371357953423204352',
     emoji: '🔌',
+    pdf: '/pdfs/pruebas-de-api.pdf',
     blocks: [
       {
         type: 'paragraph',
@@ -309,6 +313,7 @@ export const articulos: Articulo[] = [
     source: { es: 'Basado en ISTQB CTAL-TAE v2.0', en: 'Based on ISTQB CTAL-TAE v2.0' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7361875369035005952',
     emoji: '⚙️',
+    pdf: '/pdfs/automatizacion-de-pruebas.pdf',
     blocks: [
       {
         type: 'paragraph',
@@ -450,6 +455,7 @@ export const articulos: Articulo[] = [
     date: { es: 'Noviembre 2025', en: 'November 2025' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7402370207161229312',
     emoji: '🎯',
+    pdf: '/pdfs/localizadores.pdf',
     blocks: [
       {
         type: 'paragraph',
@@ -549,6 +555,7 @@ export const articulos: Articulo[] = [
     date: { es: 'Octubre 2025', en: 'October 2025' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7381405994871840768',
     emoji: '🤖',
+    pdf: '/pdfs/ia-en-testing.pdf',
     related: ['que-es-un-prompt'],
     blocks: [
       {
@@ -685,6 +692,7 @@ export const articulos: Articulo[] = [
     date: { es: 'Mayo 2026', en: 'May 2026' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7465367459118678016',
     emoji: '🔗',
+    pdf: '/pdfs/testing-mcp.pdf',
     blocks: [
       {
         type: 'paragraph',
@@ -767,6 +775,7 @@ export const articulos: Articulo[] = [
     source: { es: 'Resumen informativo basado en la Ley N°21.719 (Biblioteca del Congreso Nacional de Chile). No reemplaza el texto oficial ni constituye asesoría legal.', en: 'Informative summary based on Law No. 21,719 (Library of the National Congress of Chile). It does not replace the official text nor constitutes legal advice.' },
     linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7383488893867749376',
     emoji: '⚖️',
+    pdf: '/pdfs/ley-proteccion-datos-chile.pdf',
     blocks: [
       {
         type: 'callout',
@@ -884,6 +893,7 @@ export const articulos: Articulo[] = [
     date: { es: 'Diciembre 2025', en: 'December 2025' },
     autora: 'Daniella Rojas',
     emoji: '📘',
+    pdf: '/pdfs/iniciar-en-testing.pdf',
     related: ['que-es-testing', 'especialidades-en-testing'],
     blocks: [
       {
@@ -1025,6 +1035,7 @@ export const articulos: Articulo[] = [
     date: { es: '2025', en: '2025' },
     autora: 'Daniella Rojas',
     emoji: '🧭',
+    pdf: '/pdfs/especialidades-en-testing.pdf',
     related: ['iniciar-en-testing'],
     blocks: [
       {
@@ -1074,6 +1085,7 @@ export const articulos: Articulo[] = [
     date: { es: '2025', en: '2025' },
     autora: 'Mujeres Testing Latam',
     emoji: '💼',
+    pdf: '/pdfs/consejos-entrevistas.pdf',
     related: ['iniciar-en-testing'],
     blocks: [
       {

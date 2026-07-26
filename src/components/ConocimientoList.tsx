@@ -56,9 +56,14 @@ export default function ConocimientoList({ locale }: { locale: Locale }) {
               <div className="w-10 h-10 rounded-lg bg-[#C8006A]/10 border border-[#C8006A]/20 flex items-center justify-center shrink-0 text-xl">
                 <span aria-hidden>{a.emoji}</span>
               </div>
-              <span className="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+              <button
+                type="button"
+                onClick={() => setActive(a.category)}
+                title={catLabel(a.category)}
+                className="text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-[#C8006A] hover:text-white transition-colors"
+              >
                 {catLabel(a.category)}
-              </span>
+              </button>
             </div>
             <Link href={`/${locale}/conocimiento/${a.slug}`} className="flex-1">
               <h3 className="font-medium mb-1.5 text-sm group-hover:text-[#C8006A] transition-colors">{a.title[locale]}</h3>
