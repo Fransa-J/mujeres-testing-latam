@@ -10,36 +10,35 @@ export default function Footer() {
   return (
     <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-24">
       <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Bloque central: logo + eslogan al lado + contacto */}
-        <div className="flex flex-col items-center text-center gap-3">
-          <div className="flex flex-col sm:flex-row items-center gap-3">
+        {/* Izquierda: logo + frase · Derecha: email + LinkedIn en 2 líneas */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="flex items-center gap-3">
             <img
               src="/images/mtl-logo.png"
               alt="Mujeres Testing Latam"
-              className="h-16 w-auto"
+              className="h-16 w-auto shrink-0"
             />
-            <p className="text-base italic text-[#C8006A] text-center sm:text-left sm:whitespace-nowrap">
+            <p className="text-base italic text-[#C8006A]">
               Creciendo juntas en el camino del Testing
             </p>
           </div>
 
-          <div className="flex items-center gap-4 mt-1">
+          <div className="flex flex-col gap-2 sm:items-end">
             <a
               href="mailto:mujerestesting@gmail.com"
               onClick={() => track('email_click')}
-              className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
             >
-              <Mail size={13} /> mujerestesting@gmail.com
+              <Mail size={14} /> mujerestesting@gmail.com
             </a>
             <a
               href="https://www.linkedin.com/company/mujeres-testing-latam/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
               onClick={() => track('linkedin_click', { location: 'footer' })}
-              className="text-zinc-400 hover:text-[#C8006A] transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
             >
-              <Linkedin size={16} />
+              <Linkedin size={14} /> LinkedIn
             </a>
           </div>
         </div>
