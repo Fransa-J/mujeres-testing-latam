@@ -5,8 +5,14 @@ import type { Locale } from '@/content/articulos'
 
 const recursosLabel = { es: 'Recursos', en: 'Resources' }
 const aiNote = {
-  es: 'Estos artículos fueron creados por mujeres organizadoras de la comunidad 😎, con apoyo de un asistente de Inteligencia Artificial para mejorar textos e imágenes 🤖',
-  en: 'These articles were created by women organizers of the community 😎, with support from an AI assistant to improve texts and images 🤖',
+  es: {
+    a: 'Estos artículos fueron creados por mujeres organizadoras de la comunidad ',
+    b: ', con apoyo de un asistente de Inteligencia Artificial para mejorar textos e imágenes ',
+  },
+  en: {
+    a: 'These articles were created by women organizers of the community ',
+    b: ', with support from an AI assistant to improve texts and images ',
+  },
 }
 
 export default function Conocimiento({ params: { locale } }: { params: { locale: string } }) {
@@ -20,7 +26,12 @@ export default function Conocimiento({ params: { locale } }: { params: { locale:
         <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{recursosLabel[l]}</p>
         <h1 className="text-4xl font-medium mb-4">{t('title')}</h1>
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{t('description')}</p>
-        <p className="text-sm italic text-zinc-400 mt-3 leading-relaxed">{aiNote[l]}</p>
+        <p className="text-sm italic text-zinc-400 mt-3 leading-relaxed">
+          {aiNote[l].a}
+          <span className="not-italic">😎</span>
+          {aiNote[l].b}
+          <span className="not-italic">🤖</span>
+        </p>
       </div>
 
       <ConocimientoList locale={l} />
