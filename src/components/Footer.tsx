@@ -44,21 +44,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Barra inferior: copyright a la izquierda, firma abajo a la derecha */}
-        <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[11px] text-zinc-400 order-2 sm:order-1">
+        {/* Barra inferior: crédito a la comunidad */}
+        <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 text-center">
+          <p className="text-[11px] text-zinc-400">
             © {new Date().getFullYear()} Mujeres Testing Latam · {t('rights')}
           </p>
-          <div className="flex items-center gap-2 order-1 sm:order-2">
-            <span className="text-[10px] uppercase tracking-widest text-zinc-400">
-              {t('by')}
-            </span>
-            <img
-              src="/images/firma-fransa.png"
-              alt="Fransa J. Aravena"
-              className="h-8 w-auto invert dark:invert-0 opacity-70"
-            />
-          </div>
+          <p className="text-[11px] text-zinc-400 mt-1">{t('made_by')}</p>
         </div>
       </div>
     </footer>
