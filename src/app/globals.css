@@ -23,9 +23,11 @@
      Los párrafos dentro de bloques centrados (footer, llamados a la acción,
      "coming soon") mantienen su alineación centrada. */
   @media (min-width: 640px) {
+    /* Sin guionado automático: las palabras que no caben pasan completas a la
+       línea siguiente (no se cortan con "-"). */
     p {
       text-align: justify;
-      hyphens: auto;
+      hyphens: manual;
     }
 
     .text-center p,
