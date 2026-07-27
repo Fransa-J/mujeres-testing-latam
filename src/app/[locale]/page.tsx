@@ -123,7 +123,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             rel="noopener noreferrer"
             className="shrink-0 px-6 py-3 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors flex items-center gap-2"
           >
-            Seguirnos en LinkedIn <ArrowRight size={14} />
+            Síguenos en LinkedIn <ArrowRight size={14} />
           </a>
         </div>
       </section>

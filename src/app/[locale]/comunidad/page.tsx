@@ -79,7 +79,7 @@ const content = {
     ],
     ctaTitle: 'Únete a la comunidad',
     ctaDesc: 'Conéctate con nosotras en LinkedIn y sé parte del movimiento.',
-    ctaBtn: 'Seguirnos en LinkedIn',
+    ctaBtn: 'Síguenos en LinkedIn',
   },
   en: {
     kicker: 'Who we are',
@@ -292,7 +292,7 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
             <div key={f.name} className="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                 {f.foto ? (
-                  <div className="relative w-full max-w-[230px] sm:w-[230px] aspect-square shrink-0 select-none">
+                  <div className="relative w-full max-w-[200px] sm:w-[200px] aspect-square shrink-0 select-none">
                     <img
                       src={f.foto}
                       alt={f.name}
