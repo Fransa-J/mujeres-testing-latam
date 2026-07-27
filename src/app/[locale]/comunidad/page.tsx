@@ -287,49 +287,49 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{foundersUi.kicker[l]}</p>
         <h2 className="text-2xl font-medium mb-3">{foundersUi.title[l]}</h2>
         <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl mb-8 leading-relaxed">{foundersUi.intro[l]}</p>
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-6">
           {founders.map((f) => (
-            <div key={f.name} className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-              <div className="flex items-center gap-3 mb-4">
+            <div key={f.name} className="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                 {f.foto ? (
-                  <div className="relative w-[70px] h-[70px] shrink-0 select-none">
+                  <div className="relative w-full max-w-[300px] sm:w-[300px] aspect-square shrink-0 select-none">
                     <img
                       src={f.foto}
                       alt={f.name}
                       draggable={false}
-                      className="w-[70px] h-[70px] rounded-full object-cover pointer-events-none select-none"
+                      className="w-full h-full rounded-full object-cover pointer-events-none select-none"
                     />
                     {/* Capa transparente: dificulta el clic derecho / guardar imagen */}
                     <span className="absolute inset-0 rounded-full" aria-hidden />
                   </div>
                 ) : (
-                  <span className="w-12 h-12 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-2xl shrink-0">
+                  <span className="w-16 h-16 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-3xl shrink-0">
                     {f.emoji}
                   </span>
                 )}
-                <div className="min-w-0">
-                  <h3 className="font-medium">{f.name}</h3>
-                  <p className="text-xs font-medium text-[#C8006A]">{f.role[l]}</p>
+                <div className="flex-1 min-w-0 text-center sm:text-left">
+                  <h3 className="text-xl font-medium">{f.name}</h3>
+                  <p className="text-base font-medium text-[#C8006A] mt-0.5">{f.role[l]}</p>
                   {f.linkedin && (
                     <a
                       href={f.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 mt-1 text-xs text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
+                      className="inline-flex items-center gap-1.5 mt-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
                     >
-                      <Linkedin size={12} /> LinkedIn
+                      <Linkedin size={14} /> LinkedIn
                     </a>
                   )}
+                  <ul className="mt-4 flex flex-col gap-2 text-left">
+                    {f.bio[l].map((b, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C8006A]" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              <ul className="flex flex-col gap-2">
-                {f.bio[l].map((b, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C8006A]" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
