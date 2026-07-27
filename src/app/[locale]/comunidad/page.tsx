@@ -14,6 +14,7 @@ import {
   UserCheck,
   Handshake,
   Building2,
+  Linkedin,
 } from 'lucide-react'
 
 type Locale = 'es' | 'en'
@@ -170,6 +171,8 @@ const founders = [
   {
     name: 'Fransa J. Aravena',
     emoji: '👩🏻‍💻',
+    foto: '', // ej. '/images/fransa.jpg'
+    linkedin: 'https://www.linkedin.com/in/fransa-j-aravena/',
     role: { es: 'Fundadora', en: 'Founder' },
     bio: {
       es: [
@@ -189,6 +192,8 @@ const founders = [
   {
     name: 'Daniella Rojas',
     emoji: '💬',
+    foto: '', // ej. '/images/daniella.jpg'
+    linkedin: 'https://www.linkedin.com/in/daniellarojaspacheco/',
     role: { es: 'Co-Fundadora', en: 'Co-Founder' },
     bio: {
       es: [
@@ -286,12 +291,30 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
           {founders.map((f) => (
             <div key={f.name} className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-12 h-12 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-2xl shrink-0">
-                  {f.emoji}
-                </span>
-                <div>
+                {f.foto ? (
+                  <img
+                    src={f.foto}
+                    alt={f.name}
+                    className="w-14 h-14 rounded-full object-cover shrink-0"
+                  />
+                ) : (
+                  <span className="w-12 h-12 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-2xl shrink-0">
+                    {f.emoji}
+                  </span>
+                )}
+                <div className="min-w-0">
                   <h3 className="font-medium">{f.name}</h3>
                   <p className="text-xs font-medium text-[#C8006A]">{f.role[l]}</p>
+                  {f.linkedin && (
+                    <a
+                      href={f.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 mt-1 text-xs text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
+                    >
+                      <Linkedin size={12} /> LinkedIn
+                    </a>
+                  )}
                 </div>
               </div>
               <ul className="flex flex-col gap-2">
