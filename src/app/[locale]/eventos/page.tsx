@@ -101,9 +101,13 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
               className="group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 transition-colors hover:border-[#C8006A]/40"
             >
               <div className="flex flex-col sm:flex-row gap-6">
-                {/* Logo del evento (izquierda), tamaño uniforme */}
-                <div
-                  className={`w-full sm:w-44 h-24 shrink-0 rounded-xl border flex items-center justify-center p-4 ${
+                {/* Logo del evento (izquierda), clickeable hacia el sitio del evento */}
+                <a
+                  href={ev.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={ev.nombre}
+                  className={`w-full sm:w-44 h-24 shrink-0 rounded-xl border flex items-center justify-center p-4 transition hover:opacity-80 hover:border-[#C8006A]/40 ${
                     ev.logoDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200'
                   }`}
                 >
@@ -116,7 +120,7 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                   ) : (
                     <span className="text-sm font-medium text-zinc-400 text-center">{ev.nombre}</span>
                   )}
-                </div>
+                </a>
 
                 {/* Contenido */}
                 <div className="flex-1 min-w-0">
