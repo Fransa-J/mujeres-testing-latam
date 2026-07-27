@@ -292,11 +292,16 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
             <div key={f.name} className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <div className="flex items-center gap-3 mb-4">
                 {f.foto ? (
-                  <img
-                    src={f.foto}
-                    alt={f.name}
-                    className="w-14 h-14 rounded-full object-cover shrink-0"
-                  />
+                  <div className="relative w-[70px] h-[70px] shrink-0 select-none">
+                    <img
+                      src={f.foto}
+                      alt={f.name}
+                      draggable={false}
+                      className="w-[70px] h-[70px] rounded-full object-cover pointer-events-none select-none"
+                    />
+                    {/* Capa transparente: dificulta el clic derecho / guardar imagen */}
+                    <span className="absolute inset-0 rounded-full" aria-hidden />
+                  </div>
                 ) : (
                   <span className="w-12 h-12 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-2xl shrink-0">
                     {f.emoji}
