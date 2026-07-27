@@ -157,8 +157,59 @@ export function generateMetadata({ params: { locale } }: { params: { locale: str
   }
 }
 
+const foundersUi = {
+  kicker: { es: 'Fundadoras', en: 'Founders' },
+  title: { es: 'Quiénes lideran la comunidad', en: 'Who leads the community' },
+  intro: {
+    es: 'Dos visiones, un mismo propósito: empoderar a las mujeres en el mundo del Testing.',
+    en: 'Two visions, one purpose: empowering women in the world of Testing.',
+  },
+}
+
+const founders = [
+  {
+    name: 'Fransa J. Aravena',
+    emoji: '👩🏻‍💻',
+    role: { es: 'Fundadora', en: 'Founder' },
+    bio: {
+      es: [
+        '+10 años de experiencia en Quality Assurance y liderazgo de calidad.',
+        'Comprometida con crear espacios donde las mujeres puedan crecer, aprender y liderar.',
+        'Firme creyente del aprendizaje continuo, la mejora constante y la colaboración.',
+        'Enfocada en Testing, innovación, IA, ética y creatividad para impulsar nuevas perspectivas en tecnología.',
+      ],
+      en: [
+        '10+ years of experience in Quality Assurance and quality leadership.',
+        'Committed to creating spaces where women can grow, learn and lead.',
+        'A firm believer in continuous learning, constant improvement and collaboration.',
+        'Focused on Testing, innovation, AI, ethics and creativity to bring new perspectives to technology.',
+      ],
+    },
+  },
+  {
+    name: 'Daniella Rojas',
+    emoji: '💬',
+    role: { es: 'Co-Fundadora', en: 'Co-Founder' },
+    bio: {
+      es: [
+        '+20 años de experiencia en Quality Assurance y liderazgo técnico.',
+        'Impulsa la calidad con propósito humano y tecnología inteligente.',
+        'Voz activa en la región, promotora de innovación, mentoría y liderazgo femenino en Testing.',
+        'Líder de equipos y estrategias de calidad en la industria financiera y tecnológica.',
+      ],
+      en: [
+        '20+ years of experience in Quality Assurance and technical leadership.',
+        'Drives quality with a human purpose and intelligent technology.',
+        'An active voice in the region, promoting innovation, mentorship and women’s leadership in Testing.',
+        'Leader of quality teams and strategies in the financial and tech industry.',
+      ],
+    },
+  },
+]
+
 export default function Comunidad({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
+  const l: Locale = (locale as Locale) === 'en' ? 'en' : 'es'
   const c = content[(locale as Locale) in content ? (locale as Locale) : 'es']
 
   return (
@@ -223,6 +274,36 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         <div className="p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
           <h2 className="text-xl font-medium mb-3">{c.audienceTitle}</h2>
           <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">{c.audience}</p>
+        </div>
+      </section>
+
+      {/* Fundadoras */}
+      <section className="mb-20">
+        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{foundersUi.kicker[l]}</p>
+        <h2 className="text-2xl font-medium mb-3">{foundersUi.title[l]}</h2>
+        <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl mb-8 leading-relaxed">{foundersUi.intro[l]}</p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {founders.map((f) => (
+            <div key={f.name} className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-12 h-12 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-2xl shrink-0">
+                  {f.emoji}
+                </span>
+                <div>
+                  <h3 className="font-medium">{f.name}</h3>
+                  <p className="text-xs font-medium text-[#C8006A]">{f.role[l]}</p>
+                </div>
+              </div>
+              <ul className="flex flex-col gap-2">
+                {f.bio[l].map((b, i) => (
+                  <li key={i} className="flex gap-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C8006A]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 
