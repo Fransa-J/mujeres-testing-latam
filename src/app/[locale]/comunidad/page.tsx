@@ -171,7 +171,7 @@ const founders = [
   {
     name: 'Fransa J. Aravena',
     emoji: '👩🏻‍💻',
-    foto: '', // ej. '/images/fransa.jpg'
+    foto: '/images/fransa.jpg',
     linkedin: 'https://www.linkedin.com/in/fransa-j-aravena/',
     role: { es: 'Fundadora', en: 'Founder' },
     bio: {
@@ -192,7 +192,7 @@ const founders = [
   {
     name: 'Daniella Rojas',
     emoji: '💬',
-    foto: '', // ej. '/images/daniella.jpg'
+    foto: '/images/daniella.jpg',
     linkedin: 'https://www.linkedin.com/in/daniellarojaspacheco/',
     role: { es: 'Co-Fundadora', en: 'Co-Founder' },
     bio: {
