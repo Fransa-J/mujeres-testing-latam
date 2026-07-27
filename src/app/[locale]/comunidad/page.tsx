@@ -292,7 +292,7 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
             <div key={f.name} className="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                 {f.foto ? (
-                  <div className="relative w-full max-w-[300px] sm:w-[300px] aspect-square shrink-0 select-none">
+                  <div className="relative w-full max-w-[250px] sm:w-[250px] aspect-square shrink-0 select-none">
                     <img
                       src={f.foto}
                       alt={f.name}
