@@ -15,11 +15,21 @@ const locales = ['es', 'en']
 export const metadata = {
   metadataBase: new URL('https://mujerestesting.com'),
   title: {
-    default: 'Mujeres Testing Latam',
+    default: 'Mujeres Testing Latam | Comunidad de QA y Testing de Software',
     template: '%s · Mujeres Testing Latam',
   },
   description:
-    'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+    'Comunidad latinoamericana de mujeres en QA e Ingeniería de Calidad de Software (Testing). Conocimiento gratuito, eventos y mentoría para iniciar, avanzar y crecer.',
+  keywords: [
+    'Mujeres Testing Latam',
+    'QA',
+    'Quality Assurance',
+    'testing de software',
+    'ingeniería de calidad de software',
+    'comunidad de testing',
+    'mujeres en tecnología',
+    'Latinoamérica',
+  ],
   icons: {
     icon: '/images/mtl-logo.png',
     apple: '/images/mtl-logo.png',
@@ -27,7 +37,7 @@ export const metadata = {
   openGraph: {
     title: 'Mujeres Testing Latam',
     description:
-      'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+      'Comunidad latinoamericana de mujeres en QA e Ingeniería de Calidad de Software (Testing). Conocimiento, eventos y mentoría.',
     url: 'https://mujerestesting.com',
     siteName: 'Mujeres Testing Latam',
     images: ['/images/mtl-logo.png'],
@@ -37,7 +47,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Mujeres Testing Latam',
     description:
-      'Comunidad para que más mujeres inicien, avancen y prosperen en el camino del Testing.',
+      'Comunidad latinoamericana de mujeres en QA e Ingeniería de Calidad de Software (Testing). Conocimiento, eventos y mentoría.',
     images: ['/images/mtl-logo.png'],
   },
 }
