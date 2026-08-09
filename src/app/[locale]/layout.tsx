@@ -14,6 +14,9 @@ const locales = ['es', 'en']
 
 export const metadata = {
   metadataBase: new URL('https://mujerestesting.com'),
+  verification: {
+    google: 'zbPjw1rLNPjn-YHjqRxX0dnnK6J7S2wZIMosudxp4NE',
+  },
   title: {
     default: 'Mujeres Testing Latam | Comunidad de QA y Testing de Software',
     template: '%s · Mujeres Testing Latam',
