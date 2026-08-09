@@ -44,6 +44,22 @@ export interface Evento {
 // ── Eventos reales de testing en Latinoamérica ──────────────────────────────
 export const eventos: Evento[] = [
   {
+    id: 'nerdearla-argentina',
+    nombre: 'Nerdearla',
+    fecha: '2026-09-22',
+    fechaFin: '2026-09-26',
+    modalidad: 'hibrido',
+    pais: 'Argentina',
+    bandera: '🇦🇷',
+    ciudad: 'Buenos Aires',
+    organizador: 'Sysarmy',
+    organizadorUrl: 'https://sysarmy.com/',
+    url: 'https://nerdearla.com/',
+    precio: 'gratis',
+    tags: ['Conferencia'],
+    logo: '/images/eventos/nerdearla.png',
+  },
+  {
     id: 'hands-on-testing',
     nombre: 'Hands on Testing',
     fecha: '2026-08-12',
