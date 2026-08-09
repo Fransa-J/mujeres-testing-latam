@@ -54,7 +54,7 @@ export const eventos: Evento[] = [
     ciudad: 'Buenos Aires',
     organizador: 'Sysarmy',
     organizadorUrl: 'https://sysarmy.com/',
-    url: 'https://nerdearla.com/',
+    url: 'https://nerdearla.com/en/argentina/',
     precio: 'gratis',
     tags: ['Conferencia'],
     logo: '/images/eventos/nerdearla.png',
