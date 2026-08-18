@@ -310,7 +310,11 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
               />
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                 {f.foto ? (
-                  <div className="relative w-full max-w-[200px] sm:w-[200px] aspect-square shrink-0 select-none">
+                  <div
+                    className={`relative w-full aspect-square shrink-0 select-none ${
+                      idx === 0 ? 'max-w-[200px] sm:w-[200px]' : 'max-w-[150px] sm:w-[150px]'
+                    }`}
+                  >
                     <img
                       src={f.foto}
                       alt={f.name}
