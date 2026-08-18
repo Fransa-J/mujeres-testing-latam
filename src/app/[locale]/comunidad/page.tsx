@@ -288,8 +288,26 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         <h2 className="text-2xl font-medium mb-3">{foundersUi.title[l]}</h2>
         <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl mb-8 leading-relaxed">{foundersUi.intro[l]}</p>
         <div className="flex flex-col gap-6">
-          {founders.map((f) => (
+          {founders.map((f, idx) => {
+            const personLd = {
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: f.name,
+              jobTitle: f.role.es,
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Mujeres Testing Latam',
+                url: 'https://mujerestesting.com',
+              },
+              ...(f.linkedin ? { sameAs: [f.linkedin] } : {}),
+              ...(f.foto ? { image: `https://mujerestesting.com${f.foto}` } : {}),
+            }
+            return (
             <div key={f.name} className="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+              />
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
                 {f.foto ? (
                   <div className="relative w-full max-w-[200px] sm:w-[200px] aspect-square shrink-0 select-none">
@@ -308,7 +326,11 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
                   </span>
                 )}
                 <div className="flex-1 min-w-0 text-center sm:text-left">
-                  <h3 className="text-xl font-medium">{f.name}</h3>
+                  {idx === 0 ? (
+                    <h3 className="text-xl font-medium">{f.name}</h3>
+                  ) : (
+                    <p className="text-lg font-medium">{f.name}</p>
+                  )}
                   <p className="text-base font-medium text-[#C8006A] mt-0.5">{f.role[l]}</p>
                   {f.linkedin && (
                     <a
@@ -331,7 +353,8 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
       </section>
 

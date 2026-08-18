@@ -29,6 +29,21 @@ export default function ContactForm({ locale }: { locale: string }) {
       es: 'No se pudo enviar. Inténtalo de nuevo o escríbenos a mujerestesting@gmail.com.',
       en: 'Could not send. Please try again or email mujerestesting@gmail.com.',
     },
+    kicker: { es: 'Escríbenos', en: 'Write to us' },
+    phName: { es: 'Tu nombre', en: 'Your name' },
+    phCountry: { es: 'País', en: 'Country' },
+    phEmail: { es: 'tu@email.com', en: 'you@email.com' },
+    phMessage: { es: '¿En qué te podemos ayudar?', en: 'How can we help you?' },
+    liTitle: { es: 'Comunidad activa en LinkedIn', en: 'Active community on LinkedIn' },
+    liDesc: {
+      es: 'La conversación principal de la comunidad sucede en LinkedIn. Síguenos para no perderte nada.',
+      en: 'The main community conversation happens on LinkedIn. Follow us so you don’t miss anything.',
+    },
+    proposeTitle: { es: '¿Quieres proponer algo?', en: 'Want to propose something?' },
+    proposeDesc: {
+      es: 'Puedes escribirnos para proponer eventos, colaboraciones, artículos o cualquier iniciativa que sume a la comunidad.',
+      en: 'Write to us to propose events, collaborations, articles or any initiative that adds to the community.',
+    },
   }
 
   const mailtoFallback = () => {
@@ -85,7 +100,7 @@ export default function ContactForm({ locale }: { locale: string }) {
   return (
     <div className="animate-fade-in max-w-6xl mx-auto px-6 py-20">
       <div className="max-w-2xl mb-12">
-        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">Escríbenos</p>
+        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{txt.kicker[l]}</p>
         <h1 className="text-4xl font-medium mb-4">{t('title')}</h1>
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{t('description')}</p>
       </div>
@@ -126,7 +141,7 @@ export default function ContactForm({ locale }: { locale: string }) {
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                     className="px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
-                    placeholder="Tu nombre"
+                    placeholder={txt.phName[l]}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -136,7 +151,7 @@ export default function ContactForm({ locale }: { locale: string }) {
                     value={form.country}
                     onChange={e => setForm(f => ({ ...f, country: e.target.value }))}
                     className="px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
-                    placeholder="País"
+                    placeholder={txt.phCountry[l]}
                   />
                 </div>
               </div>
@@ -149,7 +164,7 @@ export default function ContactForm({ locale }: { locale: string }) {
                   value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   className="px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
-                  placeholder="tu@email.com"
+                  placeholder={txt.phEmail[l]}
                 />
               </div>
 
@@ -161,7 +176,7 @@ export default function ContactForm({ locale }: { locale: string }) {
                   value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                   className="px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors resize-none"
-                  placeholder="¿En qué te podemos ayudar?"
+                  placeholder={txt.phMessage[l]}
                 />
               </div>
 
@@ -182,8 +197,8 @@ export default function ContactForm({ locale }: { locale: string }) {
 
         <div className="flex flex-col gap-6">
           <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-            <h3 className="font-medium mb-2 text-sm">Comunidad activa en LinkedIn</h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">La conversación principal de la comunidad sucede en LinkedIn. Síguenos para no perderte nada.</p>
+            <h3 className="font-medium mb-2 text-sm">{txt.liTitle[l]}</h3>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">{txt.liDesc[l]}</p>
             <a
               href="https://www.linkedin.com/company/mujeres-testing-latam/"
               target="_blank"
@@ -194,8 +209,8 @@ export default function ContactForm({ locale }: { locale: string }) {
             </a>
           </div>
           <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-            <h3 className="font-medium mb-2 text-sm">¿Quieres proponer algo?</h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">Puedes escribirnos para proponer eventos, colaboraciones, artículos para el blog o cualquier iniciativa que sume a la comunidad.</p>
+            <h3 className="font-medium mb-2 text-sm">{txt.proposeTitle[l]}</h3>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">{txt.proposeDesc[l]}</p>
           </div>
         </div>
       </div>

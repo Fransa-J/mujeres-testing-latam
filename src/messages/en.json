@@ -28,10 +28,17 @@
     "title": "Everything you need to grow",
     "card1_title": "Knowledge resources",
     "card1_desc": "Guides, PDFs and resources for all levels, from beginner to advanced.",
+    "card1_link": "Explore",
     "card2_title": "Women's blog",
     "card2_desc": "Stories, experiences and perspectives written by women in testing.",
     "card3_title": "Events in Latam",
-    "card3_desc": "Meetups, talks and workshops across Latin America."
+    "card3_desc": "Meetups, talks and workshops across Latin America.",
+    "card3_link": "View events"
+  },
+  "cta": {
+    "title": "Ready to start?",
+    "desc": "Join over 2,000 women already transforming their careers.",
+    "button": "Follow us on LinkedIn"
   },
   "comunidad": {
     "title": "The community",

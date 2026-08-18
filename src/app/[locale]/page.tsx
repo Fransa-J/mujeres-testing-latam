@@ -93,7 +93,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             <h3 className="font-medium mb-2">{t('features.card1_title')}</h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{t('features.card1_desc')}</p>
             <Link href={`/${locale}/conocimiento`} className="mt-4 flex items-center gap-1 text-xs text-[#C8006A] hover:gap-2 transition-all">
-              Explorar <ArrowRight size={12} />
+              {t('features.card1_link')} <ArrowRight size={12} />
             </Link>
           </div>
 
@@ -104,7 +104,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             <h3 className="font-medium mb-2">{t('features.card3_title')}</h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{t('features.card3_desc')}</p>
             <Link href={`/${locale}/eventos`} className="mt-4 flex items-center gap-1 text-xs text-[#C8006A] hover:gap-2 transition-all">
-              Ver eventos <ArrowRight size={12} />
+              {t('features.card3_link')} <ArrowRight size={12} />
             </Link>
           </div>
         </div>
@@ -114,8 +114,8 @@ export default function Home({ params: { locale } }: { params: { locale: string 
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="rounded-2xl bg-zinc-950 dark:bg-zinc-900 border border-zinc-800 p-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-medium text-white mb-2">¿Lista para empezar?</h2>
-            <p className="text-zinc-400 text-sm">Únete a más de 2.000 mujeres que ya están transformando su carrera.</p>
+            <h2 className="text-2xl font-medium text-white mb-2">{t('cta.title')}</h2>
+            <p className="text-zinc-400 text-sm">{t('cta.desc')}</p>
           </div>
           <a
             href="https://www.linkedin.com/company/mujeres-testing-latam/"
@@ -123,7 +123,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
             rel="noopener noreferrer"
             className="shrink-0 px-6 py-3 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors flex items-center gap-2"
           >
-            Síguenos en LinkedIn <ArrowRight size={14} />
+            {t('cta.button')} <ArrowRight size={14} />
           </a>
         </div>
       </section>

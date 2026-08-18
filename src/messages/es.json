@@ -25,13 +25,20 @@
   },
   "features": {
     "tag": "¿Qué encuentras aquí?",
-    "title": "Todo lo que necesitás para crecer",
+    "title": "Todo lo que necesitas para crecer",
     "card1_title": "Material de conocimiento",
     "card1_desc": "Guías, PDFs y recursos para todos los niveles, desde cero hasta avanzado.",
+    "card1_link": "Explorar",
     "card2_title": "Blog de mujeres",
     "card2_desc": "Historias, experiencias y perspectivas escritas por mujeres en testing.",
     "card3_title": "Eventos en Latam",
-    "card3_desc": "Meetups, charlas y workshops en distintos países de latinoamérica."
+    "card3_desc": "Meetups, charlas y workshops en distintos países de latinoamérica.",
+    "card3_link": "Ver eventos"
+  },
+  "cta": {
+    "title": "¿Lista para empezar?",
+    "desc": "Únete a más de 2.000 mujeres que ya están transformando su carrera.",
+    "button": "Síguenos en LinkedIn"
   },
   "comunidad": {
     "title": "La comunidad",

@@ -141,12 +141,12 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
                             : ui.paid[l]}
                       </span>
                     )}
-                    {ev.tags?.map((t) => (
+                    {ev.tags?.map((tag) => (
                       <span
-                        key={t}
+                        key={tag}
                         className="text-xs px-2.5 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400"
                       >
-                        {t}
+                        {l === 'en' && tag === 'Conferencia' ? 'Conference' : tag}
                       </span>
                     ))}
                   </div>
