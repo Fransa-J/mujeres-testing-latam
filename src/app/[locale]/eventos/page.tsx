@@ -1,6 +1,10 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Calendar, MapPin, Globe, Users, ArrowUpRight, Ticket } from 'lucide-react'
-import { eventosOrdenados, type Modalidad } from '@/content/eventos'
+import { eventosOrdenados, type Modalidad, type Evento } from '@/content/eventos'
+
+// Revalida la página cada 24 h para mover automáticamente los eventos que ya
+// pasaron a la sección "Eventos pasados", sin necesidad de un nuevo despliegue.
+export const revalidate = 86400
 
 type Locale = 'es' | 'en'
 
@@ -12,6 +16,8 @@ const ui = {
     en: 'A curated agenda of testing talks, meetups, workshops and conferences across the region. Find your next event and join in.',
   },
   register: { es: 'Inscribirme', en: 'Register' },
+  viewEvent: { es: 'Ver evento', en: 'View event' },
+  pastTitle: { es: 'Eventos pasados', en: 'Past events' },
   free: { es: 'Gratis', en: 'Free' },
   paid: { es: 'De pago', en: 'Paid' },
   online: { es: 'Online', en: 'Online' },
@@ -132,11 +138,124 @@ function eventJsonLd(ev: ReturnType<typeof eventosOrdenados>[number]) {
   }
 }
 
+function EventCard({ ev, l, past }: { ev: Evento; l: Locale; past?: boolean }) {
+  const f = formatFecha(ev.fecha, ev.fechaFin, l)
+  const MIcon = ev.modalidad === 'presencial' ? MapPin : Globe
+  return (
+    <div
+      className={`group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 transition-colors hover:border-[#C8006A]/40 ${
+        past ? 'opacity-70 hover:opacity-100' : ''
+      }`}
+    >
+      <div className="flex flex-col sm:flex-row gap-6">
+        {/* Logo del evento (izquierda), clickeable hacia el sitio del evento */}
+        <a
+          href={ev.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={ev.nombre}
+          className={`w-full sm:w-44 h-24 shrink-0 rounded-xl border flex items-center justify-center p-4 transition hover:opacity-80 hover:border-[#C8006A]/40 ${
+            ev.logoDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200'
+          }`}
+        >
+          {ev.logo ? (
+            <img src={ev.logo} alt={ev.nombre} className="max-h-14 max-w-full w-auto object-contain" />
+          ) : (
+            <span className="text-sm font-medium text-zinc-400 text-center">{ev.nombre}</span>
+          )}
+        </a>
+
+        {/* Contenido */}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span
+              className={`inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium ${modalidadStyle[ev.modalidad]}`}
+            >
+              <MIcon size={12} />
+              {ui[modalidadLabel[ev.modalidad]][l]}
+            </span>
+            {(ev.precioDetalle || ev.precio) && (
+              <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+                <Ticket size={12} />{' '}
+                {ev.precioDetalle ? ev.precioDetalle[l] : ev.precio === 'gratis' ? ui.free[l] : ui.paid[l]}
+              </span>
+            )}
+            {ev.tags?.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2.5 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400"
+              >
+                {l === 'en' && tag === 'Conferencia' ? 'Conference' : tag}
+              </span>
+            ))}
+          </div>
+
+          <h3 className="font-medium text-lg mb-2">
+            <a href={ev.url} target="_blank" rel="noopener noreferrer" className="hover:text-[#C8006A] transition-colors">
+              {ev.nombre}
+            </a>
+          </h3>
+
+          {/* Fecha (en caja destacada) + lugar al lado */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-1.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#C8006A]/10 text-[#C8006A] text-xs font-semibold">
+              <Calendar size={13} /> {f.full}
+              {ev.hora && <span className="font-normal opacity-70">· {ev.hora}</span>}
+            </span>
+            {(ev.ciudad || ev.pais) && (
+              <span className="inline-flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                <MapPin size={12} /> {ev.bandera ? ev.bandera + ' ' : ''}
+                {[ev.ciudad, ev.pais].filter(Boolean).join(', ')}
+              </span>
+            )}
+          </div>
+
+          {ev.organizador && (
+            <p className="flex items-center gap-1.5 text-xs text-zinc-400">
+              <Users size={12} /> {ui.organizes[l]}:{' '}
+              {ev.organizadorUrl ? (
+                <a
+                  href={ev.organizadorUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-500 dark:text-zinc-400 underline-offset-2 hover:text-[#C8006A] hover:underline transition-colors"
+                >
+                  {ev.organizador}
+                </a>
+              ) : (
+                ev.organizador
+              )}
+            </p>
+          )}
+        </div>
+
+        {/* Acción */}
+        <div className="shrink-0 flex sm:flex-col items-start sm:items-end justify-end">
+          <a
+            href={ev.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
+          >
+            {past ? ui.viewEvent[l] : ui.register[l]} <ArrowUpRight size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Eventos({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const l = locale as Locale
   const eventos = eventosOrdenados()
   const jsonLd = eventos.map(eventJsonLd)
+
+  // Separar próximos y pasados según la fecha de término (o inicio).
+  const todayIso = new Date().toISOString().slice(0, 10)
+  const endOf = (e: Evento) => e.fechaFin || e.fecha
+  const upcoming = eventos.filter((e) => endOf(e) >= todayIso)
+  const past = eventos.filter((e) => endOf(e) < todayIso).sort((a, b) => endOf(b).localeCompare(endOf(a)))
 
   return (
     <div className="animate-fade-in max-w-5xl mx-auto px-6 py-20">
@@ -150,126 +269,30 @@ export default function Eventos({ params: { locale } }: { params: { locale: stri
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{ui.description[l]}</p>
       </div>
 
+      {/* Próximos eventos */}
       <div className="flex flex-col gap-4 mb-16">
-        {eventos.map((ev) => {
-          const f = formatFecha(ev.fecha, ev.fechaFin, l)
-          const MIcon = ev.modalidad === 'presencial' ? MapPin : Globe
-          return (
-            <div
-              key={ev.id}
-              className="group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 transition-colors hover:border-[#C8006A]/40"
-            >
-              <div className="flex flex-col sm:flex-row gap-6">
-                {/* Logo del evento (izquierda), clickeable hacia el sitio del evento */}
-                <a
-                  href={ev.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={ev.nombre}
-                  className={`w-full sm:w-44 h-24 shrink-0 rounded-xl border flex items-center justify-center p-4 transition hover:opacity-80 hover:border-[#C8006A]/40 ${
-                    ev.logoDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200'
-                  }`}
-                >
-                  {ev.logo ? (
-                    <img
-                      src={ev.logo}
-                      alt={ev.nombre}
-                      className="max-h-14 max-w-full w-auto object-contain"
-                    />
-                  ) : (
-                    <span className="text-sm font-medium text-zinc-400 text-center">{ev.nombre}</span>
-                  )}
-                </a>
-
-                {/* Contenido */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span
-                      className={`inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium ${modalidadStyle[ev.modalidad]}`}
-                    >
-                      <MIcon size={12} />
-                      {ui[modalidadLabel[ev.modalidad]][l]}
-                    </span>
-                    {(ev.precioDetalle || ev.precio) && (
-                      <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
-                        <Ticket size={12} />{' '}
-                        {ev.precioDetalle
-                          ? ev.precioDetalle[l]
-                          : ev.precio === 'gratis'
-                            ? ui.free[l]
-                            : ui.paid[l]}
-                      </span>
-                    )}
-                    {ev.tags?.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2.5 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400"
-                      >
-                        {l === 'en' && tag === 'Conferencia' ? 'Conference' : tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h3 className="font-medium text-lg mb-2">
-                    <a
-                      href={ev.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-[#C8006A] transition-colors"
-                    >
-                      {ev.nombre}
-                    </a>
-                  </h3>
-
-                  {/* Fecha (en caja destacada) + lugar al lado */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-1.5">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#C8006A]/10 text-[#C8006A] text-xs font-semibold">
-                      <Calendar size={13} /> {f.full}
-                      {ev.hora && <span className="font-normal opacity-70">· {ev.hora}</span>}
-                    </span>
-                    {(ev.ciudad || ev.pais) && (
-                      <span className="inline-flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
-                        <MapPin size={12} /> {ev.bandera ? ev.bandera + ' ' : ''}
-                        {[ev.ciudad, ev.pais].filter(Boolean).join(', ')}
-                      </span>
-                    )}
-                  </div>
-
-                  {ev.organizador && (
-                    <p className="flex items-center gap-1.5 text-xs text-zinc-400">
-                      <Users size={12} /> {ui.organizes[l]}:{' '}
-                      {ev.organizadorUrl ? (
-                        <a
-                          href={ev.organizadorUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-zinc-500 dark:text-zinc-400 underline-offset-2 hover:text-[#C8006A] hover:underline transition-colors"
-                        >
-                          {ev.organizador}
-                        </a>
-                      ) : (
-                        ev.organizador
-                      )}
-                    </p>
-                  )}
-                </div>
-
-                {/* Acción */}
-                <div className="shrink-0 flex sm:flex-col items-start sm:items-end justify-end">
-                  <a
-                    href={ev.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
-                  >
-                    {ui.register[l]} <ArrowUpRight size={14} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          )
-        })}
+        {upcoming.map((ev) => (
+          <EventCard key={ev.id} ev={ev} l={l} />
+        ))}
       </div>
+
+      {/* Separador + eventos pasados */}
+      {past.length > 0 && (
+        <>
+          <div className="flex items-center gap-4 mb-10">
+            <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+            <h2 className="text-lg font-medium text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
+              {ui.pastTitle[l]}
+            </h2>
+            <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+          </div>
+          <div className="flex flex-col gap-4 mb-16">
+            {past.map((ev) => (
+              <EventCard key={ev.id} ev={ev} l={l} past />
+            ))}
+          </div>
+        </>
+      )}
 
       {/* CTA: proponer evento */}
       <div className="p-8 rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 text-center">
