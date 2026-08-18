@@ -43,7 +43,6 @@ export const metadata = {
       'Comunidad latinoamericana de mujeres en QA e Ingeniería de Calidad de Software (Testing). Conocimiento, eventos y mentoría.',
     url: 'https://mujerestesting.com',
     siteName: 'Mujeres Testing Latam',
-    images: ['/images/mtl-logo.png'],
     type: 'website',
   },
   twitter: {
@@ -51,7 +50,6 @@ export const metadata = {
     title: 'Mujeres Testing Latam',
     description:
       'Comunidad latinoamericana de mujeres en QA e Ingeniería de Calidad de Software (Testing). Conocimiento, eventos y mentoría.',
-    images: ['/images/mtl-logo.png'],
   },
 }
 

@@ -78,13 +78,72 @@ export function generateMetadata({ params: { locale } }: { params: { locale: str
   }
 }
 
+const BASE = 'https://mujerestesting.com'
+
+// Datos estructurados de cada evento (para resultados enriquecidos en Google).
+function eventJsonLd(ev: ReturnType<typeof eventosOrdenados>[number]) {
+  const mode =
+    ev.modalidad === 'online'
+      ? 'OnlineEventAttendanceMode'
+      : ev.modalidad === 'hibrido'
+        ? 'MixedEventAttendanceMode'
+        : 'OfflineEventAttendanceMode'
+  const place = {
+    '@type': 'Place',
+    name: [ev.ciudad, ev.pais].filter(Boolean).join(', ') || ev.pais || 'Latinoamérica',
+    address: [ev.ciudad, ev.pais].filter(Boolean).join(', ') || ev.pais || 'Latinoamérica',
+  }
+  const virtual = { '@type': 'VirtualLocation', url: ev.url }
+  const location =
+    ev.modalidad === 'online' ? virtual : ev.modalidad === 'hibrido' ? [place, virtual] : place
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: ev.nombre,
+    startDate: ev.fecha,
+    endDate: ev.fechaFin || ev.fecha,
+    eventAttendanceMode: `https://schema.org/${mode}`,
+    eventStatus: 'https://schema.org/EventScheduled',
+    location,
+    url: ev.url,
+    ...(ev.logo ? { image: [`${BASE}${ev.logo}`] } : {}),
+    ...(ev.organizador
+      ? {
+          organizer: {
+            '@type': 'Organization',
+            name: ev.organizador,
+            ...(ev.organizadorUrl ? { url: ev.organizadorUrl } : {}),
+          },
+        }
+      : {}),
+    ...(ev.precio === 'gratis'
+      ? {
+          isAccessibleForFree: true,
+          offers: {
+            '@type': 'Offer',
+            price: 0,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: ev.url,
+          },
+        }
+      : {}),
+  }
+}
+
 export default function Eventos({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const l = locale as Locale
   const eventos = eventosOrdenados()
+  const jsonLd = eventos.map(eventJsonLd)
 
   return (
     <div className="animate-fade-in max-w-5xl mx-auto px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-2xl mb-8">
         <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{ui.kicker[l]}</p>
         <h1 className="text-4xl font-medium mb-4">{ui.title[l]}</h1>
