@@ -17,12 +17,26 @@ type Question = {
   col: string // encabezado de columna en la hoja
   label: string
   help?: string
-  type: 'single' | 'multiple' | 'text'
+  type: 'single' | 'multiple' | 'text' | 'select'
   options?: string[]
   required?: boolean
 }
 
+const PAISES = [
+  'Argentina', 'Bolivia', 'Brasil', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Ecuador',
+  'El Salvador', 'España', 'Guatemala', 'Honduras', 'México', 'Nicaragua', 'Panamá', 'Paraguay',
+  'Perú', 'Puerto Rico', 'República Dominicana', 'Uruguay', 'Venezuela', 'Otro',
+]
+
 const questions: Question[] = [
+  {
+    id: 'pais',
+    col: 'País',
+    label: '¿Desde qué país nos respondes?',
+    type: 'select',
+    required: true,
+    options: PAISES,
+  },
   {
     id: 'momento',
     col: 'Momento en testing',
@@ -188,6 +202,24 @@ export default function SurveyIA() {
               className="mt-2 w-full px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors resize-none"
               placeholder="Escribe tu respuesta…"
             />
+          )}
+
+          {q.type === 'select' && (
+            <select
+              required={q.required}
+              value={(answers[q.id] as string) || ''}
+              onChange={(e) => setSingle(q.id, e.target.value)}
+              className="mt-2 w-full px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
+            >
+              <option value="" disabled>
+                Selecciona tu país…
+              </option>
+              {q.options!.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
           )}
 
           {q.type === 'single' && (
