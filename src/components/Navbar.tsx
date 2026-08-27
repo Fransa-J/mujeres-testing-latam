@@ -23,6 +23,7 @@ const navItems: NavItem[] = [
       { key: 'eventos_mtl', href: '/eventos-mtl' },
     ],
   },
+  { key: 'encuesta', href: '/encuesta' },
   { key: 'contacto', href: '/contacto' },
 ]
 

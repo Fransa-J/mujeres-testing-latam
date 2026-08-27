@@ -5,7 +5,7 @@ const BASE = 'https://mujerestesting.com'
 
 // Rutas públicas (sin /blog, que está oculto). Se generan para es y en con
 // enlaces hreflang para que Google entienda ambos idiomas.
-const staticPaths = ['', '/comunidad', '/conocimiento', '/eventos', '/eventos-mtl', '/contacto']
+const staticPaths = ['', '/comunidad', '/conocimiento', '/eventos', '/eventos-mtl', '/encuesta', '/contacto']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [...staticPaths, ...articulos.map((a) => `/conocimiento/${a.slug}`)]

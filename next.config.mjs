@@ -17,8 +17,8 @@ const csp = [
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self'",
-  // Vercel Analytics/Speed Insights (same-origin) + envío del formulario de contacto (Web3Forms).
-  "connect-src 'self' https://api.web3forms.com",
+  // Vercel Analytics (same-origin) + contacto (Web3Forms) + encuesta (Google Apps Script).
+  "connect-src 'self' https://api.web3forms.com https://script.google.com https://script.googleusercontent.com",
   'upgrade-insecure-requests',
 ].join('; ')
 
