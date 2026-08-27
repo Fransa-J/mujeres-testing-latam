@@ -283,6 +283,7 @@ const questions: Question[] = [
       { es: 'Sí, de vez en cuando', en: 'Yes, from time to time' },
       { es: 'Casi nunca', en: 'Almost never' },
       { es: 'Todavía no, pero me gustaría', en: 'Not yet, but I would like to' },
+      { es: 'No, y prefiero no hacerlo', en: "No, and I prefer not to" },
     ],
   },
   {
