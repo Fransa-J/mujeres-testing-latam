@@ -4,8 +4,11 @@ import { useState } from 'react'
 import { track } from '@vercel/analytics'
 import { Send, CheckCircle } from 'lucide-react'
 
-// URL de la aplicación web de Google Apps Script (se configura en Vercel).
-const SURVEY_URL = process.env.NEXT_PUBLIC_SURVEY_URL
+// URL de la aplicación web de Google Apps Script. La URL es un endpoint público
+// (sin datos sensibles); la protección real contra spam es la clave secreta.
+const SURVEY_URL =
+  process.env.NEXT_PUBLIC_SURVEY_URL ||
+  'https://script.google.com/macros/s/AKfycbwZkWV5qx-PIoF_CtkUWhIFRlxbu6o0DaSaDWlwdjgXxlBLwd0Id5qxYQelCjLZx7W7/exec'
 // Clave compartida anti-spam: debe coincidir con la del script de Apps Script.
 const SURVEY_TOKEN = process.env.NEXT_PUBLIC_SURVEY_TOKEN
 
