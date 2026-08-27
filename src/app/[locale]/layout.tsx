@@ -75,20 +75,6 @@ const orgJsonLd = {
     jobTitle: 'Fundadora',
     sameAs: ['https://www.linkedin.com/in/fransa-j-aravena/'],
   },
-  founders: [
-    {
-      '@type': 'Person',
-      name: 'Fransa J. Aravena',
-      jobTitle: 'Fundadora',
-      sameAs: ['https://www.linkedin.com/in/fransa-j-aravena/'],
-    },
-    {
-      '@type': 'Person',
-      name: 'Daniella Rojas',
-      jobTitle: 'Co-Fundadora',
-      sameAs: ['https://www.linkedin.com/in/daniellarojaspacheco/'],
-    },
-  ],
 }
 
 export default async function LocaleLayout({
