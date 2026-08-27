@@ -286,6 +286,23 @@ const questions: Question[] = [
     ],
   },
   {
+    id: 'empresa',
+    col: '¿La empresa permite IA?',
+    label: {
+      es: '¿Tu empresa permite o fomenta el uso de IA en el trabajo?',
+      en: 'Does your company allow or encourage the use of AI at work?',
+    },
+    type: 'single',
+    options: [
+      { es: 'La fomenta y ofrece herramientas', en: 'Encourages it and provides tools' },
+      { es: 'La permite sin restricciones', en: 'Allows it without restrictions' },
+      { es: 'La permite con restricciones', en: 'Allows it with restrictions' },
+      { es: 'La prohíbe', en: 'Bans it' },
+      { es: 'No hay una política clara', en: 'There is no clear policy' },
+      { es: 'Trabajo de forma independiente', en: 'I work independently' },
+    ],
+  },
+  {
     id: 'para_que',
     col: '¿Para qué la usa?',
     label: {
@@ -323,6 +340,24 @@ const questions: Question[] = [
     type: 'text',
   },
   {
+    id: 'impacto',
+    col: 'Impacto en su trabajo',
+    label: {
+      es: '¿Cómo ha impactado la IA en tu trabajo como tester?',
+      en: 'How has AI impacted your work as a tester?',
+    },
+    help: { es: 'Puedes marcar varias.', en: 'You can select several.' },
+    type: 'multiple',
+    options: [
+      { es: 'Soy más productiva', en: "I'm more productive" },
+      { es: 'Mejoró la calidad de mi trabajo', en: 'It improved the quality of my work' },
+      { es: 'Aprendo más rápido', en: 'I learn faster' },
+      { es: 'Me libera de tareas repetitivas', en: 'It frees me from repetitive tasks' },
+      { es: 'Siento más presión o expectativas', en: 'I feel more pressure or expectations' },
+      { es: 'Todavía no noto cambios', en: "I don't notice changes yet" },
+    ],
+  },
+  {
     id: 'como_siente',
     col: '¿Cómo la hace sentir?',
     label: {
@@ -354,6 +389,19 @@ const questions: Question[] = [
     type: 'text',
   },
   {
+    id: 'consecuencias',
+    col: 'Posibles consecuencias',
+    label: {
+      es: '¿Qué consecuencias crees que podría traer el uso de herramientas de IA en el testing?',
+      en: 'What consequences do you think the use of AI tools could bring to testing?',
+    },
+    help: {
+      es: 'Positivas, negativas o ambas: lo que se te ocurra.',
+      en: 'Positive, negative or both: whatever comes to mind.',
+    },
+    type: 'text',
+  },
+  {
     id: 'rol',
     col: '¿Cambia su rol?',
     label: {
@@ -367,6 +415,46 @@ const questions: Question[] = [
       { es: 'No lo tengo claro', en: "I'm not sure" },
       { es: 'No creo que me afecte', en: "I don't think it will affect me" },
     ],
+  },
+  {
+    id: 'criterio_humano',
+    col: 'Tareas con criterio humano',
+    label: {
+      es: '¿Qué tareas del testing crees que deberían seguir requiriendo criterio humano?',
+      en: 'Which testing tasks do you think should still require human judgment?',
+    },
+    type: 'text',
+  },
+  {
+    id: 'testea_ia',
+    col: '¿Ha testeado IA?',
+    label: {
+      es: '¿Le has hecho testing a herramientas o funcionalidades de IA?',
+      en: 'Have you tested AI tools or features?',
+    },
+    type: 'single',
+    options: [
+      { es: 'Sí', en: 'Yes' },
+      { es: 'No', en: 'No' },
+      { es: 'No lo tengo claro', en: "I'm not sure" },
+    ],
+  },
+  {
+    id: 'valida',
+    col: '¿Sabe validar la IA?',
+    label: {
+      es: '¿Sabes cómo validar lo que generan estas herramientas de IA?',
+      en: 'Do you know how to validate what these AI tools generate?',
+    },
+    type: 'single',
+    options: [
+      { es: 'Sí', en: 'Yes' },
+      { es: 'No', en: 'No' },
+      { es: 'No lo sé', en: "I don't know" },
+    ],
+    otherOption: 'Sí',
+    otherCol: 'Cómo valida la IA',
+    otherPlaceholder: { es: 'Cuéntanos cómo lo validas...', en: 'Tell us how you validate it...' },
   },
   {
     id: 'aprender',
@@ -456,11 +544,9 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
     questions.forEach((q) => {
       const v = answers[q.id]
       payload[q.col] = Array.isArray(v) ? v.join('; ') : v || ''
-      if (q.otherCol) {
-        const sel = Array.isArray(v) ? v : []
-        payload[q.otherCol] = q.otherOption && sel.includes(q.otherOption)
-          ? ((answers[`${q.id}_otro`] as string) || '')
-          : ''
+      if (q.otherCol && q.otherOption) {
+        const isOther = Array.isArray(v) ? v.includes(q.otherOption) : v === q.otherOption
+        payload[q.otherCol] = isOther ? ((answers[`${q.id}_otro`] as string) || '') : ''
       }
     })
     try {
@@ -567,18 +653,21 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
                   </label>
                 )
               })}
-              {q.otherOption &&
-                (Array.isArray(answers[q.id]) ? (answers[q.id] as string[]) : []).includes(q.otherOption) && (
-                  <input
-                    type="text"
-                    value={(answers[`${q.id}_otro`] as string) || ''}
-                    onChange={(e) => setText(`${q.id}_otro`, e.target.value)}
-                    className="mt-1 w-full px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
-                    placeholder={q.otherPlaceholder ? q.otherPlaceholder[l] : UI.answerPlaceholder[l]}
-                  />
-                )}
             </div>
           )}
+
+          {q.otherOption &&
+            (Array.isArray(answers[q.id])
+              ? (answers[q.id] as string[]).includes(q.otherOption)
+              : answers[q.id] === q.otherOption) && (
+              <input
+                type="text"
+                value={(answers[`${q.id}_otro`] as string) || ''}
+                onChange={(e) => setText(`${q.id}_otro`, e.target.value)}
+                className="mt-3 w-full px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
+                placeholder={q.otherPlaceholder ? q.otherPlaceholder[l] : UI.answerPlaceholder[l]}
+              />
+            )}
         </div>
       ))}
 
