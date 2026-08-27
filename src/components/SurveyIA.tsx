@@ -6,6 +6,8 @@ import { Send, CheckCircle } from 'lucide-react'
 
 // URL de la aplicación web de Google Apps Script (se configura en Vercel).
 const SURVEY_URL = process.env.NEXT_PUBLIC_SURVEY_URL
+// Clave compartida anti-spam: debe coincidir con la del script de Apps Script.
+const SURVEY_TOKEN = process.env.NEXT_PUBLIC_SURVEY_TOKEN
 
 type Question = {
   id: string
@@ -132,6 +134,7 @@ export default function SurveyIA() {
     }
     setStatus('sending')
     const payload: Record<string, string> = {}
+    if (SURVEY_TOKEN) payload._token = SURVEY_TOKEN
     questions.forEach((q) => {
       const v = answers[q.id]
       payload[q.col] = Array.isArray(v) ? v.join('; ') : v || ''
