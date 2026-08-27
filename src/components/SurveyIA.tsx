@@ -9,8 +9,8 @@ import { Send, CheckCircle } from 'lucide-react'
 const SURVEY_URL =
   process.env.NEXT_PUBLIC_SURVEY_URL ||
   'https://script.google.com/macros/s/AKfycbwZkWV5qx-PIoF_CtkUWhIFRlxbu6o0DaSaDWlwdjgXxlBLwd0Id5qxYQelCjLZx7W7/exec'
-// Clave compartida anti-spam: debe coincidir con la del script de Apps Script.
-const SURVEY_TOKEN = process.env.NEXT_PUBLIC_SURVEY_TOKEN
+// Clave compartida anti-spam: debe coincidir con la 'var TOKEN' del Apps Script.
+const SURVEY_TOKEN = process.env.NEXT_PUBLIC_SURVEY_TOKEN || 'mtl-ia-2026-Kp9xQ7vR'
 
 type Question = {
   id: string
