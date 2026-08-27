@@ -511,6 +511,14 @@ const UI = {
     es: 'No se pudo enviar. Inténtalo de nuevo en un momento.',
     en: 'Could not send. Please try again in a moment.',
   },
+  privacy: {
+    es: 'Sobre tus datos: tus respuestas se usan solo para elaborar un informe agregado (sin identificarte) sobre las mujeres del testing y la IA. Si dejas tu correo, lo usaremos únicamente para compartirte los resultados y la invitación al mentoring; no lo compartimos con terceros. Puedes escribirnos para eliminar tus datos cuando quieras.',
+    en: 'About your data: your answers are used only to build an aggregated report (without identifying you) about women in testing and AI. If you leave your email, we will use it only to share the results and the mentoring invitation with you; we do not share it with third parties. You can write to us to delete your data at any time.',
+  },
+  consent: {
+    es: 'He leído cómo se usarán mis respuestas y acepto participar.',
+    en: 'I have read how my answers will be used and I agree to participate.',
+  },
   thanksTitle: { es: '¡Gracias por responder!', en: 'Thank you for answering!' },
   thanksBody: {
     es: 'Tu voz nos ayuda a entender cómo vivimos la IA en el testing y a crear mejores espacios para crecer juntas.',
@@ -523,6 +531,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error'
 export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
   const l: Lang = locale === 'en' ? 'en' : 'es'
   const [status, setStatus] = useState<Status>('idle')
+  const [consent, setConsent] = useState(false)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
 
   const setSingle = (id: string, value: string) => setAnswers((a) => ({ ...a, [id]: value }))
@@ -542,6 +551,7 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
     setStatus('sending')
     const payload: Record<string, string> = {}
     if (SURVEY_TOKEN) payload._token = SURVEY_TOKEN
+    payload['Consentimiento'] = consent ? 'Aceptado' : ''
     questions.forEach((q) => {
       const v = answers[q.id]
       payload[q.col] = Array.isArray(v) ? v.join('; ') : v || ''
@@ -672,11 +682,27 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
         </div>
       ))}
 
+      <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-5">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">{UI.privacy[l]}</p>
+        <label className="flex items-start gap-2.5 text-sm cursor-pointer">
+          <input
+            type="checkbox"
+            required
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+            className="mt-0.5 accent-[#C8006A]"
+          />
+          <span>
+            {UI.consent[l]} <span className="text-[#C8006A]">*</span>
+          </span>
+        </label>
+      </div>
+
       <div className="flex flex-col gap-3">
         <button
           type="submit"
-          disabled={status === 'sending'}
-          className="self-start flex items-center gap-2 px-6 py-3 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors disabled:opacity-60"
+          disabled={status === 'sending' || !consent}
+          className="self-start flex items-center gap-2 px-6 py-3 bg-[#C8006A] text-white text-sm font-medium rounded-lg hover:bg-[#A80058] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <Send size={14} /> {status === 'sending' ? UI.sending[l] : UI.submit[l]}
         </button>
