@@ -46,9 +46,8 @@ export default function Footer() {
         {/* Barra inferior: crédito a la comunidad */}
         <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 text-center">
           <p className="text-[11px] text-zinc-400">
-            © {new Date().getFullYear()} Mujeres Testing Latam · {t('rights')}
+            {t('made_by')} © {new Date().getFullYear()} · {t('rights')}
           </p>
-          <p className="text-[11px] text-zinc-400 mt-1">{t('made_by')}</p>
         </div>
       </div>
     </footer>
