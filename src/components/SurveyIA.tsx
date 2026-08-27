@@ -23,6 +23,10 @@ type Question = {
   type: 'single' | 'multiple' | 'text' | 'select'
   options?: Loc[]
   required?: boolean
+  // Si se marca esta opción en un 'multiple', se muestra un campo de texto libre.
+  otherOption?: string
+  otherCol?: string
+  otherPlaceholder?: Loc
 }
 
 // Lista completa de países (nombre en español = valor guardado en la hoja;
@@ -299,7 +303,11 @@ const questions: Question[] = [
       { es: 'Redactar o resumir textos', en: 'Write or summarize text' },
       { es: 'Aprender / estudiar', en: 'Learn / study' },
       { es: 'Aún no la uso', en: "I don't use it yet" },
+      { es: 'Otro', en: 'Other' },
     ],
+    otherOption: 'Otro',
+    otherCol: 'Para qué la usa (otro)',
+    otherPlaceholder: { es: '¿Para qué más la usas?', en: 'What else do you use it for?' },
   },
   {
     id: 'herramientas',
@@ -386,6 +394,22 @@ const questions: Question[] = [
       { es: 'Charlas con expertas', en: 'Talks with experts' },
       { es: 'Otro', en: 'Other' },
     ],
+    otherOption: 'Otro',
+    otherCol: 'Acompañamiento (otro)',
+    otherPlaceholder: { es: 'Cuéntanos qué te gustaría...', en: 'Tell us what you would like...' },
+  },
+  {
+    id: 'extra',
+    col: 'Comentarios / correo',
+    label: {
+      es: '¿Quieres agregar algo más o dejarnos tu correo?',
+      en: 'Would you like to add anything else or leave us your email?',
+    },
+    help: {
+      es: 'Opcional. Este espacio es libre para lo que quieras contarnos.',
+      en: 'Optional. This is a free space for anything you want to share with us.',
+    },
+    type: 'text',
   },
 ]
 
@@ -432,6 +456,12 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
     questions.forEach((q) => {
       const v = answers[q.id]
       payload[q.col] = Array.isArray(v) ? v.join('; ') : v || ''
+      if (q.otherCol) {
+        const sel = Array.isArray(v) ? v : []
+        payload[q.otherCol] = q.otherOption && sel.includes(q.otherOption)
+          ? ((answers[`${q.id}_otro`] as string) || '')
+          : ''
+      }
     })
     try {
       await fetch(SURVEY_URL, {
@@ -537,6 +567,16 @@ export default function SurveyIA({ locale = 'es' }: { locale?: string }) {
                   </label>
                 )
               })}
+              {q.otherOption &&
+                (Array.isArray(answers[q.id]) ? (answers[q.id] as string[]) : []).includes(q.otherOption) && (
+                  <input
+                    type="text"
+                    value={(answers[`${q.id}_otro`] as string) || ''}
+                    onChange={(e) => setText(`${q.id}_otro`, e.target.value)}
+                    className="mt-1 w-full px-3.5 py-2.5 text-sm rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:outline-none focus:border-[#C8006A] transition-colors"
+                    placeholder={q.otherPlaceholder ? q.otherPlaceholder[l] : UI.answerPlaceholder[l]}
+                  />
+                )}
             </div>
           )}
         </div>
