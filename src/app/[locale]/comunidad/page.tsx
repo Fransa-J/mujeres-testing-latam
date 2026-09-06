@@ -14,7 +14,6 @@ import {
   UserCheck,
   Handshake,
   Building2,
-  Linkedin,
 } from 'lucide-react'
 
 type Locale = 'es' | 'en'
@@ -158,63 +157,8 @@ export function generateMetadata({ params: { locale } }: { params: { locale: str
   }
 }
 
-const foundersUi = {
-  kicker: { es: 'Fundadoras', en: 'Founders' },
-  title: { es: 'Quiénes lideran la comunidad', en: 'Who leads the community' },
-  intro: {
-    es: 'Dos visiones, un mismo propósito: empoderar a las mujeres en el mundo del Testing.',
-    en: 'Two visions, one purpose: empowering women in the world of Testing.',
-  },
-}
-
-const founders = [
-  {
-    name: 'Fransa J. Aravena',
-    emoji: '👩🏻‍💻',
-    foto: '/images/fransa.jpg',
-    linkedin: 'https://www.linkedin.com/in/fransa-j-aravena/',
-    role: { es: 'Fundadora', en: 'Founder' },
-    bio: {
-      es: [
-        '+10 años de experiencia en Quality Assurance y liderazgo de calidad.',
-        'Comprometida con crear espacios donde las mujeres puedan crecer, aprender y liderar.',
-        'Firme creyente del aprendizaje continuo, la mejora constante y la colaboración.',
-        'Enfocada en Testing, innovación, IA, ética y creatividad para impulsar nuevas perspectivas en tecnología.',
-      ],
-      en: [
-        '10+ years of experience in Quality Assurance and quality leadership.',
-        'Committed to creating spaces where women can grow, learn and lead.',
-        'A firm believer in continuous learning, constant improvement and collaboration.',
-        'Focused on Testing, innovation, AI, ethics and creativity to bring new perspectives to technology.',
-      ],
-    },
-  },
-  {
-    name: 'Daniella Rojas',
-    emoji: '💬',
-    foto: '/images/daniella.jpg',
-    linkedin: 'https://www.linkedin.com/in/daniellarojaspacheco/',
-    role: { es: 'Co-Fundadora', en: 'Co-Founder' },
-    bio: {
-      es: [
-        '+20 años de experiencia en Quality Assurance y liderazgo técnico.',
-        'Impulsa la calidad con propósito humano y tecnología inteligente.',
-        'Voz activa en la región, promotora de innovación, mentoría y liderazgo femenino en Testing.',
-        'Líder de equipos y estrategias de calidad en la industria financiera y tecnológica.',
-      ],
-      en: [
-        '20+ years of experience in Quality Assurance and technical leadership.',
-        'Drives quality with a human purpose and intelligent technology.',
-        'An active voice in the region, promoting innovation, mentorship and women’s leadership in Testing.',
-        'Leader of quality teams and strategies in the financial and tech industry.',
-      ],
-    },
-  },
-]
-
 export default function Comunidad({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
-  const l: Locale = (locale as Locale) === 'en' ? 'en' : 'es'
   const c = content[(locale as Locale) in content ? (locale as Locale) : 'es']
 
   return (
@@ -282,85 +226,24 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
         </div>
       </section>
 
-      {/* Fundadoras */}
-      <section className="mb-20">
-        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{foundersUi.kicker[l]}</p>
-        <h2 className="text-2xl font-medium mb-3">{foundersUi.title[l]}</h2>
-        <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl mb-8 leading-relaxed">{foundersUi.intro[l]}</p>
-        <div className="flex flex-col gap-6">
-          {founders.map((f, idx) => {
-            const personLd = {
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: f.name,
-              jobTitle: f.role.es,
-              worksFor: {
-                '@type': 'Organization',
-                name: 'Mujeres Testing Latam',
-                url: 'https://mujerestesting.com',
-              },
-              ...(f.linkedin ? { sameAs: [f.linkedin] } : {}),
-              ...(f.foto ? { image: `https://mujerestesting.com${f.foto}` } : {}),
-            }
-            return (
-            <div key={f.name} className="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-              />
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
-                {f.foto ? (
-                  <div
-                    className={`relative w-full aspect-square shrink-0 select-none ${
-                      idx === 0 ? 'max-w-[200px] sm:w-[200px]' : 'max-w-[150px] sm:w-[150px]'
-                    }`}
-                  >
-                    <img
-                      src={f.foto}
-                      alt={f.name}
-                      draggable={false}
-                      className="w-full h-full rounded-full object-cover pointer-events-none select-none"
-                    />
-                    {/* Capa transparente: dificulta el clic derecho / guardar imagen */}
-                    <span className="absolute inset-0 rounded-full" aria-hidden />
-                  </div>
-                ) : (
-                  <span className="w-16 h-16 rounded-full bg-[#C8006A]/10 flex items-center justify-center text-3xl shrink-0">
-                    {f.emoji}
-                  </span>
-                )}
-                <div className="flex-1 min-w-0 text-center sm:text-left">
-                  {idx === 0 ? (
-                    <h3 className="text-xl font-medium">{f.name}</h3>
-                  ) : (
-                    <p className="text-lg font-medium">{f.name}</p>
-                  )}
-                  <p className="text-base font-medium text-[#C8006A] mt-0.5">{f.role[l]}</p>
-                  {f.linkedin && (
-                    <a
-                      href={f.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
-                    >
-                      <Linkedin size={14} /> LinkedIn
-                    </a>
-                  )}
-                  <ul className="mt-4 flex flex-col gap-2 text-left">
-                    {f.bio[l].map((b, i) => (
-                      <li key={i} className="flex gap-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C8006A]" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            )
-          })}
-        </div>
-      </section>
+      {/* Fundadora: solo en datos estructurados (invisible en la página, visible para buscadores) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Fransa J. Aravena',
+            jobTitle: 'Fundadora',
+            worksFor: {
+              '@type': 'Organization',
+              name: 'Mujeres Testing Latam',
+              url: 'https://mujerestesting.com',
+            },
+            sameAs: ['https://www.linkedin.com/in/fransa-j-aravena/'],
+          }),
+        }}
+      />
 
       {/* Roles del board */}
       <section className="mb-20">
