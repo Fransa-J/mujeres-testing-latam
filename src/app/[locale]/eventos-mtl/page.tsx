@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server'
-import { Calendar, Globe, Sparkles, ArrowUpRight } from 'lucide-react'
+import { Calendar, Globe, Sparkles, ArrowUpRight, Coffee, Users } from 'lucide-react'
 
 type Locale = 'es' | 'en'
 
@@ -10,6 +10,21 @@ const ui = {
     es: 'Charlas, mentorías y encuentros organizados por la comunidad, online y presenciales en distintos países.',
     en: 'Talks, mentorships and meetups organized by the community, online and in person across countries.',
   },
+  juntaTag: { es: 'Queremos conocerte · Chile', en: 'We want to meet you · Chile' },
+  juntaTitle: { es: 'Primera junta de mujeres en testing - Chile', en: 'First women-in-testing meetup - Chile' },
+  juntaDesc: {
+    es: 'Estamos explorando un primer encuentro presencial en Santiago de Chile. Cuéntanos si te interesaría participar: nos ayuda a saber cuántas somos y a organizarlo.',
+    en: 'We are exploring a first in-person meetup in Santiago, Chile. Tell us if you would be interested: it helps us know how many we are and organize it.',
+  },
+  juntaBtn: { es: 'Me interesa, quiero contarles', en: "I'm interested, let me tell you" },
+  featured: { es: 'Inscripciones abiertas', en: 'Registrations open' },
+  featuredTitle: { es: 'Encuentro presencial: un café entre mujeres del testing', en: 'In-person meetup: a coffee among women in testing' },
+  featuredDesc: {
+    es: 'Un espacio cercano y seguro para conocernos, compartir experiencias laborales y crear comunidad. Grupo reducido de 15 personas · cada una paga lo que consume.',
+    en: 'A close, safe space to meet, share work experiences and build community. Small group of 15 · each pays for what she consumes.',
+  },
+  featuredSpots: { es: 'Cupos limitados (15)', en: 'Limited spots (15)' },
+  featuredBtn: { es: 'Quiero inscribirme', en: 'I want to sign up' },
   soon: { es: 'Próximamente', en: 'Coming soon' },
   dateLabel: { es: 'Fecha', en: 'Date' },
   modalityLabel: { es: 'Modalidad', en: 'Format' },
@@ -77,6 +92,43 @@ export default function EventosMTL({ params: { locale } }: { params: { locale: s
         <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">{ui.kicker[l]}</p>
         <h1 className="text-4xl font-medium mb-4">{ui.title[l]}</h1>
         <p className="text-zinc-500 dark:text-zinc-400 text-lg leading-relaxed">{ui.description[l]}</p>
+      </div>
+
+      {/* Evento destacado: primera junta en Chile (sondeo de interés) */}
+      <div className="rounded-2xl border border-[#C8006A]/30 bg-gradient-to-br from-[#C8006A]/10 to-transparent p-6 sm:p-8 mb-8">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-[#C8006A] text-white font-medium">
+            <Users size={12} /> {ui.juntaTag[l]}
+          </span>
+        </div>
+        <h3 className="font-medium text-xl mb-2">{ui.juntaTitle[l]}</h3>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-5 max-w-2xl">{ui.juntaDesc[l]}</p>
+        <a
+          href={`/${locale}/junta-chile`}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
+        >
+          {ui.juntaBtn[l]} <ArrowUpRight size={14} />
+        </a>
+      </div>
+
+      {/* Evento destacado: encuentro presencial con inscripción */}
+      <div className="rounded-2xl border border-[#C8006A]/30 bg-gradient-to-br from-[#C8006A]/10 to-transparent p-6 sm:p-8 mb-8">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-[#C8006A] text-white font-medium">
+            <Coffee size={12} /> {ui.featured[l]}
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-[#C8006A]/10 text-[#C8006A] font-medium">
+            <Users size={12} /> {ui.featuredSpots[l]}
+          </span>
+        </div>
+        <h3 className="font-medium text-xl mb-2">{ui.featuredTitle[l]}</h3>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-5 max-w-2xl">{ui.featuredDesc[l]}</p>
+        <a
+          href={`/${locale}/encuentro`}
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
+        >
+          {ui.featuredBtn[l]} <ArrowUpRight size={14} />
+        </a>
       </div>
 
       <div className="flex flex-col gap-4 mb-16">
