@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server'
-import { Calendar, Globe, Sparkles, ArrowUpRight, Coffee, Users } from 'lucide-react'
+import { Calendar, Globe, Sparkles, ArrowUpRight, Users } from 'lucide-react'
 
 type Locale = 'es' | 'en'
 
@@ -111,25 +111,7 @@ export default function EventosMTL({ params: { locale } }: { params: { locale: s
         </a>
       </div>
 
-      {/* Evento destacado: encuentro presencial con inscripción */}
-      <div className="rounded-2xl border border-[#C8006A]/30 bg-gradient-to-br from-[#C8006A]/10 to-transparent p-6 sm:p-8 mb-8">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-[#C8006A] text-white font-medium">
-            <Coffee size={12} /> {ui.featured[l]}
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-[#C8006A]/10 text-[#C8006A] font-medium">
-            <Users size={12} /> {ui.featuredSpots[l]}
-          </span>
-        </div>
-        <h3 className="font-medium text-xl mb-2">{ui.featuredTitle[l]}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-5 max-w-2xl">{ui.featuredDesc[l]}</p>
-        <a
-          href={`/${locale}/encuentro`}
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#C8006A] text-white text-sm font-medium hover:bg-[#a80059] transition-colors"
-        >
-          {ui.featuredBtn[l]} <ArrowUpRight size={14} />
-        </a>
-      </div>
+      {/* Evento del café (grupo de 15) oculto por ahora. La página /encuentro sigue activa. */}
 
       <div className="flex flex-col gap-4 mb-16">
         {eventos.map((ev) => (
