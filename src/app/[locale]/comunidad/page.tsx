@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server'
+import { comunidades } from '@/content/comunidades'
 import {
   Heart,
   ShieldCheck,
@@ -273,6 +274,47 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
           >
             {c.rolesCtaBtn}
           </a>
+        </div>
+      </section>
+
+      {/* Comunidades amigas */}
+      <section className="mb-20">
+        <p className="text-xs font-medium tracking-widest uppercase text-[#C8006A] mb-3">
+          {locale === 'en' ? 'Partner communities' : 'Comunidades amigas'}
+        </p>
+        <h2 className="text-2xl font-medium mb-3">
+          {locale === 'en' ? 'Communities we support each other with' : 'Comunidades con las que nos apoyamos'}
+        </h2>
+        <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl mb-8 leading-relaxed">
+          {locale === 'en'
+            ? 'Communities and events we have partnered with to grow and support one another across the region.'
+            : 'Comunidades y eventos con los que nos hemos asociado para crecer y apoyarnos mutuamente en la región.'}
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {comunidades.map((com) => (
+            <a
+              key={com.id}
+              href={com.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-[#C8006A]/30 transition-colors flex flex-col"
+            >
+              <div className="h-16 flex items-center mb-4">
+                <img
+                  src={com.logo}
+                  alt={com.nombre}
+                  className="max-h-16 max-w-[180px] w-auto object-contain"
+                />
+              </div>
+              <h3 className="font-medium mb-1 group-hover:text-[#C8006A] transition-colors">
+                {com.nombre}
+                {com.bandera && <span className="ml-1.5">{com.bandera}</span>}
+              </h3>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                {com.descripcion[(locale as Locale) === 'en' ? 'en' : 'es']}
+              </p>
+            </a>
+          ))}
         </div>
       </section>
 
