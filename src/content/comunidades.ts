@@ -14,6 +14,16 @@ export type Comunidad = {
 
 export const comunidades: Comunidad[] = [
   {
+    id: 'mujeres-it',
+    nombre: 'Mujeres IT',
+    descripcion: {
+      es: 'Comunidad que impulsa la participación y el crecimiento de las mujeres en el mundo de la tecnología.',
+      en: 'A community that fosters the participation and growth of women in the world of technology.',
+    },
+    url: 'https://mujeresit.com/',
+    logo: '/images/comunidades/MujeresIT.svg',
+  },
+  {
     id: 'quality-sense-conf',
     nombre: 'Quality Sense Conf',
     descripcion: {

@@ -299,11 +299,11 @@ export default function Comunidad({ params: { locale } }: { params: { locale: st
               rel="noopener noreferrer"
               className="group p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-[#C8006A]/30 transition-colors flex flex-col"
             >
-              <div className="h-16 flex items-center mb-4">
+              <div className="h-20 flex items-center justify-center mb-4 rounded-lg bg-white p-3">
                 <img
                   src={com.logo}
                   alt={com.nombre}
-                  className="max-h-16 max-w-[180px] w-auto object-contain"
+                  className="max-h-14 max-w-[180px] w-auto object-contain"
                 />
               </div>
               <h3 className="font-medium mb-1 group-hover:text-[#C8006A] transition-colors">
