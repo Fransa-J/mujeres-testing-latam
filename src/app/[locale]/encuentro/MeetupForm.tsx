@@ -18,8 +18,8 @@ const txt = {
   },
   sending: { es: 'Enviando…', en: 'Sending…' },
   error: {
-    es: 'No se pudo enviar. Inténtalo de nuevo o escríbenos a mujerestesting@gmail.com.',
-    en: 'Could not send. Please try again or email mujerestesting@gmail.com.',
+    es: 'No se pudo enviar. Inténtalo de nuevo o escríbenos a contact@mujerestesting.com.',
+    en: 'Could not send. Please try again or email contact@mujerestesting.com.',
   },
   name: { es: 'Nombre y apellido', en: 'Full name' },
   email: { es: 'Correo', en: 'Email' },

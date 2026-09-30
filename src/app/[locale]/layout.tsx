@@ -67,7 +67,7 @@ const orgJsonLd = {
   logo: 'https://mujerestesting.com/images/mtl-logo.png',
   description:
     'Comunidad latinoamericana para que más mujeres inicien, avancen y prosperen en el testing de software.',
-  email: 'mujerestesting@gmail.com',
+  email: 'contact@mujerestesting.com',
   sameAs: ['https://www.linkedin.com/company/mujeres-testing-latam/'],
   founder: {
     '@type': 'Person',

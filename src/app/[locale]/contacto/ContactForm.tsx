@@ -26,8 +26,8 @@ export default function ContactForm({ locale }: { locale: string }) {
     another: { es: 'Enviar otro mensaje', en: 'Send another message' },
     sending: { es: 'Enviando…', en: 'Sending…' },
     error: {
-      es: 'No se pudo enviar. Inténtalo de nuevo o escríbenos a mujerestesting@gmail.com.',
-      en: 'Could not send. Please try again or email mujerestesting@gmail.com.',
+      es: 'No se pudo enviar. Inténtalo de nuevo o escríbenos a contact@mujerestesting.com.',
+      en: 'Could not send. Please try again or email contact@mujerestesting.com.',
     },
     kicker: { es: 'Escríbenos', en: 'Write to us' },
     phName: { es: 'Tu nombre', en: 'Your name' },
@@ -51,7 +51,7 @@ export default function ContactForm({ locale }: { locale: string }) {
     const body = encodeURIComponent(
       `Nombre: ${form.name}\nCorreo: ${form.email}\nPaís: ${form.country || '-'}\n\n${form.message}`
     )
-    window.location.href = `mailto:mujerestesting@gmail.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:contact@mujerestesting.com?subject=${subject}&body=${body}`
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

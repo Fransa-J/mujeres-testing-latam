@@ -25,11 +25,11 @@ export default function Footer() {
 
           <div className="flex flex-col gap-2 sm:items-end">
             <a
-              href="mailto:mujerestesting@gmail.com"
+              href="mailto:contact@mujerestesting.com"
               onClick={() => track('email_click')}
               className="inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-[#C8006A] transition-colors"
             >
-              <Mail size={14} /> mujerestesting@gmail.com
+              <Mail size={14} /> contact@mujerestesting.com
             </a>
             <a
               href="https://www.linkedin.com/company/mujeres-testing-latam/"
