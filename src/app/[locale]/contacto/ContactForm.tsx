@@ -5,9 +5,9 @@ import { useState } from 'react'
 import { track } from '@vercel/analytics'
 import { Send, CheckCircle } from 'lucide-react'
 
-// Clave pública de Web3Forms (se configura en Vercel como variable de entorno).
-// Si no está definida, el formulario usa mailto como respaldo.
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+// Clave pública de Web3Forms. Los formularios llegan a contact@mujerestesting.com.
+// Se deja fija en el código para no depender de la variable de entorno en Vercel.
+const WEB3FORMS_KEY = '9da82f41-b971-4a56-8c67-e5f7eacf9783'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
